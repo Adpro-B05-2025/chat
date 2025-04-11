@@ -4,6 +4,8 @@ import com.adpro.chat.model.ChatMessage;
 import com.adpro.chat.repository.ChatMessageRepository;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
+import com.adpro.chat.event.ChatMessageSentEvent;
+import java.time.LocalDateTime;
 
 @Service
 public class ChatMessageService {
@@ -17,6 +19,10 @@ public class ChatMessageService {
     }
 
     public ChatMessage sendMessage(ChatMessage message) {
-        return null;
+        message.setTimestamp(LocalDateTime.now());
+        message.setStatus("sent");
+        ChatMessage saved = repo.save(message);
+        publisher.publishEvent(new ChatMessageSentEvent(saved));
+        return saved;
     }
 }
