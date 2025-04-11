@@ -25,4 +25,8 @@ public class ChatMessageService {
         publisher.publishEvent(new ChatMessageSentEvent(saved));
         return saved;
     }
+
+    public Optional<ChatMessage> editMessage(Long messageId, String newContent) {
+        return Optional.empty(); // skeleton only
+    }
 }
