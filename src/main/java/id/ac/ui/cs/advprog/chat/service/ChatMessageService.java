@@ -27,6 +27,10 @@ public class ChatMessageService {
     }
 
     public Optional<ChatMessage> editMessage(Long messageId, String newContent) {
-        return Optional.empty(); // skeleton only
+        return repo.findById(messageId).map(msg -> {
+            msg.setContent(newContent);
+            msg.setStatus("edited");
+            return repo.save(msg);
+        });
     }
 }
