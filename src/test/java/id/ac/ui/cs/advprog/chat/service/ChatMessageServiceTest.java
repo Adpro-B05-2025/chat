@@ -2,7 +2,11 @@ package com.adpro.chat.service;
 
 import com.adpro.chat.model.ChatMessage;
 import com.adpro.chat.repository.ChatMessageRepository;
+import com.adpro.chat.event.ChatMessageSentEvent;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.context.ApplicationEventPublisher;
 
 import java.time.LocalDateTime;
@@ -10,24 +14,31 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class ChatMessageServiceTest {
+import org.junit.jupiter.api.extension.ExtendWith;
+
+@ExtendWith(MockitoExtension.class)
+public class ChatMessageServiceSendTest {
+
+    @Mock
+    ChatMessageRepository repo;
+
+    @Mock
+    ApplicationEventPublisher publisher;
+
+    @InjectMocks
+    ChatMessageService service;
 
     @Test
-    void testSendMessage_shouldSaveToDatabase() {
-        ChatMessageRepository repo = mock(ChatMessageRepository.class);
-        ApplicationEventPublisher eventPublisher = mock(ApplicationEventPublisher.class);
-        ChatMessageService service = new ChatMessageService(repo, eventPublisher);
+    void testSendMessage_shouldSaveToDatabaseAndTriggerEvent() {
+        ChatMessage input = new ChatMessage(null, 1L, 2L, "Hello", null, null);
+        ChatMessage output = new ChatMessage(10L, 1L, 2L, "Hello", "sent", LocalDateTime.now());
 
-        ChatMessage input = new ChatMessage(null, 1L, 2L, "Halo", null, null);
-        ChatMessage saved = new ChatMessage(100L, 1L, 2L, "Halo", "sent", LocalDateTime.now());
-
-        when(repo.save(any(ChatMessage.class))).thenReturn(saved);
+        when(repo.save(any())).thenReturn(output);
 
         ChatMessage result = service.sendMessage(input);
 
         assertNotNull(result.getId());
         assertEquals("sent", result.getStatus());
-        verify(repo, times(1)).save(any(ChatMessage.class));
-        verify(eventPublisher, times(1)).publishEvent(any());
+        verify(publisher).publishEvent(any(ChatMessageSentEvent.class));
     }
 }
