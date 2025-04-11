@@ -1,8 +1,8 @@
-# Gunakan base image Java 17
-FROM openjdk:17-jdk-alpine
+# Ganti ke openjdk 21
+FROM openjdk:21-jdk-slim
 
-# Tambahkan JAR hasil build ke dalam image
-COPY target/chat-0.0.1-SNAPSHOT.jar app.jar
+# Copy JAR file hasil build Maven
+COPY target/*.jar app.jar
 
 # Jalankan aplikasi
 ENTRYPOINT ["java", "-jar", "/app.jar"]
