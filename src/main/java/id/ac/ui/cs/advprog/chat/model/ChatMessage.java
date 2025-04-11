@@ -1,4 +1,4 @@
-package com.adpro.chat.model;
+package id.ac.ui.cs.advprog.chat.model;
 
 import jakarta.persistence.*;
 import lombok.*;

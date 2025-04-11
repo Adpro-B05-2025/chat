@@ -1,6 +1,6 @@
-package com.adpro.chat.event;
+package id.ac.ui.cs.advprog.chat.event;
 
-import com.adpro.chat.model.ChatMessage;
+import id.ac.ui.cs.advprog.chat.model.ChatMessage;
 import org.springframework.context.ApplicationEvent;
 
 public class ChatMessageSentEvent extends ApplicationEvent {

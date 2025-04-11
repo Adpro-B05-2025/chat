@@ -1,6 +1,6 @@
-package com.adpro.chat.listener;
+package id.ac.ui.cs.advprog.chat.listener;
 
-import com.adpro.chat.event.ChatMessageSentEvent;
+import id.ac.ui.cs.advprog.chat.event.ChatMessageSentEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 

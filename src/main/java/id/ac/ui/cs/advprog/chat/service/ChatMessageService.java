@@ -1,10 +1,10 @@
-package com.adpro.chat.service;
+package id.ac.ui.cs.advprog.chat.service;
 
-import com.adpro.chat.model.ChatMessage;
-import com.adpro.chat.repository.ChatMessageRepository;
+import id.ac.ui.cs.advprog.chat.model.ChatMessage;
+import id.ac.ui.cs.advprog.chat.repository.ChatMessageRepository;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
-import com.adpro.chat.event.ChatMessageSentEvent;
+import id.ac.ui.cs.advprog.chat.event.ChatMessageSentEvent;
 import java.time.LocalDateTime;
 import java.util.Optional;
 

@@ -1,7 +1,8 @@
-package com.adpro.chat.service;
+package id.ac.ui.cs.advprog.chat.service;
 
-import com.adpro.chat.model.ChatMessage;
-import com.adpro.chat.repository.ChatMessageRepository;
+import id.ac.ui.cs.advprog.chat.model.ChatMessage;
+import id.ac.ui.cs.advprog.chat.repository.ChatMessageRepository;
+import id.ac.ui.cs.advprog.chat.service.ChatMessageService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
