@@ -1,0 +1,256 @@
+STRUKTUR DIREKTORI
+====================
+  src/
+    test/
+      java/
+        id/
+          ac/
+            ui/
+              cs/
+                advprog/
+                  chat/
+                    ChatApplicationTests.java
+                    repository/
+                    controller/
+                    model/
+                    service/
+                      ChatMessageServiceEditTest.java
+                    functional/
+    main/
+      resources/
+        application.properties
+        static/
+        templates/
+      java/
+        id/
+          ac/
+            ui/
+              cs/
+                advprog/
+                  chat/
+                    ChatApplication.java
+                    repository/
+                      ChatMessageRepository.java
+                    listener/
+                      ChatAuditLogger.java
+                    controller/
+                    model/
+                      ChatMessage.java
+                    service/
+                      ChatMessageService.java
+                    event/
+                      ChatMessageSentEvent.java
+
+DETAIL FILE
+====================
+
+/src/test/java/id/ac/ui/cs/advprog/chat/ChatApplicationTests.java
+----------------------------------------
+package id.ac.ui.cs.advprog.chat;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class ChatApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}
+
+
+/src/test/java/id/ac/ui/cs/advprog/chat/service/ChatMessageServiceEditTest.java
+----------------------------------------
+package id.ac.ui.cs.advprog.chat.service;
+
+import id.ac.ui.cs.advprog.chat.model.ChatMessage;
+import id.ac.ui.cs.advprog.chat.repository.ChatMessageRepository;
+import id.ac.ui.cs.advprog.chat.service.ChatMessageService;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.context.ApplicationEventPublisher;
+
+import java.time.LocalDateTime;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
+@ExtendWith(MockitoExtension.class)
+public class ChatMessageServiceEditTest {
+
+    @Mock
+    ChatMessageRepository repo;
+
+    @Mock
+    ApplicationEventPublisher publisher;
+
+    @InjectMocks
+    ChatMessageService service;
+
+    @Test
+    void testEditMessage_shouldUpdateContentAndStatus() {
+        ChatMessage existing = new ChatMessage(2L, 1L, 2L, "Old Content", "sent", LocalDateTime.now());
+        when(repo.findById(2L)).thenReturn(Optional.of(existing));
+        when(repo.save(any())).thenReturn(existing);
+
+        Optional<ChatMessage> result = service.editMessage(2L, "Updated Content");
+
+        assertTrue(result.isPresent());
+        assertEquals("Updated Content", result.get().getContent());
+        assertEquals("edited", result.get().getStatus());
+    }
+}
+
+
+/src/main/resources/application.properties
+----------------------------------------
+spring.application.name=chat
+# H2 in-memory database (untuk testing lokal)
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+
+# Auto create table
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+# Optional (biar lebih clean saat dev)
+spring.h2.console.enabled=true
+
+
+/src/main/java/id/ac/ui/cs/advprog/chat/ChatApplication.java
+----------------------------------------
+package id.ac.ui.cs.advprog.chat;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class ChatApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(ChatApplication.class, args);
+    }
+
+}
+
+
+/src/main/java/id/ac/ui/cs/advprog/chat/repository/ChatMessageRepository.java
+----------------------------------------
+package id.ac.ui.cs.advprog.chat.repository;
+
+import id.ac.ui.cs.advprog.chat.model.ChatMessage;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ChatMessageRepository extends JpaRepository<ChatMessage, Long> {}
+
+
+/src/main/java/id/ac/ui/cs/advprog/chat/listener/ChatAuditLogger.java
+----------------------------------------
+package id.ac.ui.cs.advprog.chat.listener;
+
+import id.ac.ui.cs.advprog.chat.event.ChatMessageSentEvent;
+import org.springframework.context.event.EventListener;
+import org.springframework.stereotype.Component;
+
+@Component
+public class ChatAuditLogger {
+
+    @EventListener
+    public void onMessageSent(ChatMessageSentEvent event) {
+        System.out.println("[AUDIT] Message sent: " + event.getMessage().getContent());
+    }
+}
+
+/src/main/java/id/ac/ui/cs/advprog/chat/model/ChatMessage.java
+----------------------------------------
+package id.ac.ui.cs.advprog.chat.model;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.time.LocalDateTime;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ChatMessage {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private Long senderId;
+    private Long receiverId;
+    private String content;
+    private String status;
+    private LocalDateTime timestamp;
+}
+
+
+/src/main/java/id/ac/ui/cs/advprog/chat/service/ChatMessageService.java
+----------------------------------------
+package id.ac.ui.cs.advprog.chat.service;
+
+import id.ac.ui.cs.advprog.chat.model.ChatMessage;
+import id.ac.ui.cs.advprog.chat.repository.ChatMessageRepository;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.stereotype.Service;
+import id.ac.ui.cs.advprog.chat.event.ChatMessageSentEvent;
+import java.time.LocalDateTime;
+import java.util.Optional;
+
+
+@Service
+public class ChatMessageService {
+
+    private final ChatMessageRepository repo;
+    private final ApplicationEventPublisher publisher;
+
+    public ChatMessageService(ChatMessageRepository repo, ApplicationEventPublisher publisher) {
+        this.repo = repo;
+        this.publisher = publisher;
+    }
+
+    public ChatMessage sendMessage(ChatMessage message) {
+        message.setTimestamp(LocalDateTime.now());
+        message.setStatus("sent");
+        ChatMessage saved = repo.save(message);
+        publisher.publishEvent(new ChatMessageSentEvent(saved));
+        return saved;
+    }
+
+    public Optional<ChatMessage> editMessage(Long messageId, String newContent) {
+        return repo.findById(messageId).map(msg -> {
+            msg.setContent(newContent);
+            msg.setStatus("edited");
+            return repo.save(msg);
+        });
+    }
+}
+
+
+/src/main/java/id/ac/ui/cs/advprog/chat/event/ChatMessageSentEvent.java
+----------------------------------------
+package id.ac.ui.cs.advprog.chat.event;
+
+import id.ac.ui.cs.advprog.chat.model.ChatMessage;
+import org.springframework.context.ApplicationEvent;
+
+public class ChatMessageSentEvent extends ApplicationEvent {
+    public ChatMessageSentEvent(ChatMessage message) {
+        super(message);
+    }
+
+    public ChatMessage getMessage() {
+        return (ChatMessage) getSource();
+    }
+}
