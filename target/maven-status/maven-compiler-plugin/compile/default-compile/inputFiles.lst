@@ -3,8 +3,10 @@
 /Users/karolinajocelyn/IdeaProjects/chat/src/main/java/id/ac/ui/cs/advprog/chat/service/ChatMessageService.java
 /Users/karolinajocelyn/IdeaProjects/chat/src/main/java/id/ac/ui/cs/advprog/chat/model/ChatMessage.java
 /Users/karolinajocelyn/IdeaProjects/chat/src/main/java/id/ac/ui/cs/advprog/chat/listener/ChatAuditLogger.java
+/Users/karolinajocelyn/IdeaProjects/chat/src/main/java/id/ac/ui/cs/advprog/chat/config/SecurityConfig.java
 /Users/karolinajocelyn/IdeaProjects/chat/src/main/java/id/ac/ui/cs/advprog/chat/dto/ChatMessageResponse.java
 /Users/karolinajocelyn/IdeaProjects/chat/src/main/java/id/ac/ui/cs/advprog/chat/exception/MessageNotFoundException.java
+/Users/karolinajocelyn/IdeaProjects/chat/src/main/java/id/ac/ui/cs/advprog/chat/controller/ChatController.java
 /Users/karolinajocelyn/IdeaProjects/chat/src/main/java/id/ac/ui/cs/advprog/chat/repository/ChatMessageRepository.java
 /Users/karolinajocelyn/IdeaProjects/chat/src/main/java/id/ac/ui/cs/advprog/chat/event/ChatMessageSentEvent.java
 /Users/karolinajocelyn/IdeaProjects/chat/src/main/java/id/ac/ui/cs/advprog/chat/ChatApplication.java
