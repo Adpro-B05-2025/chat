@@ -1,0 +1,10 @@
+id/ac/ui/cs/advprog/chat/exception/MessageNotFoundException.class
+id/ac/ui/cs/advprog/chat/listener/ChatAuditLogger.class
+id/ac/ui/cs/advprog/chat/model/ChatMessage.class
+id/ac/ui/cs/advprog/chat/service/IChatMessageService.class
+id/ac/ui/cs/advprog/chat/service/ChatMessageService.class
+id/ac/ui/cs/advprog/chat/repository/ChatMessageRepository.class
+id/ac/ui/cs/advprog/chat/ChatApplication.class
+id/ac/ui/cs/advprog/chat/dto/SendMessageRequest.class
+id/ac/ui/cs/advprog/chat/dto/ChatMessageResponse.class
+id/ac/ui/cs/advprog/chat/event/ChatMessageSentEvent.class

@@ -1,0 +1,6 @@
+id/ac/ui/cs/advprog/chat/exception/MessageNotFoundExceptionTest.class
+id/ac/ui/cs/advprog/chat/service/IChatMessageServiceTest.class
+id/ac/ui/cs/advprog/chat/dto/SendMessageRequestTest.class
+id/ac/ui/cs/advprog/chat/dto/ChatMessageResponseTest.class
+id/ac/ui/cs/advprog/chat/service/ChatMessageServiceTest.class
+id/ac/ui/cs/advprog/chat/ChatApplicationTests.class
