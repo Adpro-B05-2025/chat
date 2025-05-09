@@ -1,6 +1,7 @@
 package id.ac.ui.cs.advprog.chat.controller;
 
 import id.ac.ui.cs.advprog.chat.dto.SendMessageRequest;
+import id.ac.ui.cs.advprog.chat.exception.GlobalExceptionHandler;
 import id.ac.ui.cs.advprog.chat.model.ChatMessage;
 import id.ac.ui.cs.advprog.chat.service.IChatMessageService;
 import org.junit.jupiter.api.BeforeEach;
@@ -37,7 +38,10 @@ class ChatControllerTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(chatController).build();
+        mockMvc = MockMvcBuilders
+                .standaloneSetup(chatController)
+                .setControllerAdvice(new GlobalExceptionHandler())
+                .build();
         objectMapper = new ObjectMapper();
 
         dummyMessage = new ChatMessage();
