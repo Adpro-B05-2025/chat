@@ -13,13 +13,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
+                .csrf(csrf -> csrf.disable())  // sesuaikan dgn Spring Security 6
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/chat/**").permitAll()
-                        .anyRequest().authenticated()
-                )
-                .httpBasic();
-
+                        .anyRequest().permitAll()
+                );
         return http.build();
     }
 }
