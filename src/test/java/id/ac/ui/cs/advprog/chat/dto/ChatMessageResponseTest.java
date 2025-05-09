@@ -9,15 +9,27 @@ import static org.junit.jupiter.api.Assertions.*;
 class ChatMessageResponseTest {
 
     @Test
-    void testChatMessageResponseFields() {
-        LocalDateTime now = LocalDateTime.now();
-        ChatMessageResponse response = new ChatMessageResponse(1L, 10L, 20L, "Message", "sent", now);
+    void testAllArgsConstructorAndGetters() {
+        Long id = 1L;
+        Long senderId = 10L;
+        Long receiverId = 20L;
+        String content = "Hello";
+        String status = "sent";
+        LocalDateTime timestamp = LocalDateTime.now();
 
-        assertEquals(1L, response.getId());
-        assertEquals(10L, response.getSenderId());
-        assertEquals(20L, response.getReceiverId());
-        assertEquals("Message", response.getContent());
-        assertEquals("sent", response.getStatus());
-        assertEquals(now, response.getTimestamp());
+        ChatMessageResponse response = new ChatMessageResponse(id, senderId, receiverId, content, status, timestamp);
+
+        assertEquals(id, response.getId());
+        assertEquals(senderId, response.getSenderId());
+        assertEquals(receiverId, response.getReceiverId());
+        assertEquals(content, response.getContent());
+        assertEquals(status, response.getStatus());
+        assertEquals(timestamp, response.getTimestamp());
+    }
+
+    @Test
+    void testNoArgsConstructor() {
+        ChatMessageResponse response = new ChatMessageResponse();
+        assertNotNull(response); // validasi minimal untuk constructor kosong
     }
 }
