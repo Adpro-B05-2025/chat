@@ -109,4 +109,30 @@ class ChatControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.status").value("deleted"));
     }
+
+    @Test
+    void testGetMessage_shouldThrowNotFound() throws Exception {
+        when(chatService.getMessage(999L)).thenReturn(Optional.empty());
+
+        mockMvc.perform(get("/api/chat/messages/999"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void testEditMessage_shouldThrowNotFound() throws Exception {
+        when(chatService.editMessage(eq(999L), anyString())).thenReturn(Optional.empty());
+
+        mockMvc.perform(put("/api/chat/messages/999")
+                        .contentType(MediaType.TEXT_PLAIN)
+                        .content("doesn't matter"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void testDeleteMessage_shouldThrowNotFound() throws Exception {
+        when(chatService.deleteMessage(999L)).thenReturn(Optional.empty());
+
+        mockMvc.perform(delete("/api/chat/messages/999"))
+                .andExpect(status().isNotFound());
+    }
 }
