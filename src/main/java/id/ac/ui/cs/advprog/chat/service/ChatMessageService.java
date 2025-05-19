@@ -46,6 +46,11 @@ public class ChatMessageService implements IChatMessageService {
         return repo.findAll();
     }
 
+    /** Read history for a room */
+    public List<ChatMessage> getMessagesByRoom(Long roomId) {
+        return repo.findByRoomIdOrderByTimestampAsc(roomId);
+    }
+
     /** Update */
     @Override
     public Optional<ChatMessage> editMessage(Long messageId,

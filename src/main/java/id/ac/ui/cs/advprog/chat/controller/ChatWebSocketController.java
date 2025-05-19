@@ -1,4 +1,3 @@
-// src/main/java/id/ac/ui/cs/advprog/chat/controller/ChatWebSocketController.java
 package id.ac.ui.cs.advprog.chat.controller;
 
 import id.ac.ui.cs.advprog.chat.dto.ChatDeleteRequest;
@@ -13,6 +12,7 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.stereotype.Controller;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class ChatWebSocketController {
@@ -68,5 +68,11 @@ public class ChatWebSocketController {
         return msgSvc.deleteMessage(req.getId())
                 .orElseThrow(() ->
                         new RuntimeException("Message not found with id: " + req.getId()));
+    }
+
+    @MessageMapping("/chat.history.{roomId}")
+    public List<ChatMessage> history(@DestinationVariable Long roomId, Principal p) {
+        // (RBAC diperiksa di interceptor jika you also intercept history)
+        return msgSvc.getMessagesByRoom(roomId);
     }
 }
