@@ -2,18 +2,24 @@ package id.ac.ui.cs.advprog.chat.dto;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 class ChatDeleteRequestTest {
 
     @Test
-    void testNoArgsConstructorAndSetter() {
+    void testNoArgsConstructorAndSetters() {
         ChatDeleteRequest req = new ChatDeleteRequest();
-        req.setId(789L);
-        assertEquals(789L, req.getId());
+        req.setRoomId(3L);
+        req.setId(4L);
+
+        assertEquals(3L, req.getRoomId());
+        assertEquals(4L, req.getId());
     }
 
     @Test
-    void testAllArgsConstructorAndGetter() {
-        ChatDeleteRequest req = new ChatDeleteRequest(321L);
-        assertEquals(321L, req.getId());
+    void testAllArgsConstructorAndGetters() {
+        ChatDeleteRequest req = new ChatDeleteRequest(5L, 6L);
+        assertEquals(5L, req.getRoomId());
+        assertEquals(6L, req.getId());
     }
 }
