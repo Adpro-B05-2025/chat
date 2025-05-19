@@ -1,7 +1,5 @@
 package id.ac.ui.cs.advprog.chat.controller;
 
-import id.ac.ui.cs.advprog.chat.dto.SendMessageRequest;
-import id.ac.ui.cs.advprog.chat.dto.ChatMessageResponse;
 import id.ac.ui.cs.advprog.chat.model.ChatMessage;
 import id.ac.ui.cs.advprog.chat.repository.ChatMessageRepository;
 import id.ac.ui.cs.advprog.chat.security.UserPrincipal;
@@ -68,6 +66,7 @@ public class ChatController {
         return service.getAllMessages().stream()
                 .map(this::toResponse)
                 .collect(Collectors.toList());
+
     }
 
     @PutMapping("/{id}")

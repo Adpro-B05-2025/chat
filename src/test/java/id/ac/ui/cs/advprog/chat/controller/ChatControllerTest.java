@@ -1,7 +1,5 @@
 package id.ac.ui.cs.advprog.chat.controller;
 
-import id.ac.ui.cs.advprog.chat.dto.SendMessageRequest;
-import id.ac.ui.cs.advprog.chat.exception.GlobalExceptionHandler;
 import id.ac.ui.cs.advprog.chat.model.ChatMessage;
 import id.ac.ui.cs.advprog.chat.service.IChatMessageService;
 import org.junit.jupiter.api.BeforeEach;
