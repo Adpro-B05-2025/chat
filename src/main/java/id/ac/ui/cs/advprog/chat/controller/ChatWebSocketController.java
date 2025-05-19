@@ -2,6 +2,7 @@
 package id.ac.ui.cs.advprog.chat.controller;
 
 import id.ac.ui.cs.advprog.chat.dto.ChatDeleteRequest;
+import id.ac.ui.cs.advprog.chat.dto.ChatEditRequest;
 import id.ac.ui.cs.advprog.chat.model.ChatMessage;
 import id.ac.ui.cs.advprog.chat.model.ChatRoom;
 import id.ac.ui.cs.advprog.chat.security.UserPrincipal;
