@@ -1,3 +1,4 @@
+// src/main/java/id/ac/ui/cs/advprog/chat/model/ChatMessage.java
 package id.ac.ui.cs.advprog.chat.model;
 
 import jakarta.persistence.Entity;
@@ -14,24 +15,25 @@ public class ChatMessage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Long roomId;       // ← baru
     private Long senderId;
     private Long receiverId;
     private String content;
     private String status;
     private LocalDateTime timestamp;
 
-    // no-args constructor
     public ChatMessage() {
     }
 
-    // all-args constructor
     public ChatMessage(Long id,
+                       Long roomId,
                        Long senderId,
                        Long receiverId,
                        String content,
                        String status,
                        LocalDateTime timestamp) {
         this.id = id;
+        this.roomId = roomId;
         this.senderId = senderId;
         this.receiverId = receiverId;
         this.content = content;
@@ -39,53 +41,26 @@ public class ChatMessage {
         this.timestamp = timestamp;
     }
 
-    // getters and setters for every field
+    // Getter/Setter untuk id
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public Long getId() {
-        return id;
-    }
+    // Getter/Setter untuk roomId
+    public Long getRoomId() { return roomId; }
+    public void setRoomId(Long roomId) { this.roomId = roomId; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public Long getSenderId() { return senderId; }
+    public void setSenderId(Long senderId) { this.senderId = senderId; }
 
-    public Long getSenderId() {
-        return senderId;
-    }
+    public Long getReceiverId() { return receiverId; }
+    public void setReceiverId(Long receiverId) { this.receiverId = receiverId; }
 
-    public void setSenderId(Long senderId) {
-        this.senderId = senderId;
-    }
+    public String getContent() { return content; }
+    public void setContent(String content) { this.content = content; }
 
-    public Long getReceiverId() {
-        return receiverId;
-    }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 
-    public void setReceiverId(Long receiverId) {
-        this.receiverId = receiverId;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public LocalDateTime getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
-    }
+    public LocalDateTime getTimestamp() { return timestamp; }
+    public void setTimestamp(LocalDateTime timestamp) { this.timestamp = timestamp; }
 }

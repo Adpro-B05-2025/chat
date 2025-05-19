@@ -1,3 +1,4 @@
+// src/test/java/id/ac/ui/cs/advprog/chat/model/ChatMessageTest.java
 package id.ac.ui.cs.advprog.chat.model;
 
 import org.junit.jupiter.api.Test;
@@ -12,14 +13,16 @@ class ChatMessageTest {
     void testNoArgsConstructorAndSetters() {
         ChatMessage msg = new ChatMessage();
 
-        Long id = 1L;
+        Long id       = 1L;
+        Long roomId   = 2L;
         Long senderId = 10L;
         Long receiverId = 20L;
-        String content = "Hello!";
-        String status = "sent";
+        String content  = "Hello!";
+        String status   = "sent";
         LocalDateTime timestamp = LocalDateTime.now();
 
         msg.setId(id);
+        msg.setRoomId(roomId);
         msg.setSenderId(senderId);
         msg.setReceiverId(receiverId);
         msg.setContent(content);
@@ -27,6 +30,7 @@ class ChatMessageTest {
         msg.setTimestamp(timestamp);
 
         assertEquals(id, msg.getId());
+        assertEquals(roomId, msg.getRoomId());
         assertEquals(senderId, msg.getSenderId());
         assertEquals(receiverId, msg.getReceiverId());
         assertEquals(content, msg.getContent());
@@ -36,16 +40,20 @@ class ChatMessageTest {
 
     @Test
     void testAllArgsConstructorAndGetters() {
-        Long id = 2L;
-        Long senderId = 30L;
-        Long receiverId = 40L;
+        Long id        = 2L;
+        Long roomId    = 3L;
+        Long senderId  = 30L;
+        Long receiverId= 40L;
         String content = "Hi!";
-        String status = "edited";
+        String status  = "edited";
         LocalDateTime timestamp = LocalDateTime.now();
 
-        ChatMessage msg = new ChatMessage(id, senderId, receiverId, content, status, timestamp);
+        ChatMessage msg = new ChatMessage(
+                id, roomId, senderId, receiverId, content, status, timestamp
+        );
 
         assertEquals(id, msg.getId());
+        assertEquals(roomId, msg.getRoomId());
         assertEquals(senderId, msg.getSenderId());
         assertEquals(receiverId, msg.getReceiverId());
         assertEquals(content, msg.getContent());
