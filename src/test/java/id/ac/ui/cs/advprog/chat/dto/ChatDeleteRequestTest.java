@@ -2,8 +2,6 @@ package id.ac.ui.cs.advprog.chat.dto;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class ChatDeleteRequestTest {
 
     @Test
