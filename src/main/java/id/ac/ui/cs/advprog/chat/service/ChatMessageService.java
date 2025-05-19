@@ -24,7 +24,6 @@ public class ChatMessageService implements IChatMessageService {
         this.publisher = publisher;
     }
 
-    /** Create */
     @Override
     public ChatMessage sendMessage(ChatMessage message) {
         message.setTimestamp(LocalDateTime.now());
@@ -34,27 +33,23 @@ public class ChatMessageService implements IChatMessageService {
         return saved;
     }
 
-    /** Read single */
     @Override
     public Optional<ChatMessage> getMessage(Long messageId) {
         return repo.findById(messageId);
     }
 
-    /** Read all */
     @Override
     public List<ChatMessage> getAllMessages() {
         return repo.findAll();
     }
 
-    /** Read history for a room */
+    @Override
     public List<ChatMessage> getMessagesByRoom(Long roomId) {
         return repo.findByRoomIdOrderByTimestampAsc(roomId);
     }
 
-    /** Update */
     @Override
-    public Optional<ChatMessage> editMessage(Long messageId,
-                                             String newContent) {
+    public Optional<ChatMessage> editMessage(Long messageId, String newContent) {
         return repo.findById(messageId)
                 .map(msg -> {
                     msg.setContent(newContent);
@@ -63,7 +58,6 @@ public class ChatMessageService implements IChatMessageService {
                 });
     }
 
-    /** “Delete” (soft delete) */
     @Override
     public Optional<ChatMessage> deleteMessage(Long messageId) {
         return repo.findById(messageId)
