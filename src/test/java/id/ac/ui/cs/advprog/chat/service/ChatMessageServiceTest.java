@@ -1,5 +1,7 @@
 package id.ac.ui.cs.advprog.chat.service;
 
+import id.ac.ui.cs.advprog.chat.event.ChatMessageDeletedEvent;
+import id.ac.ui.cs.advprog.chat.event.ChatMessageEditedEvent;
 import id.ac.ui.cs.advprog.chat.event.ChatMessageSentEvent;
 import id.ac.ui.cs.advprog.chat.model.ChatMessage;
 import id.ac.ui.cs.advprog.chat.repository.ChatMessageRepository;
@@ -39,7 +41,7 @@ class ChatMessageServiceTest {
         msg.setSenderId(100L);
         msg.setReceiverId(200L);
         msg.setContent("hiya");
-        // status & timestamp akan di‐set di sendMessage()
+        // status & timestamp will be set in sendMessage()
     }
 
     @Test
@@ -60,7 +62,7 @@ class ChatMessageServiceTest {
         assertEquals(1L, sent.getId());
         verify(publisher).publishEvent(argThat(e ->
                 e instanceof ChatMessageSentEvent &&
-                        ((ChatMessageSentEvent)e).getMessage().getId().equals(1L)
+                        ((ChatMessageSentEvent) e).getMessage().getId().equals(1L)
         ));
     }
 
@@ -102,5 +104,42 @@ class ChatMessageServiceTest {
         Optional<ChatMessage> deleted = service.deleteMessage(1L);
         assertTrue(deleted.isPresent());
         assertEquals("deleted", deleted.get().getStatus());
+    }
+
+    @Test
+    void testEditMessagePublishesEditedEvent() {
+        // arrange
+        msg.setContent("old");
+        when(repo.findById(2L)).thenReturn(Optional.of(msg));
+        when(repo.save(any())).thenAnswer(inv -> inv.getArgument(0));
+
+        // act
+        Optional<ChatMessage> maybe = service.editMessage(2L, "updated");
+
+        // assert
+        assertTrue(maybe.isPresent());
+        ChatMessage saved = maybe.get();
+        verify(publisher).publishEvent(argThat(evt ->
+                evt instanceof ChatMessageEditedEvent &&
+                        ((ChatMessageEditedEvent) evt).getMessage().equals(saved)
+        ));
+    }
+
+    @Test
+    void testDeleteMessagePublishesDeletedEvent() {
+        // arrange
+        when(repo.findById(3L)).thenReturn(Optional.of(msg));
+        when(repo.save(any())).thenAnswer(inv -> inv.getArgument(0));
+
+        // act
+        Optional<ChatMessage> maybe = service.deleteMessage(3L);
+
+        // assert
+        assertTrue(maybe.isPresent());
+        ChatMessage saved = maybe.get();
+        verify(publisher).publishEvent(argThat(evt ->
+                evt instanceof ChatMessageDeletedEvent &&
+                        ((ChatMessageDeletedEvent) evt).getMessage().equals(saved)
+        ));
     }
 }

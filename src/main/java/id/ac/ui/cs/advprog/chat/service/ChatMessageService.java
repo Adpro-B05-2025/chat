@@ -1,5 +1,7 @@
 package id.ac.ui.cs.advprog.chat.service;
 
+import id.ac.ui.cs.advprog.chat.event.ChatMessageDeletedEvent;
+import id.ac.ui.cs.advprog.chat.event.ChatMessageEditedEvent;
 import id.ac.ui.cs.advprog.chat.event.ChatMessageSentEvent;
 import id.ac.ui.cs.advprog.chat.model.ChatMessage;
 import id.ac.ui.cs.advprog.chat.repository.ChatMessageRepository;
@@ -24,6 +26,7 @@ public class ChatMessageService implements IChatMessageService {
         this.publisher = publisher;
     }
 
+    /** Create */
     @Override
     public ChatMessage sendMessage(ChatMessage message) {
         message.setTimestamp(LocalDateTime.now());
@@ -33,37 +36,48 @@ public class ChatMessageService implements IChatMessageService {
         return saved;
     }
 
+    /** Read single */
     @Override
     public Optional<ChatMessage> getMessage(Long messageId) {
         return repo.findById(messageId);
     }
 
+    /** Read all */
     @Override
     public List<ChatMessage> getAllMessages() {
         return repo.findAll();
     }
 
+    /** Read per-room */
     @Override
     public List<ChatMessage> getMessagesByRoom(Long roomId) {
         return repo.findByRoomIdOrderByTimestampAsc(roomId);
     }
 
+    /** Update (soft-edit) */
     @Override
     public Optional<ChatMessage> editMessage(Long messageId, String newContent) {
         return repo.findById(messageId)
                 .map(msg -> {
                     msg.setContent(newContent);
                     msg.setStatus("edited");
-                    return repo.save(msg);
+                    ChatMessage saved = repo.save(msg);
+                    // **Publish edit event** supaya listener WS tahu ada update
+                    publisher.publishEvent(new ChatMessageEditedEvent(saved));
+                    return saved;
                 });
     }
 
+    /** Delete (soft-delete) */
     @Override
     public Optional<ChatMessage> deleteMessage(Long messageId) {
         return repo.findById(messageId)
                 .map(msg -> {
                     msg.setStatus("deleted");
-                    return repo.save(msg);
+                    ChatMessage saved = repo.save(msg);
+                    // **Publish delete event** supaya listener WS tahu ada penghapusan
+                    publisher.publishEvent(new ChatMessageDeletedEvent(saved));
+                    return saved;
                 });
     }
 }
