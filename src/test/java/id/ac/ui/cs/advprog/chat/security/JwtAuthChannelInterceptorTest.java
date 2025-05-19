@@ -2,17 +2,20 @@ package id.ac.ui.cs.advprog.chat.security;
 
 import id.ac.ui.cs.advprog.chat.model.ChatRoom;
 import id.ac.ui.cs.advprog.chat.service.ChatRoomService;
+import id.ac.ui.cs.advprog.chat.security.UserPrincipal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
-import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.messaging.simp.stomp.StompCommand;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.security.access.AccessDeniedException;
 
+import java.security.Principal;
 import java.util.Collections;
 import java.util.Optional;
 
@@ -34,7 +37,7 @@ class JwtAuthChannelInterceptorTest {
     private Message<byte[]> buildStompSend(String destination, Long userId) {
         StompHeaderAccessor sh = StompHeaderAccessor.create(StompCommand.SEND);
         sh.setDestination(destination);
-        sh.setUser(new UserPrincipal(userId, "user", Collections.emptyList()));
+        sh.setUser((Principal) new UserPrincipal(userId, "user", Collections.emptyList()));
         sh.setLeaveMutable(true);
         return MessageBuilder.createMessage(new byte[0], sh.getMessageHeaders());
     }
