@@ -1,4 +1,3 @@
-// src/main/java/id/ac/ui/cs/advprog/chat/listener/ChatNotificationListener.java
 package id.ac.ui.cs.advprog.chat.listener;
 
 import id.ac.ui.cs.advprog.chat.event.*;
