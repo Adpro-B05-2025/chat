@@ -38,3 +38,6 @@ out/
 
 printrepo.py
 backend.txt
+
+node_modules/
+.env
