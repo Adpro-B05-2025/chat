@@ -7,8 +7,10 @@ import id.ac.ui.cs.advprog.chat.model.ChatRoom;
 import id.ac.ui.cs.advprog.chat.security.UserPrincipal;
 import id.ac.ui.cs.advprog.chat.service.ChatRoomService;
 import id.ac.ui.cs.advprog.chat.service.IChatMessageService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
 import java.security.Principal;
@@ -19,20 +21,31 @@ public class ChatWebSocketController {
 
     private final IChatMessageService msgSvc;
     private final ChatRoomService roomSvc;
+    private final SimpMessagingTemplate ws;
 
-    public ChatWebSocketController(IChatMessageService msgSvc, ChatRoomService roomSvc) {
+    @Autowired
+    public ChatWebSocketController(IChatMessageService msgSvc,
+                                   ChatRoomService roomSvc,
+                                   SimpMessagingTemplate ws) {
         this.msgSvc = msgSvc;
         this.roomSvc = roomSvc;
+        this.ws = ws;
     }
 
     /**
      * 1) Pacilian inisiasi room dengan doctorId
+     *    Manual broadcast roomId ke topic untuk memastikan client menerima
      */
     @MessageMapping("/chat.init.{doctorId}")
-    public Long initRoom(@DestinationVariable Long doctorId, Principal principal) {
+    public void initRoom(@DestinationVariable Long doctorId,
+                         Principal principal) {
         Long pacId = ((UserPrincipal) principal).getId();
         ChatRoom room = roomSvc.createIfNotExists(pacId, doctorId);
-        return room.getId();
+        // kirim ID room langsung ke semua subscriber /topic/chat.init.{doctorId}
+        ws.convertAndSend(
+                "/topic/chat.init." + doctorId,
+                room.getId()
+        );
     }
 
     /**
@@ -70,9 +83,11 @@ public class ChatWebSocketController {
                         new RuntimeException("Message not found with id: " + req.getId()));
     }
 
+    /**
+     * 5) Ambil history pesan
+     */
     @MessageMapping("/chat.history.{roomId}")
     public List<ChatMessage> history(@DestinationVariable Long roomId, Principal p) {
-        // (RBAC diperiksa di interceptor jika you also intercept history)
         return msgSvc.getMessagesByRoom(roomId);
     }
 }
