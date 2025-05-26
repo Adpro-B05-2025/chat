@@ -31,6 +31,15 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-websocket")
+
+    // JWT dependencies
+    implementation("io.jsonwebtoken:jjwt-api:0.11.5")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
+    runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
+
+    implementation("me.paulschwarz:spring-dotenv:4.0.0")
+
     implementation("com.h2database:h2")
     compileOnly("org.projectlombok:lombok")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
@@ -42,12 +51,12 @@ dependencies {
 }
 
 jacoco {
-    toolVersion = "0.8.10" // versi JaCoCo yang digunakan
+    toolVersion = "0.8.10"
 }
 
 tasks.test {
     useJUnitPlatform()
-    finalizedBy("jacocoTestReport") // agar report otomatis dibuat setelah test
+    finalizedBy("jacocoTestReport")
 }
 
 tasks.jacocoTestReport {

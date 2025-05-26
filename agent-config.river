@@ -1,0 +1,51 @@
+// Grafana Agent Flow Configuration
+// This scrapes metrics and sends them to Grafana Cloud
+
+// Scrape Spring Boot application metrics
+prometheus.scrape "spring_boot" {
+  targets = [
+    {"__address__" = "host.docker.internal:8082"},
+  ]
+  forward_to = [prometheus.remote_write.grafana_cloud.receiver]
+  metrics_path = "/actuator/prometheus"
+  scrape_interval = "30s"
+  scrape_timeout = "10s"
+}
+
+// Scrape local Prometheus metrics
+prometheus.scrape "local_prometheus" {
+  targets = [
+    {"__address__" = "prometheus:9090"},
+  ]
+  forward_to = [prometheus.remote_write.grafana_cloud.receiver]
+  metrics_path = "/metrics"
+  scrape_interval = "30s"
+}
+
+// Scrape Grafana Agent's own metrics
+prometheus.scrape "grafana_agent" {
+  targets = [
+    {"__address__" = "localhost:12345"},
+  ]
+  forward_to = [prometheus.remote_write.grafana_cloud.receiver]
+  metrics_path = "/metrics"
+  scrape_interval = "60s"
+}
+
+// Remote write to Grafana Cloud
+prometheus.remote_write "grafana_cloud" {
+  endpoint {
+    url = "https://prometheus-prod-52-prod-ap-southeast-2.grafana.net/api/prom/push"
+    basic_auth {
+      username = "2460407"
+      password = "glc_eyJvIjoiMTQzOTM0NiIsIm4iOiJzdGFjay0xMjY4MDg2LWFsbG95LWNoYXQiLCJrIjoidGswUHU5TXk0UnY4MTFFMzI5am5ITTFHIiwibSI6eyJyIjoicHJvZC1hcC1zb3V0aGVhc3QtMiJ9fQ=="
+    }
+
+    queue_config {
+      capacity = 10000
+      max_shards = 200
+      min_shards = 1
+      max_samples_per_send = 2000
+    }
+  }
+}

@@ -1,16 +1,15 @@
 package id.ac.ui.cs.advprog.chat.security;
 
-import id.ac.ui.cs.advprog.chat.dto.TokenValidationResponse;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
@@ -19,34 +18,49 @@ import java.util.stream.Collectors;
 
 @Component
 public class JwtAuthFilter extends OncePerRequestFilter {
-    @Autowired private RestTemplate restTemplate;
-    // sesuaikan alamat jika auth-profile di host lain
-    private final String authValidateUrl = "http://localhost:8081/api/auth/validate";
+
+    private static final Logger logger = LoggerFactory.getLogger(JwtAuthFilter.class);
+
+    @Autowired
+    private JwtUtils jwtUtils;
 
     @Override
     protected void doFilterInternal(HttpServletRequest req,
                                     HttpServletResponse res,
                                     FilterChain chain) throws ServletException, IOException {
         String header = req.getHeader("Authorization");
-        if (header != null && header.startsWith("Bearer ")) {
-            HttpHeaders h = new HttpHeaders();
-            h.set("Authorization", header);
-            HttpEntity<Void> ent = new HttpEntity<>(h);
-            try {
-                ResponseEntity<TokenValidationResponse> resp =
-                        restTemplate.exchange(authValidateUrl, HttpMethod.POST, ent, TokenValidationResponse.class);
 
-                TokenValidationResponse tvr = resp.getBody();
-                if (resp.getStatusCode().is2xxSuccessful() && tvr != null && tvr.isValid()) {
-                    var authorities = tvr.getRoles().stream()
-                            .map(SimpleGrantedAuthority::new)
-                            .collect(Collectors.toList());
-                    UserPrincipal principal = new UserPrincipal(tvr.getUserId(), tvr.getUsername(), authorities);
-                    var auth = new UsernamePasswordAuthenticationToken(principal, null, authorities);
-                    SecurityContextHolder.getContext().setAuthentication(auth);
+        if (header != null && header.startsWith("Bearer ")) {
+            String token = header.substring(7);
+            try {
+                if (jwtUtils.validateJwtToken(token)) {
+                    String userId = jwtUtils.getUserIdFromJwtToken(token);
+                    String username = jwtUtils.getUsernameFromToken(token);
+                    List<String> roles = jwtUtils.getRolesFromToken(token);
+
+                    if (userId != null && roles != null) {
+                        var authorities = roles.stream()
+                                .map(SimpleGrantedAuthority::new)
+                                .collect(Collectors.toList());
+
+                        UserPrincipal principal = new UserPrincipal(
+                                Long.parseLong(userId),
+                                username != null ? username : userId,
+                                authorities
+                        );
+
+                        var auth = new UsernamePasswordAuthenticationToken(
+                                principal, null, authorities
+                        );
+
+                        SecurityContextHolder.getContext().setAuthentication(auth);
+                    }
                 }
-            } catch (Exception ignored) { /* gagal validate → lanjut tanpa auth */ }
+            } catch (Exception e) {
+                logger.error("Cannot set user authentication: {}", e.getMessage());
+            }
         }
+
         chain.doFilter(req, res);
     }
 }

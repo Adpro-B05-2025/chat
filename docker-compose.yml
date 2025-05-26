@@ -1,0 +1,47 @@
+services:
+  grafana-agent:
+    image: grafana/agent:latest
+    container_name: grafana-agent
+    volumes:
+      - ./agent-config.river:/etc/agent-config.river  # pakai .river, bukan .yaml
+    command:
+      - run
+      - /etc/agent-config.river  # langsung path ke file, tanpa flag --config.file
+    environment:
+      - AGENT_MODE=flow
+    ports:
+      - "12345:12345"
+    networks:
+      - monitoring
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - monitoring
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    depends_on:
+      - prometheus
+    ports:
+      - "3001:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    networks:
+      - monitoring
+
+networks:
+  monitoring:
+
+volumes:
+  grafana-data:
