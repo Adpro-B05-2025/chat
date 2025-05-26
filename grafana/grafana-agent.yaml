@@ -1,0 +1,24 @@
+metrics:
+  global:
+    scrape_interval: 60s
+    remote_write:
+      - url: https://prometheus-prod-52-prod-ap-southeast-2.grafana.net/api/prom/push
+        basic_auth:
+          username: 2460407
+          password: glc_eyJvIjoiMTQzOTM0NiIsIm4iOiJzdGFjay0xMjY4MDg2LWFsbG95LWNoYXQiLCJrIjoidGswUHU5TXk0UnY4MTFFMzI5am5ITTFHIiwibSI6eyJyIjoicHJvZC1hcC1zb3V0aGVhc3QtMiJ9fQ==
+
+  configs:
+    - name: default
+      scrape_configs:
+        - job_name: spring-boot
+          metrics_path: /actuator/prometheus
+          static_configs:
+            - targets: ['host.docker.internal:8082']
+
+        - job_name: prometheus
+          static_configs:
+            - targets: ['prometheus:9090']
+
+integrations:
+  agent:
+    enabled: true

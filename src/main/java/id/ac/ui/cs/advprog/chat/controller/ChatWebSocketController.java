@@ -26,7 +26,6 @@ public class ChatWebSocketController {
     private final ChatRoomService roomSvc;
     private final SimpMessagingTemplate ws;
 
-    // Session attribute keys - must match interceptor
     private static final String USER_ID_SESSION_ATTR = "USER_ID";
     private static final String USERNAME_SESSION_ATTR = "USERNAME";
     private static final String AUTH_TOKEN_SESSION_ATTR = "AUTH_TOKEN";
@@ -38,6 +37,156 @@ public class ChatWebSocketController {
         this.msgSvc = msgSvc;
         this.roomSvc = roomSvc;
         this.ws = ws;
+        logger.info("ChatWebSocketController initialized");
+    }
+
+    @MessageMapping("/chat.init.{targetUserId}")
+    public void initRoom(@DestinationVariable Long targetUserId,
+                         SimpMessageHeaderAccessor headerAccessor) {
+        logger.info("initRoom called - targetUserId={}", targetUserId);
+        logger.debug("Session attributes on init: {}", headerAccessor.getSessionAttributes());
+        try {
+            Long currentUserId = getUserId(headerAccessor);
+            String authToken = getAuthToken(headerAccessor);
+
+            logger.info("Current User ID for initRoom: {}", currentUserId);
+            logger.debug("Auth token present: {}", authToken != null);
+
+            if (authToken != null) {
+                ChatRoomService.setCurrentAuthToken(authToken);
+            }
+
+            try {
+                ChatRoom room = roomSvc.createIfNotExists(currentUserId, targetUserId);
+                logger.info("Room created/found with ID: {}", room.getId());
+
+                ws.convertAndSendToUser(
+                        currentUserId.toString(),
+                        "/topic/chat.init",
+                        room.getId()
+                );
+                ws.convertAndSend(
+                        "/topic/chat.init." + targetUserId,
+                        room.getId()
+                );
+
+                logger.info("initRoom completed successfully for roomId={}", room.getId());
+            } finally {
+                ChatRoomService.clearCurrentAuthToken();
+                logger.debug("Cleared thread-local auth token");
+            }
+        } catch (Exception e) {
+            logger.error("Error in initRoom for targetUserId={}: {}", targetUserId, e.getMessage(), e);
+            ws.convertAndSend(
+                    "/topic/chat.init." + targetUserId + ".error",
+                    "Failed to initialize room: " + e.getMessage()
+            );
+        }
+    }
+
+    @MessageMapping("/chat.send.{roomId}")
+    public void send(@DestinationVariable Long roomId,
+                     ChatMessage message,
+                     SimpMessageHeaderAccessor headerAccessor) {
+        logger.info("send called - roomId={}", roomId);
+        logger.debug("Payload before send: {}", message);
+        try {
+            Long senderId = getUserId(headerAccessor);
+            message.setRoomId(roomId);
+            message.setSenderId(senderId);
+
+            logger.debug("Message details - sender={}, receiver={}, content={}",
+                    senderId, message.getReceiverId(), message.getContent());
+
+            ChatMessage saved = msgSvc.sendMessage(message);
+            logger.info("Message sent successfully - messageId={}", saved.getId());
+            logger.debug("send completed for messageId={}", saved.getId());
+        } catch (Exception e) {
+            logger.error("Error in send for roomId={}: {}", roomId, e.getMessage(), e);
+            ws.convertAndSend(
+                    "/topic/chat." + roomId + ".error",
+                    "Failed to send message: " + e.getMessage()
+            );
+        }
+    }
+
+    @MessageMapping("/chat.edit.{roomId}")
+    public void edit(@DestinationVariable Long roomId,
+                     ChatEditRequest req,
+                     SimpMessageHeaderAccessor headerAccessor) {
+        logger.info("edit called - roomId={}, messageId={}", roomId, req.getId());
+        logger.debug("edit request payload: {}", req);
+        try {
+            Long userId = getUserId(headerAccessor);
+            logger.debug("User {} editing message {}", userId, req.getId());
+
+            req.setRoomId(roomId);
+            ChatMessage updated = msgSvc.editMessage(req.getId(), req.getNewContent())
+                    .orElseThrow(() -> new RuntimeException("Message not found with id: " + req.getId()));
+
+            logger.info("Message edited successfully - messageId={}", updated.getId());
+            logger.debug("edit completed for messageId={}", updated.getId());
+        } catch (Exception e) {
+            logger.error("Error in edit for roomId={}, messageId={}: {}", roomId, req.getId(), e.getMessage(), e);
+            ws.convertAndSend(
+                    "/topic/chat." + roomId + ".error",
+                    "Failed to edit message: " + e.getMessage()
+            );
+        }
+    }
+
+    @MessageMapping("/chat.delete.{roomId}")
+    public void delete(@DestinationVariable Long roomId,
+                       ChatDeleteRequest req,
+                       SimpMessageHeaderAccessor headerAccessor) {
+        logger.info("delete called - roomId={}, messageId={}", roomId, req.getId());
+        logger.debug("delete request payload: {}", req);
+        try {
+            Long userId = getUserId(headerAccessor);
+            logger.debug("User {} deleting message {}", userId, req.getId());
+
+            req.setRoomId(roomId);
+            ChatMessage deleted = msgSvc.deleteMessage(req.getId())
+                    .orElseThrow(() -> new RuntimeException("Message not found with id: " + req.getId()));
+
+            logger.info("Message deleted successfully - messageId={}", deleted.getId());
+            logger.debug("delete completed for messageId={}", deleted.getId());
+        } catch (Exception e) {
+            logger.error("Error in delete for roomId={}, messageId={}: {}", roomId, req.getId(), e.getMessage(), e);
+            ws.convertAndSend(
+                    "/topic/chat." + roomId + ".error",
+                    "Failed to delete message: " + e.getMessage()
+            );
+        }
+    }
+
+    @MessageMapping("/chat.history.{roomId}")
+    public void history(@DestinationVariable Long roomId,
+                        SimpMessageHeaderAccessor headerAccessor) {
+        logger.info("history called - roomId={}", roomId);
+        try {
+            Long userId = getUserId(headerAccessor);
+            logger.debug("User {} requesting history for room {}", userId, roomId);
+
+            List<ChatMessage> messages = msgSvc.getMessagesByRoom(roomId);
+            logger.info("Retrieved {} messages for room {}", messages.size(), roomId);
+
+            if (!messages.isEmpty()) {
+                for (ChatMessage message : messages) {
+                    ws.convertAndSend("/topic/chat." + roomId + ".messages", message);
+                }
+            }
+
+            ws.convertAndSend("/topic/chat." + roomId + ".history.complete",
+                    "History loaded: " + messages.size() + " messages");
+            logger.debug("history completed - sent {} messages for roomId={}", messages.size(), roomId);
+        } catch (Exception e) {
+            logger.error("Error in history for roomId={}: {}", roomId, e.getMessage(), e);
+            ws.convertAndSend(
+                    "/topic/chat." + roomId + ".error",
+                    "Failed to fetch history: " + e.getMessage()
+            );
+        }
     }
 
     // Helper method to extract user ID from session attributes
@@ -92,192 +241,5 @@ public class ChatWebSocketController {
         logger.debug("Retrieved auth token from message headers: {}", authToken != null ? "present" : "null");
 
         return authToken;
-    }
-
-    /**
-     * Initialize chat room between current user and target user.
-     * This works for both patients initiating with caregivers and caregivers initiating with patients.
-     *
-     * @param targetUserId The ID of the user to start a chat with
-     * @param headerAccessor Session information
-     */
-    @MessageMapping("/chat.init.{targetUserId}")
-    public void initRoom(@DestinationVariable Long targetUserId,
-                         SimpMessageHeaderAccessor headerAccessor) {
-        logger.info("Initializing room - Target User ID: {}", targetUserId);
-
-        try {
-            Long currentUserId = getUserId(headerAccessor);
-            String authToken = getAuthToken(headerAccessor);
-
-            logger.info("Current User ID: {}", currentUserId);
-            logger.debug("Auth token present: {}", authToken != null);
-
-            // Set the auth token in thread-local for the service to use
-            if (authToken != null) {
-                ChatRoomService.setCurrentAuthToken(authToken);
-            }
-
-            try {
-                // Use the updated createIfNotExists method that handles role assignment automatically
-                ChatRoom room = roomSvc.createIfNotExists(currentUserId, targetUserId);
-                logger.info("Room created/found with ID: {}", room.getId());
-
-                // Send room ID back to the initiating user
-                // Use current user ID as the topic identifier since they're the ones waiting for the response
-                ws.convertAndSendToUser(
-                        currentUserId.toString(),
-                        "/topic/chat.init",
-                        room.getId()
-                );
-
-                // Also send to the general topic for backwards compatibility
-                ws.convertAndSend(
-                        "/topic/chat.init." + targetUserId,
-                        room.getId()
-                );
-
-                logger.info("Room initialization successful - sent room ID {} to both users", room.getId());
-            } finally {
-                // Always clear the thread-local token
-                ChatRoomService.clearCurrentAuthToken();
-            }
-
-        } catch (Exception e) {
-            logger.error("Error initializing room: ", e);
-            // Send error to client
-            ws.convertAndSend(
-                    "/topic/chat.init." + targetUserId + ".error",
-                    "Failed to initialize room: " + e.getMessage()
-            );
-        }
-    }
-
-    /**
-     * 2) Send message to specific room
-     */
-    @MessageMapping("/chat.send.{roomId}")
-    public void send(@DestinationVariable Long roomId,
-                     ChatMessage message,
-                     SimpMessageHeaderAccessor headerAccessor) {
-        logger.info("Sending message to room: {}", roomId);
-
-        try {
-            Long senderId = getUserId(headerAccessor);
-
-            message.setRoomId(roomId);
-            message.setSenderId(senderId);
-
-            logger.debug("Message details - Sender: {}, Receiver: {}, Content: {}",
-                    senderId, message.getReceiverId(), message.getContent());
-
-            ChatMessage saved = msgSvc.sendMessage(message);
-            logger.info("Message sent successfully with ID: {}", saved.getId());
-
-        } catch (Exception e) {
-            logger.error("Error sending message: ", e);
-            ws.convertAndSend(
-                    "/topic/chat." + roomId + ".error",
-                    "Failed to send message: " + e.getMessage()
-            );
-        }
-    }
-
-    /**
-     * 3) Edit message (soft-update)
-     */
-    @MessageMapping("/chat.edit.{roomId}")
-    public void edit(@DestinationVariable Long roomId,
-                     ChatEditRequest req,
-                     SimpMessageHeaderAccessor headerAccessor) {
-        logger.info("Editing message {} in room: {}", req.getId(), roomId);
-
-        try {
-            Long userId = getUserId(headerAccessor);
-            logger.debug("User {} editing message {}", userId, req.getId());
-
-            req.setRoomId(roomId);
-            ChatMessage updated = msgSvc.editMessage(req.getId(), req.getNewContent())
-                    .orElseThrow(() -> {
-                        logger.error("Message not found for edit: {}", req.getId());
-                        return new RuntimeException("Message not found with id: " + req.getId());
-                    });
-
-            logger.info("Message edited successfully");
-
-        } catch (Exception e) {
-            logger.error("Error editing message: ", e);
-            ws.convertAndSend(
-                    "/topic/chat." + roomId + ".error",
-                    "Failed to edit message: " + e.getMessage()
-            );
-        }
-    }
-
-    /**
-     * 4) Delete message (soft-delete)
-     */
-    @MessageMapping("/chat.delete.{roomId}")
-    public void delete(@DestinationVariable Long roomId,
-                       ChatDeleteRequest req,
-                       SimpMessageHeaderAccessor headerAccessor) {
-        logger.info("Deleting message {} in room: {}", req.getId(), roomId);
-
-        try {
-            Long userId = getUserId(headerAccessor);
-            logger.debug("User {} deleting message {}", userId, req.getId());
-
-            req.setRoomId(roomId);
-            ChatMessage deleted = msgSvc.deleteMessage(req.getId())
-                    .orElseThrow(() -> {
-                        logger.error("Message not found for delete: {}", req.getId());
-                        return new RuntimeException("Message not found with id: " + req.getId());
-                    });
-
-            logger.info("Message deleted successfully");
-
-        } catch (Exception e) {
-            logger.error("Error deleting message: ", e);
-            ws.convertAndSend(
-                    "/topic/chat." + roomId + ".error",
-                    "Failed to delete message: " + e.getMessage()
-            );
-        }
-    }
-
-    /**
-     * 5) Get message history for room
-     */
-    @MessageMapping("/chat.history.{roomId}")
-    public void history(@DestinationVariable Long roomId,
-                        SimpMessageHeaderAccessor headerAccessor) {
-        logger.info("Fetching history for room: {}", roomId);
-
-        try {
-            Long userId = getUserId(headerAccessor);
-            logger.debug("User {} requesting history for room {}", userId, roomId);
-
-            List<ChatMessage> messages = msgSvc.getMessagesByRoom(roomId);
-            logger.info("Retrieved {} messages for room {}", messages.size(), roomId);
-
-            // Send history to the room's messages topic so frontend can receive it
-            if (!messages.isEmpty()) {
-                for (ChatMessage message : messages) {
-                    // Send each message to the room's messages topic
-                    ws.convertAndSend("/topic/chat." + roomId + ".messages", message);
-                }
-            }
-
-            // Also send a completion signal
-            ws.convertAndSend("/topic/chat." + roomId + ".history.complete",
-                    "History loaded: " + messages.size() + " messages");
-
-        } catch (Exception e) {
-            logger.error("Error fetching history: ", e);
-            ws.convertAndSend(
-                    "/topic/chat." + roomId + ".error",
-                    "Failed to fetch history: " + e.getMessage()
-            );
-        }
     }
 }

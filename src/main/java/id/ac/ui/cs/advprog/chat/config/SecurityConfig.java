@@ -52,6 +52,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        .requestMatchers("/actuator/**").permitAll()  // Add this line to permit actuator endpoints
                         .requestMatchers("/ws-chat/**", "/app/**", "/topic/**").permitAll()
                         .requestMatchers("/api/chat/debug", "/api/chat/contacts").permitAll()  // Allow these endpoints
                         .anyRequest().authenticated()

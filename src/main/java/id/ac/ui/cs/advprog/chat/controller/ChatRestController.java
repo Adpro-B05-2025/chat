@@ -39,63 +39,69 @@ public class ChatRestController {
      */
     @GetMapping("/contacts")
     public ResponseEntity<List<ContactResponse>> getContacts(@RequestParam Long userId) {
-        logger.info("Getting contacts for user: {}", userId);
+        logger.info("START getContacts for userId={}", userId);
 
         try {
-            // Find all rooms where this user is a participant
+            // 1. Ambil semua chat room yang melibatkan user ini
             List<ChatRoom> userRooms = roomService.findRoomsByUserId(userId);
             logger.debug("Found {} rooms for user {}", userRooms.size(), userId);
 
             List<ContactResponse> contacts = new ArrayList<>();
 
+            // 2. Proses tiap room
             for (ChatRoom room : userRooms) {
-                // Determine who is the contact (the other person in the room)
-                Long contactId = userId.equals(room.getPacilianId()) ?
-                        room.getDoctorId() : room.getPacilianId();
+                Long contactId = userId.equals(room.getPacilianId())
+                        ? room.getDoctorId()
+                        : room.getPacilianId();
+                logger.debug("Room {}: contactId={}", room.getId(), contactId);
 
-                logger.debug("Processing contact: {} for room: {}", contactId, room.getId());
-
-                // Get contact details from auth-profile service
+                // 2.a. Ambil nama dari AuthProfileService
                 String contactName = authProfileService.getUserName(contactId);
+                logger.debug("Contact name for {} => {}", contactId, contactName);
 
-                // Get latest message for preview
+                // 2.b. Ambil pesan terakhir untuk preview
                 List<ChatMessage> messages = messageService.getMessagesByRoom(room.getId());
+                logger.debug("Room {}: {} messages loaded", room.getId(), messages.size());
+
                 String lastMessage = "";
                 if (!messages.isEmpty()) {
                     ChatMessage lastMsg = messages.get(messages.size() - 1);
-                    if ("deleted".equals(lastMsg.getStatus())) {
-                        lastMessage = "Message deleted";
-                    } else {
-                        lastMessage = lastMsg.getContent();
-                    }
+                    lastMessage = "deleted".equalsIgnoreCase(lastMsg.getStatus())
+                            ? "Message deleted"
+                            : lastMsg.getContent();
                 }
 
+                // 2.c. Bangun response
                 ContactResponse contact = new ContactResponse();
                 contact.setContactId(contactId);
                 contact.setContactName(contactName);
                 contact.setRoomId(room.getId());
                 contact.setLastMessage(lastMessage);
-                contact.setLastMessageTime(messages.isEmpty() ? null :
-                        messages.get(messages.size() - 1).getTimestamp());
+                contact.setLastMessageTime(
+                    messages.isEmpty() ? null : messages.get(messages.size() - 1).getTimestamp()
+                );
 
                 contacts.add(contact);
-                logger.debug("Added contact: {} ({})", contactName, contactId);
+                logger.debug("Added ContactResponse: {}", contact);
             }
 
-            // Sort contacts by last message time (most recent first)
+            // 3. Urutkan berdasarkan waktu pesan terakhir (descending)
             contacts.sort((a, b) -> {
                 if (a.getLastMessageTime() == null && b.getLastMessageTime() == null) return 0;
                 if (a.getLastMessageTime() == null) return 1;
                 if (b.getLastMessageTime() == null) return -1;
                 return b.getLastMessageTime().compareTo(a.getLastMessageTime());
             });
+            logger.debug("Contacts sorted by lastMessageTime");
 
-            logger.info("Returning {} contacts for user {}", contacts.size(), userId);
+            logger.info("END getContacts for user {} — returning {} contacts",
+                        userId, contacts.size());
             return ResponseEntity.ok(contacts);
 
         } catch (Exception e) {
-            logger.error("Error getting contacts for user {}: ", userId, e);
-            return ResponseEntity.ok(new ArrayList<>());
+            logger.error("ERROR in getContacts for user {}: {}", userId, e.getMessage(), e);
+            // meski error, kembalikan list kosong agar frontend tidak gagal total
+            return ResponseEntity.ok(Collections.emptyList());
         }
     }
 }

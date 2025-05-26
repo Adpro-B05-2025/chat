@@ -2,13 +2,14 @@ package id.ac.ui.cs.advprog.chat.service;
 
 import id.ac.ui.cs.advprog.chat.model.ChatRoom;
 import id.ac.ui.cs.advprog.chat.repository.ChatRoomRepository;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.Timer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
@@ -18,6 +19,7 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 @Service
 @Transactional
@@ -27,6 +29,8 @@ public class ChatRoomService {
 
     private final ChatRoomRepository repo;
     private final RestTemplate restTemplate;
+    private final Counter chatRoomCreatedCounter;
+    private final Timer messageProcessingTimer;
 
     @Value("${authprofile.service.url:http://localhost:8081/api}")
     private String authProfileUrl;
@@ -35,9 +39,11 @@ public class ChatRoomService {
     private static final ThreadLocal<String> currentAuthToken = new ThreadLocal<>();
 
     @Autowired
-    public ChatRoomService(ChatRoomRepository repo) {
+    public ChatRoomService(ChatRoomRepository repo, Counter chatRoomCreatedCounter, Timer messageProcessingTimer) {
         this.repo = repo;
         this.restTemplate = new RestTemplate();
+        this.chatRoomCreatedCounter = chatRoomCreatedCounter;
+        this.messageProcessingTimer = messageProcessingTimer;
     }
 
     /**
@@ -59,43 +65,48 @@ public class ChatRoomService {
      * Always ensures that pacilianId is the patient and doctorId is the caregiver.
      */
     public ChatRoom createIfNotExists(Long userId1, Long userId2) {
-        logger.info("Creating chat room between users {} and {}", userId1, userId2);
+        return messageProcessingTimer.record(() -> {
+            logger.info("Creating chat room between users {} and {}", userId1, userId2);
 
-        // Determine which user is the patient and which is the caregiver
-        Long pacilianId = null;
-        Long doctorId = null;
+            // Determine which user is the patient and which is the caregiver
+            Long pacilianId = null;
+            Long doctorId = null;
 
-        // Check if userId1 is a caregiver
-        if (isCaregiver(userId1)) {
-            doctorId = userId1;
-            pacilianId = userId2;
-        } else if (isCaregiver(userId2)) {
-            doctorId = userId2;
-            pacilianId = userId1;
-        } else {
-            // If neither is a caregiver, treat the first user as patient and second as caregiver
-            // (This is a fallback case that shouldn't normally occur)
-            logger.warn("Neither user {} nor {} appears to be a caregiver. Using default assignment.", userId1, userId2);
-            pacilianId = userId1;
-            doctorId = userId2;
-        }
+            // Check if userId1 is a caregiver
+            if (isCaregiver(userId1)) {
+                doctorId = userId1;
+                pacilianId = userId2;
+            } else if (isCaregiver(userId2)) {
+                doctorId = userId2;
+                pacilianId = userId1;
+            } else {
+                // If neither is a caregiver, treat the first user as patient and second as caregiver
+                // (This is a fallback case that shouldn't normally occur)
+                logger.warn("Neither user {} nor {} appears to be a caregiver. Using default assignment.", userId1, userId2);
+                pacilianId = userId1;
+                doctorId = userId2;
+            }
 
-        logger.info("Room assignment - Patient: {}, Caregiver: {}", pacilianId, doctorId);
+            logger.info("Room assignment - Patient: {}, Caregiver: {}", pacilianId, doctorId);
 
-        // Check if room already exists with correct role assignment
-        Optional<ChatRoom> existingRoom = repo.findByPacilianIdAndDoctorId(pacilianId, doctorId);
+            // Check if room already exists with correct role assignment
+            Optional<ChatRoom> existingRoom = repo.findByPacilianIdAndDoctorId(pacilianId, doctorId);
 
-        if (existingRoom.isPresent()) {
-            logger.info("Found existing room with ID: {}", existingRoom.get().getId());
-            return existingRoom.get();
-        }
+            if (existingRoom.isPresent()) {
+                logger.info("Found existing room with ID: {}", existingRoom.get().getId());
+                return existingRoom.get();
+            }
 
-        // Create new room with proper role assignment
-        ChatRoom newRoom = new ChatRoom(pacilianId, doctorId);
-        ChatRoom savedRoom = repo.save(newRoom);
-        logger.info("Created new room with ID: {}", savedRoom.getId());
+            // Create new room with proper role assignment
+            ChatRoom newRoom = new ChatRoom(pacilianId, doctorId);
+            ChatRoom savedRoom = repo.save(newRoom);
+            logger.info("Created new room with ID: {}", savedRoom.getId());
+            
+            // Increment the counter when creating a new room
+            chatRoomCreatedCounter.increment();
 
-        return savedRoom;
+            return savedRoom;
+        });
     }
 
     /**
