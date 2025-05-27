@@ -1,8 +1,9 @@
-# Ganti ke openjdk 21
-FROM openjdk:21-jdk-slim
+FROM eclipse-temurin:17-jdk-alpine
 
-# Copy JAR file hasil build Maven
-COPY target/*.jar app.jar
+WORKDIR /app
 
-# Jalankan aplikasi
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+COPY build/libs/chat-0.0.1-SNAPSHOT.jar app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
