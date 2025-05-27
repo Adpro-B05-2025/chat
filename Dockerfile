@@ -1,9 +1,14 @@
-FROM eclipse-temurin:17-jdk-alpine
+# Gunakan image OpenJDK 21 yang ringan
+FROM openjdk:21-jdk-slim
 
+# Set working directory
 WORKDIR /app
 
-COPY build/libs/chat-0.0.1-SNAPSHOT.jar app.jar
+# Salin JAR hasil build dari Gradle ke container
+COPY build/libs/*.jar app.jar
 
+# Ekspose port 8080 (Spring Boot default)
 EXPOSE 8080
 
+# Jalankan aplikasi
 ENTRYPOINT ["java", "-jar", "app.jar"]
