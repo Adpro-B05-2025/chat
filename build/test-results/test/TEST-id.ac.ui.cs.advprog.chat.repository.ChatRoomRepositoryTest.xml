@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="id.ac.ui.cs.advprog.chat.repository.ChatRoomRepositoryTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-05-27T04:38:37.079Z" hostname="Karolinas-MacBook-Pro.local" time="0.013">
+<testsuite name="id.ac.ui.cs.advprog.chat.repository.ChatRoomRepositoryTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-05-27T07:07:16.001Z" hostname="Karolinas-MacBook-Pro.local" time="0.013">
   <properties/>
   <testcase name="testFindByPacilianIdOrDoctorId_returnsAllMatching()" classname="id.ac.ui.cs.advprog.chat.repository.ChatRoomRepositoryTest" time="0.007"/>
   <testcase name="testFindByPacilianIdAndDoctorId_whenExists()" classname="id.ac.ui.cs.advprog.chat.repository.ChatRoomRepositoryTest" time="0.005"/>
-  <system-out><![CDATA[2025-05-27 11:38:37.071 [clientInboundChannel-7] INFO  i.a.u.c.a.c.service.ChatRoomService - Found existing room with ID: 1
-2025-05-27 11:38:37.072 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [id.ac.ui.cs.advprog.chat.repository.ChatRoomRepositoryTest]: ChatRoomRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2025-05-27 11:38:37.073 [clientInboundChannel-7] INFO  i.a.u.c.a.c.c.ChatWebSocketController - Room created/found with ID: 1
-2025-05-27 11:38:37.077 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration id.ac.ui.cs.advprog.chat.ChatApplication for test class id.ac.ui.cs.advprog.chat.repository.ChatRoomRepositoryTest
-2025-05-27 11:38:37.080 [clientInboundChannel-7] INFO  i.a.u.c.a.c.c.ChatWebSocketController - initRoom completed successfully for roomId=1
-2025-05-27 11:38:37.080 [clientInboundChannel-7] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Cleared thread-local auth token
+  <system-out><![CDATA[2025-05-27 14:07:15.995 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [id.ac.ui.cs.advprog.chat.repository.ChatRoomRepositoryTest]: ChatRoomRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-05-27 14:07:16.000 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration id.ac.ui.cs.advprog.chat.ChatApplication for test class id.ac.ui.cs.advprog.chat.repository.ChatRoomRepositoryTest
 Hibernate: 
     insert 
     into

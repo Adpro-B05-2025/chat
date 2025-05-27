@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="id.ac.ui.cs.advprog.chat.service.IChatMessageServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-05-27T04:38:37.525Z" hostname="Karolinas-MacBook-Pro.local" time="0.005">
+<testsuite name="id.ac.ui.cs.advprog.chat.service.IChatMessageServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-05-27T07:07:16.498Z" hostname="Karolinas-MacBook-Pro.local" time="0.004">
   <properties/>
-  <testcase name="contextLoads_andIsImplementation()" classname="id.ac.ui.cs.advprog.chat.service.IChatMessageServiceTest" time="0.005"/>
-  <system-out><![CDATA[2025-05-27 11:38:37.517 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [id.ac.ui.cs.advprog.chat.service.IChatMessageServiceTest]: IChatMessageServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2025-05-27 11:38:37.523 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration id.ac.ui.cs.advprog.chat.ChatApplication for test class id.ac.ui.cs.advprog.chat.service.IChatMessageServiceTest
+  <testcase name="contextLoads_andIsImplementation()" classname="id.ac.ui.cs.advprog.chat.service.IChatMessageServiceTest" time="0.004"/>
+  <system-out><![CDATA[2025-05-27 14:07:16.490 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [id.ac.ui.cs.advprog.chat.service.IChatMessageServiceTest]: IChatMessageServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-05-27 14:07:16.495 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration id.ac.ui.cs.advprog.chat.ChatApplication for test class id.ac.ui.cs.advprog.chat.service.IChatMessageServiceTest
+2025-05-27 14:07:16.499 [http-nio-0.0.0.0-8082-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /ws-chat/info?t=1748329636362
+2025-05-27 14:07:16.499 [http-nio-0.0.0.0-8082-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /ws-chat/info?t=1748329636356
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

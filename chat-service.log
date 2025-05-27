@@ -19792,3 +19792,905 @@ java.lang.RuntimeException: boom
 2025-05-27 11:38:37.680 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown initiated...
 2025-05-27 11:38:37.681 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown completed.
 2025-05-27 11:38:37.687 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-27 14:07:06.555 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
+2025-05-27 14:07:06.583 [Test worker] INFO  i.a.u.c.a.chat.ChatApplicationTest - Starting ChatApplicationTest using Java 21.0.2 with PID 47523 (started by karolinajocelyn in /Users/karolinajocelyn/IdeaProjects/chat)
+2025-05-27 14:07:06.583 [Test worker] DEBUG i.a.u.c.a.chat.ChatApplicationTest - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-05-27 14:07:06.584 [Test worker] INFO  i.a.u.c.a.chat.ChatApplicationTest - The following 1 profile is active: "dev"
+2025-05-27 14:07:07.124 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-27 14:07:07.159 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 30 ms. Found 2 JPA repository interfaces.
+2025-05-27 14:07:07.611 [Test worker] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-27 14:07:07.655 [Test worker] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
+2025-05-27 14:07:07.695 [Test worker] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-05-27 14:07:07.874 [Test worker] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-27 14:07:07.893 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-27 14:07:10.836 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@33f24b0
+2025-05-27 14:07:10.837 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-27 14:07:10.888 [Test worker] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-05-27 14:07:10.944 [Test worker] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-27 14:07:11.485 [Test worker] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-27 14:07:11.675 [Test worker] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-27 14:07:12.077 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
+2025-05-27 14:07:12.123 [Test worker] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-27 14:07:12.145 [Test worker] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 37a57938-74a5-49ea-a757-770092d59b43
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-27 14:07:12.154 [Test worker] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-05-27 14:07:12.414 [Test worker] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 3 endpoints beneath base path '/actuator'
+2025-05-27 14:07:12.458 [Test worker] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtAuthFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-05-27 14:07:12.652 [Test worker] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2025-05-27 14:07:12.802 [Test worker] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Starting...
+2025-05-27 14:07:12.803 [Test worker] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@372d9bcf]]
+2025-05-27 14:07:12.803 [Test worker] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Started.
+2025-05-27 14:07:12.819 [Test worker] INFO  i.a.u.c.a.chat.ChatApplicationTest - Started ChatApplicationTest in 6.454 seconds (process running for 7.326)
+2025-05-27 14:07:13.256 [Test worker] INFO  m.p.s.DotenvPropertySource - Initialized Dotenv with DotenvConfig{directory=null, filename=null, ignoreIfMalformed=false, ignoreIfMissing=true, systemProperties=false, prefix=null}
+2025-05-27 14:07:13.267 [Test worker] INFO  i.a.u.c.advprog.chat.ChatApplication - Starting ChatApplication using Java 21.0.2 with PID 47523 (started by karolinajocelyn in /Users/karolinajocelyn/IdeaProjects/chat)
+2025-05-27 14:07:13.267 [Test worker] DEBUG i.a.u.c.advprog.chat.ChatApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-05-27 14:07:13.267 [Test worker] INFO  i.a.u.c.advprog.chat.ChatApplication - The following 1 profile is active: "dev"
+2025-05-27 14:07:13.366 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-27 14:07:13.372 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 4 ms. Found 2 JPA repository interfaces.
+2025-05-27 14:07:13.502 [Test worker] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8082 (http)
+2025-05-27 14:07:13.515 [Test worker] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-0.0.0.0-8082"]
+2025-05-27 14:07:13.517 [Test worker] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-27 14:07:13.517 [Test worker] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-27 14:07:13.558 [Test worker] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-27 14:07:13.558 [Test worker] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 290 ms
+2025-05-27 14:07:13.612 [Test worker] DEBUG i.a.u.c.a.c.security.JwtAuthFilter - Filter 'jwtAuthFilter' configured for use
+2025-05-27 14:07:13.634 [Test worker] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-27 14:07:13.635 [Test worker] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-05-27 14:07:13.639 [Test worker] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-27 14:07:13.640 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Starting...
+2025-05-27 14:07:13.872 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@41d283de
+2025-05-27 14:07:13.873 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Start completed.
+2025-05-27 14:07:13.895 [Test worker] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-05-27 14:07:13.937 [Test worker] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-2)']
+	Database driver: undefined/unknown
+	Database version: 17.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-27 14:07:13.968 [Test worker] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-27 14:07:14.047 [Test worker] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-27 14:07:14.116 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
+2025-05-27 14:07:14.133 [Test worker] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-27 14:07:14.141 [Test worker] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 459cb602-4f49-4f96-9527-e5570f48b88a
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-27 14:07:14.143 [Test worker] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-05-27 14:07:14.212 [Test worker] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 3 endpoints beneath base path '/actuator'
+2025-05-27 14:07:14.233 [Test worker] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtAuthFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-05-27 14:07:14.263 [Test worker] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2025-05-27 14:07:14.313 [Test worker] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Starting...
+2025-05-27 14:07:14.313 [Test worker] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@1fde9b25]]
+2025-05-27 14:07:14.313 [Test worker] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Started.
+2025-05-27 14:07:14.313 [Test worker] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-0.0.0.0-8082"]
+2025-05-27 14:07:14.320 [Test worker] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8082 (http) with context path '/'
+2025-05-27 14:07:14.324 [Test worker] INFO  i.a.u.c.advprog.chat.ChatApplication - Started ChatApplication in 1.076 seconds (process running for 8.831)
+2025-05-27 14:07:14.764 [Test worker] INFO  i.a.u.c.a.c.c.ChatRestController - START getContacts for userId=1
+2025-05-27 14:07:14.764 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Found 1 rooms for user 1
+2025-05-27 14:07:14.764 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Room 10: contactId=2
+2025-05-27 14:07:14.764 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Contact name for 2 => ContactName
+2025-05-27 14:07:14.765 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Room 10: 1 messages loaded
+2025-05-27 14:07:14.765 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Added ContactResponse: ContactResponse{contactId=2, contactName='ContactName', roomId=10, lastMessage='Hello', lastMessageTime=2025-05-27T14:07:14.761920}
+2025-05-27 14:07:14.765 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Contacts sorted by lastMessageTime
+2025-05-27 14:07:14.765 [Test worker] INFO  i.a.u.c.a.c.c.ChatRestController - END getContacts for user 1 — returning 1 contacts
+2025-05-27 14:07:14.774 [Test worker] INFO  i.a.u.c.a.c.c.ChatRestController - START getContacts for userId=99
+2025-05-27 14:07:14.775 [Test worker] ERROR i.a.u.c.a.c.c.ChatRestController - ERROR in getContacts for user 99: DB error
+java.lang.RuntimeException: DB error
+	at id.ac.ui.cs.advprog.chat.service.ChatRoomService.findRoomsByUserId(ChatRoomService.java:152)
+	at id.ac.ui.cs.advprog.chat.controller.ChatRestController.getContacts(ChatRestController.java:46)
+	at id.ac.ui.cs.advprog.chat.controller.ChatRestControllerTest.testGetContacts_returnsEmptyListOnException(ChatRestControllerTest.java:123)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:767)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$8(TestMethodTestDescriptor.java:217)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:156)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:124)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:99)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:94)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:63)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:92)
+	at jdk.proxy2/jdk.proxy2.$Proxy6.stop(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:200)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:132)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:103)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:63)
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:121)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+2025-05-27 14:07:14.783 [Test worker] INFO  i.a.u.c.a.c.c.ChatRestController - START getContacts for userId=1
+2025-05-27 14:07:14.784 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Found 1 rooms for user 1
+2025-05-27 14:07:14.784 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Room 11: contactId=2
+2025-05-27 14:07:14.784 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Contact name for 2 => DocName
+2025-05-27 14:07:14.784 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Room 11: 1 messages loaded
+2025-05-27 14:07:14.784 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Added ContactResponse: ContactResponse{contactId=2, contactName='DocName', roomId=11, lastMessage='Message deleted', lastMessageTime=2025-05-27T14:07:14.783493}
+2025-05-27 14:07:14.785 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Contacts sorted by lastMessageTime
+2025-05-27 14:07:14.785 [Test worker] INFO  i.a.u.c.a.c.c.ChatRestController - END getContacts for user 1 — returning 1 contacts
+2025-05-27 14:07:14.787 [Test worker] INFO  i.a.u.c.a.c.c.ChatRestController - START getContacts for userId=1
+2025-05-27 14:07:14.787 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Found 1 rooms for user 1
+2025-05-27 14:07:14.787 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Room 12: contactId=2
+2025-05-27 14:07:14.787 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Contact name for 2 => NoMsgUser
+2025-05-27 14:07:14.787 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Room 12: 0 messages loaded
+2025-05-27 14:07:14.788 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Added ContactResponse: ContactResponse{contactId=2, contactName='NoMsgUser', roomId=12, lastMessage='', lastMessageTime=null}
+2025-05-27 14:07:14.788 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Contacts sorted by lastMessageTime
+2025-05-27 14:07:14.788 [Test worker] INFO  i.a.u.c.a.c.c.ChatRestController - END getContacts for user 1 — returning 1 contacts
+2025-05-27 14:07:14.961 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
+2025-05-27 14:07:14.964 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - initRoom called - targetUserId=2
+2025-05-27 14:07:14.965 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Session attributes on init: {AUTH_TOKEN=token, USER_ID=1}
+2025-05-27 14:07:14.965 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 1
+2025-05-27 14:07:14.965 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved auth token from session attributes: present
+2025-05-27 14:07:14.965 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - Current User ID for initRoom: 1
+2025-05-27 14:07:14.965 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Auth token present: true
+2025-05-27 14:07:14.965 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - Room created/found with ID: 10
+2025-05-27 14:07:14.970 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - initRoom completed successfully for roomId=10
+2025-05-27 14:07:14.970 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Cleared thread-local auth token
+2025-05-27 14:07:14.973 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
+2025-05-27 14:07:14.973 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - edit called - roomId=3, messageId=100
+2025-05-27 14:07:14.973 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - edit request payload: id.ac.ui.cs.advprog.chat.dto.ChatEditRequest@f4192f7
+2025-05-27 14:07:14.974 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 4
+2025-05-27 14:07:14.974 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - User 4 editing message 100
+2025-05-27 14:07:14.974 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - Message edited successfully - messageId=100
+2025-05-27 14:07:14.974 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - edit completed for messageId=100
+2025-05-27 14:07:14.976 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
+2025-05-27 14:07:14.977 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - send called - roomId=9
+2025-05-27 14:07:14.977 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Payload before send: id.ac.ui.cs.advprog.chat.model.ChatMessage@64d057ab
+2025-05-27 14:07:14.977 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 5
+2025-05-27 14:07:14.977 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Message details - sender=5, receiver=null, content=null
+2025-05-27 14:07:14.978 [Test worker] ERROR i.a.u.c.a.c.c.ChatWebSocketController - Error in send for roomId=9: boom
+java.lang.RuntimeException: boom
+	at id.ac.ui.cs.advprog.chat.controller.ChatWebSocketController.send(ChatWebSocketController.java:101)
+	at id.ac.ui.cs.advprog.chat.controller.ChatWebSocketControllerTest.testSend_error(ChatWebSocketControllerTest.java:114)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:767)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$8(TestMethodTestDescriptor.java:217)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:156)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:124)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:99)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:94)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:63)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:92)
+	at jdk.proxy2/jdk.proxy2.$Proxy6.stop(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:200)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:132)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:103)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:63)
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:121)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+2025-05-27 14:07:14.984 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
+2025-05-27 14:07:14.984 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - delete called - roomId=8, messageId=300
+2025-05-27 14:07:14.984 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - delete request payload: id.ac.ui.cs.advprog.chat.dto.ChatDeleteRequest@5c12cd66
+2025-05-27 14:07:14.985 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 9
+2025-05-27 14:07:14.985 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - User 9 deleting message 300
+2025-05-27 14:07:14.985 [Test worker] ERROR i.a.u.c.a.c.c.ChatWebSocketController - Error in delete for roomId=8, messageId=300: boom
+java.lang.RuntimeException: boom
+	at id.ac.ui.cs.advprog.chat.controller.ChatWebSocketController.delete(ChatWebSocketController.java:149)
+	at id.ac.ui.cs.advprog.chat.controller.ChatWebSocketControllerTest.testDelete_error(ChatWebSocketControllerTest.java:182)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:767)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$8(TestMethodTestDescriptor.java:217)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:156)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:124)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:99)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:94)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:63)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:92)
+	at jdk.proxy2/jdk.proxy2.$Proxy6.stop(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:200)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:132)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:103)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:63)
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:121)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+2025-05-27 14:07:14.990 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
+2025-05-27 14:07:14.991 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - initRoom called - targetUserId=2
+2025-05-27 14:07:14.991 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Session attributes on init: {AUTH_TOKEN=token, USER_ID=1}
+2025-05-27 14:07:14.991 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 1
+2025-05-27 14:07:14.991 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved auth token from session attributes: present
+2025-05-27 14:07:14.992 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - Current User ID for initRoom: 1
+2025-05-27 14:07:14.992 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Auth token present: true
+2025-05-27 14:07:14.992 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Cleared thread-local auth token
+2025-05-27 14:07:14.992 [Test worker] ERROR i.a.u.c.a.c.c.ChatWebSocketController - Error in initRoom for targetUserId=2: something went wrong
+java.lang.RuntimeException: something went wrong
+	at id.ac.ui.cs.advprog.chat.service.ChatRoomService.createIfNotExists(ChatRoomService.java:68)
+	at id.ac.ui.cs.advprog.chat.controller.ChatWebSocketController.initRoom(ChatWebSocketController.java:60)
+	at id.ac.ui.cs.advprog.chat.controller.ChatWebSocketControllerTest.testInitRoom_error(ChatWebSocketControllerTest.java:78)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:767)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$8(TestMethodTestDescriptor.java:217)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:156)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:124)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:99)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:94)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:63)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:92)
+	at jdk.proxy2/jdk.proxy2.$Proxy6.stop(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:200)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:132)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:103)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:63)
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:121)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+2025-05-27 14:07:14.998 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
+2025-05-27 14:07:14.998 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - history called - roomId=7
+2025-05-27 14:07:14.998 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 1
+2025-05-27 14:07:14.998 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - User 1 requesting history for room 7
+2025-05-27 14:07:14.998 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - Retrieved 2 messages for room 7
+2025-05-27 14:07:14.999 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - history completed - sent 2 messages for roomId=7
+2025-05-27 14:07:15.001 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
+2025-05-27 14:07:15.001 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - history called - roomId=7
+2025-05-27 14:07:15.001 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 1
+2025-05-27 14:07:15.001 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - User 1 requesting history for room 7
+2025-05-27 14:07:15.001 [Test worker] ERROR i.a.u.c.a.c.c.ChatWebSocketController - Error in history for roomId=7: boom
+java.lang.RuntimeException: boom
+	at id.ac.ui.cs.advprog.chat.controller.ChatWebSocketController.history(ChatWebSocketController.java:171)
+	at id.ac.ui.cs.advprog.chat.controller.ChatWebSocketControllerTest.testHistory_error(ChatWebSocketControllerTest.java:214)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:767)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$8(TestMethodTestDescriptor.java:217)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:156)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:124)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:99)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:94)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:63)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:92)
+	at jdk.proxy2/jdk.proxy2.$Proxy6.stop(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:200)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:132)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:103)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:63)
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:121)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+2025-05-27 14:07:15.008 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
+2025-05-27 14:07:15.009 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - delete called - roomId=8, messageId=300
+2025-05-27 14:07:15.009 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - delete request payload: id.ac.ui.cs.advprog.chat.dto.ChatDeleteRequest@1e8633c7
+2025-05-27 14:07:15.009 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 9
+2025-05-27 14:07:15.009 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - User 9 deleting message 300
+2025-05-27 14:07:15.009 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - Message deleted successfully - messageId=300
+2025-05-27 14:07:15.009 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - delete completed for messageId=300
+2025-05-27 14:07:15.011 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
+2025-05-27 14:07:15.011 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - edit called - roomId=3, messageId=100
+2025-05-27 14:07:15.011 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - edit request payload: id.ac.ui.cs.advprog.chat.dto.ChatEditRequest@292a68e
+2025-05-27 14:07:15.011 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 4
+2025-05-27 14:07:15.011 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - User 4 editing message 100
+2025-05-27 14:07:15.012 [Test worker] ERROR i.a.u.c.a.c.c.ChatWebSocketController - Error in edit for roomId=3, messageId=100: boom
+java.lang.RuntimeException: boom
+	at id.ac.ui.cs.advprog.chat.controller.ChatWebSocketController.edit(ChatWebSocketController.java:124)
+	at id.ac.ui.cs.advprog.chat.controller.ChatWebSocketControllerTest.testEdit_error(ChatWebSocketControllerTest.java:149)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:767)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$8(TestMethodTestDescriptor.java:217)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:156)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:124)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:99)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:94)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:63)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:92)
+	at jdk.proxy2/jdk.proxy2.$Proxy6.stop(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:200)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:132)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:103)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:63)
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:121)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+2025-05-27 14:07:15.016 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
+2025-05-27 14:07:15.017 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - send called - roomId=9
+2025-05-27 14:07:15.017 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Payload before send: id.ac.ui.cs.advprog.chat.model.ChatMessage@1da4c9be
+2025-05-27 14:07:15.017 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 5
+2025-05-27 14:07:15.017 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Message details - sender=5, receiver=6, content=Hello
+2025-05-27 14:07:15.017 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - Message sent successfully - messageId=999
+2025-05-27 14:07:15.017 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - send completed for messageId=999
+2025-05-27 14:07:15.039 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [id.ac.ui.cs.advprog.chat.repository.ChatMessageRepositoryTest]: ChatMessageRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-05-27 14:07:15.064 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration id.ac.ui.cs.advprog.chat.ChatApplication for test class id.ac.ui.cs.advprog.chat.repository.ChatMessageRepositoryTest
+2025-05-27 14:07:15.069 [Test worker] INFO  m.p.s.DotenvPropertySource - Initialized Dotenv with DotenvConfig{directory=null, filename=null, ignoreIfMalformed=false, ignoreIfMissing=true, systemProperties=false, prefix=null}
+2025-05-27 14:07:15.097 [Test worker] INFO  i.a.u.c.a.c.r.ChatMessageRepositoryTest - Starting ChatMessageRepositoryTest using Java 21.0.2 with PID 47523 (started by karolinajocelyn in /Users/karolinajocelyn/IdeaProjects/chat)
+2025-05-27 14:07:15.097 [Test worker] DEBUG i.a.u.c.a.c.r.ChatMessageRepositoryTest - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-05-27 14:07:15.097 [Test worker] INFO  i.a.u.c.a.c.r.ChatMessageRepositoryTest - The following 1 profile is active: "dev"
+2025-05-27 14:07:15.195 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-27 14:07:15.206 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 9 ms. Found 2 JPA repository interfaces.
+2025-05-27 14:07:15.220 [Test worker] INFO  o.s.b.t.a.j.TestDatabaseAutoConfiguration$EmbeddedDataSourceBeanFactoryPostProcessor - Replacing 'dataSource' DataSource bean with embedded version
+2025-05-27 14:07:15.239 [Test worker] INFO  o.s.j.d.e.EmbeddedDatabaseFactory - Starting embedded database: url='jdbc:h2:mem:214c14cd-7a42-444a-8bce-347c44e03219;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2025-05-27 14:07:15.575 [Test worker] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-27 14:07:15.578 [Test worker] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-05-27 14:07:15.585 [Test worker] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-27 14:07:15.592 [Test worker] WARN  org.hibernate.dialect.Dialect - HHH000511: The 2.3.232 version for [org.hibernate.dialect.PostgreSQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 12.0.0. Check the community dialects project for available legacy versions.
+2025-05-27 14:07:15.592 [Test worker] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-05-27 14:07:15.601 [Test worker] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactory$EmbeddedDataSourceProxy@6fc4f23c']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-27 14:07:15.650 [Test worker] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-27 14:07:15.688 [Test worker] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-27 14:07:15.737 [Test worker] INFO  i.a.u.c.a.c.r.ChatMessageRepositoryTest - Started ChatMessageRepositoryTest in 0.67 seconds (process running for 10.243)
+2025-05-27 14:07:15.995 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [id.ac.ui.cs.advprog.chat.repository.ChatRoomRepositoryTest]: ChatRoomRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-05-27 14:07:16.000 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration id.ac.ui.cs.advprog.chat.ChatApplication for test class id.ac.ui.cs.advprog.chat.repository.ChatRoomRepositoryTest
+2025-05-27 14:07:16.062 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP command: SEND on thread: Test worker
+2025-05-27 14:07:16.062 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Destination: /app/chat.edit.99
+2025-05-27 14:07:16.062 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Session ID: session-1
+2025-05-27 14:07:16.062 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Current user principal: SimplePrincipal{name='test', userId=1}
+2025-05-27 14:07:16.062 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Set headers for existing principal: 1
+2025-05-27 14:07:16.062 [Test worker] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP SEND to destination: /app/chat.edit.99
+2025-05-27 14:07:16.063 [Test worker] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing room action request
+2025-05-27 14:07:16.063 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Room ID: 99
+2025-05-27 14:07:16.063 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - User 1 checking membership in room 99 (pacillian: 1, caregiver: 2)
+2025-05-27 14:07:16.063 [Test worker] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Room action authorized for user 1 in room 99
+2025-05-27 14:07:16.063 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Message processing completed successfully
+2025-05-27 14:07:16.065 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP command: SEND on thread: Test worker
+2025-05-27 14:07:16.065 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Destination: /app/chat.init.77
+2025-05-27 14:07:16.065 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Session ID: session-1
+2025-05-27 14:07:16.065 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Current user principal: SimplePrincipal{name='self', userId=77}
+2025-05-27 14:07:16.065 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Set headers for existing principal: 77
+2025-05-27 14:07:16.065 [Test worker] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP SEND to destination: /app/chat.init.77
+2025-05-27 14:07:16.065 [Test worker] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing chat init request
+2025-05-27 14:07:16.065 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Target User ID: 77
+2025-05-27 14:07:16.065 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Current User ID: 77
+2025-05-27 14:07:16.065 [Test worker] ERROR i.a.u.c.a.c.s.JwtAuthChannelInterceptor - User cannot initiate chat with themselves
+2025-05-27 14:07:16.065 [Test worker] ERROR i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Access denied: Cannot start chat with yourself
+2025-05-27 14:07:16.066 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP command: SEND on thread: Test worker
+2025-05-27 14:07:16.067 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Destination: /app/chat.send.xyz
+2025-05-27 14:07:16.067 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Session ID: session-1
+2025-05-27 14:07:16.067 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Current user principal: SimplePrincipal{name='bad', userId=100}
+2025-05-27 14:07:16.067 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Set headers for existing principal: 100
+2025-05-27 14:07:16.067 [Test worker] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP SEND to destination: /app/chat.send.xyz
+2025-05-27 14:07:16.067 [Test worker] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing room action request
+2025-05-27 14:07:16.067 [Test worker] ERROR i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Invalid room ID in destination: /app/chat.send.xyz
+2025-05-27 14:07:16.067 [Test worker] ERROR i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Access denied: Invalid room ID
+2025-05-27 14:07:16.068 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP command: SEND on thread: Test worker
+2025-05-27 14:07:16.068 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Destination: /app/chat.edit.77
+2025-05-27 14:07:16.068 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Session ID: session-1
+2025-05-27 14:07:16.068 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Current user principal: SimplePrincipal{name='outsider', userId=30}
+2025-05-27 14:07:16.068 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Set headers for existing principal: 30
+2025-05-27 14:07:16.069 [Test worker] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP SEND to destination: /app/chat.edit.77
+2025-05-27 14:07:16.069 [Test worker] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing room action request
+2025-05-27 14:07:16.069 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Room ID: 77
+2025-05-27 14:07:16.069 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - User 30 checking membership in room 77 (pacillian: 1, caregiver: 2)
+2025-05-27 14:07:16.069 [Test worker] ERROR i.a.u.c.a.c.s.JwtAuthChannelInterceptor - User 30 not authorized for room 77
+2025-05-27 14:07:16.069 [Test worker] ERROR i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Access denied: You are not a member of this chat room
+2025-05-27 14:07:16.070 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP command: SEND on thread: Test worker
+2025-05-27 14:07:16.070 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Destination: /app/chat.init.99
+2025-05-27 14:07:16.070 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Session ID: session-1
+2025-05-27 14:07:16.070 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Current user principal: SimplePrincipal{name='gege', userId=88}
+2025-05-27 14:07:16.070 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Set headers for existing principal: 88
+2025-05-27 14:07:16.070 [Test worker] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP SEND to destination: /app/chat.init.99
+2025-05-27 14:07:16.070 [Test worker] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing chat init request
+2025-05-27 14:07:16.070 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Target User ID: 99
+2025-05-27 14:07:16.070 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Current User ID: 88
+2025-05-27 14:07:16.070 [Test worker] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Chat init request authorized for user 88 with target user 99
+2025-05-27 14:07:16.070 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Message processing completed successfully
+2025-05-27 14:07:16.071 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP command: CONNECT on thread: Test worker
+2025-05-27 14:07:16.071 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Destination: null
+2025-05-27 14:07:16.071 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Session ID: null
+2025-05-27 14:07:16.072 [Test worker] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP CONNECT
+2025-05-27 14:07:16.072 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Authorization headers: null
+2025-05-27 14:07:16.072 [Test worker] WARN  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - No valid Authorization header found
+2025-05-27 14:07:16.201 [Test worker] ERROR i.a.u.c.a.c.security.JwtAuthFilter - Cannot set user authentication: Token error
+2025-05-27 14:07:16.277 [Test worker] ERROR i.a.u.c.a.chat.security.JwtUtils - Error extracting username from token: JWT strings must contain exactly 2 period characters. Found: 1
+2025-05-27 14:07:16.280 [Test worker] ERROR i.a.u.c.a.chat.security.JwtUtils - JWT token is expired: JWT expired at 2025-05-27T07:07:15Z. Current time: 2025-05-27T07:07:16Z, a difference of 1280 milliseconds.  Allowed clock skew: 0 milliseconds.
+2025-05-27 14:07:16.282 [Test worker] ERROR i.a.u.c.a.chat.security.JwtUtils - Invalid JWT token: JWT strings must contain exactly 2 period characters. Found: 4
+2025-05-27 14:07:16.434 [http-nio-0.0.0.0-8082-exec-1] INFO  o.a.tomcat.util.http.parser.Cookie - A cookie header was received [last_login="2024-10-27 03:30:12.196746";] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+2025-05-27 14:07:16.437 [http-nio-0.0.0.0-8082-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-27 14:07:16.437 [http-nio-0.0.0.0-8082-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-27 14:07:16.438 [http-nio-0.0.0.0-8082-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-05-27 14:07:16.473 [http-nio-0.0.0.0-8082-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /ws-chat/info?t=1748329636362
+2025-05-27 14:07:16.473 [http-nio-0.0.0.0-8082-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /ws-chat/info?t=1748329636356
+2025-05-27 14:07:16.483 [Test worker] INFO  i.a.u.c.a.c.service.ChatRoomService - Creating chat room between users 10 and 20
+2025-05-27 14:07:16.483 [Test worker] WARN  i.a.u.c.a.c.service.ChatRoomService - No auth token available for user type check of user 10
+2025-05-27 14:07:16.483 [Test worker] WARN  i.a.u.c.a.c.service.ChatRoomService - No auth token available for user type check of user 20
+2025-05-27 14:07:16.483 [Test worker] WARN  i.a.u.c.a.c.service.ChatRoomService - Neither user 10 nor 20 appears to be a caregiver. Using default assignment.
+2025-05-27 14:07:16.483 [Test worker] INFO  i.a.u.c.a.c.service.ChatRoomService - Room assignment - Patient: 10, Caregiver: 20
+2025-05-27 14:07:16.484 [Test worker] INFO  i.a.u.c.a.c.service.ChatRoomService - Found existing room with ID: 1
+2025-05-27 14:07:16.486 [Test worker] INFO  i.a.u.c.a.c.service.ChatRoomService - Creating chat room between users 11 and 22
+2025-05-27 14:07:16.486 [Test worker] WARN  i.a.u.c.a.c.service.ChatRoomService - No auth token available for user type check of user 11
+2025-05-27 14:07:16.486 [Test worker] WARN  i.a.u.c.a.c.service.ChatRoomService - No auth token available for user type check of user 22
+2025-05-27 14:07:16.486 [Test worker] WARN  i.a.u.c.a.c.service.ChatRoomService - Neither user 11 nor 22 appears to be a caregiver. Using default assignment.
+2025-05-27 14:07:16.486 [Test worker] INFO  i.a.u.c.a.c.service.ChatRoomService - Room assignment - Patient: 11, Caregiver: 22
+2025-05-27 14:07:16.486 [Test worker] INFO  i.a.u.c.a.c.service.ChatRoomService - Created new room with ID: 2
+2025-05-27 14:07:16.490 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [id.ac.ui.cs.advprog.chat.service.IChatMessageServiceTest]: IChatMessageServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-05-27 14:07:16.495 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration id.ac.ui.cs.advprog.chat.ChatApplication for test class id.ac.ui.cs.advprog.chat.service.IChatMessageServiceTest
+2025-05-27 14:07:16.499 [http-nio-0.0.0.0-8082-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /ws-chat/info?t=1748329636362
+2025-05-27 14:07:16.499 [http-nio-0.0.0.0-8082-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /ws-chat/info?t=1748329636356
+2025-05-27 14:07:16.504 [http-nio-0.0.0.0-8082-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-05-27 14:07:16.504 [http-nio-0.0.0.0-8082-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-05-27 14:07:16.509 [SpringApplicationShutdownHook] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Stopping...
+2025-05-27 14:07:16.509 [SpringApplicationShutdownHook] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@372d9bcf]]
+2025-05-27 14:07:16.509 [SpringApplicationShutdownHook] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Stopped.
+2025-05-27 14:07:16.513 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-27 14:07:16.514 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-27 14:07:16.690 [http-nio-0.0.0.0-8082-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /ws-chat/173/vbqo2gm1/websocket
+2025-05-27 14:07:16.692 [http-nio-0.0.0.0-8082-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /ws-chat/173/vbqo2gm1/websocket
+2025-05-27 14:07:16.696 [http-nio-0.0.0.0-8082-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-05-27 14:07:16.697 [http-nio-0.0.0.0-8082-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /ws-chat/979/l5t4clle/websocket
+2025-05-27 14:07:16.698 [http-nio-0.0.0.0-8082-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /ws-chat/979/l5t4clle/websocket
+2025-05-27 14:07:16.699 [http-nio-0.0.0.0-8082-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-05-27 14:07:16.738 [http-nio-0.0.0.0-8082-exec-5] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP command: CONNECT on thread: http-nio-0.0.0.0-8082-exec-5
+2025-05-27 14:07:16.738 [http-nio-0.0.0.0-8082-exec-5] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Destination: null
+2025-05-27 14:07:16.738 [http-nio-0.0.0.0-8082-exec-5] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Session ID: vbqo2gm1
+2025-05-27 14:07:16.738 [http-nio-0.0.0.0-8082-exec-5] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP CONNECT
+2025-05-27 14:07:16.738 [http-nio-0.0.0.0-8082-exec-5] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Authorization headers: [Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzQ4MjgyMDg4LCJleHAiOjE3NDgzNjg0ODh9.H9coEIGVlq3wueXKJg4CoXZFV1Mh3_bM03ribgKDHzg]
+2025-05-27 14:07:16.738 [http-nio-0.0.0.0-8082-exec-5] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Extracted token: eyJhbGciOiJIUzI1NiJ9...
+2025-05-27 14:07:16.739 [http-nio-0.0.0.0-8082-exec-5] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - JWT token is valid
+2025-05-27 14:07:16.740 [http-nio-0.0.0.0-8082-exec-5] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Extracted userId: 1, username: 1
+2025-05-27 14:07:16.740 [http-nio-0.0.0.0-8082-exec-5] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Successfully set user principal and session attributes for userId: 1
+2025-05-27 14:07:16.756 [http-nio-0.0.0.0-8082-exec-6] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP command: SUBSCRIBE on thread: http-nio-0.0.0.0-8082-exec-6
+2025-05-27 14:07:16.756 [http-nio-0.0.0.0-8082-exec-6] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Destination: /topic/chat.init.2
+2025-05-27 14:07:16.756 [http-nio-0.0.0.0-8082-exec-6] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Session ID: vbqo2gm1
+2025-05-27 14:07:16.756 [http-nio-0.0.0.0-8082-exec-6] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Current user principal: null
+2025-05-27 14:07:16.756 [http-nio-0.0.0.0-8082-exec-6] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - User principal is null, attempting to get from session attributes
+2025-05-27 14:07:16.756 [http-nio-0.0.0.0-8082-exec-6] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Session attributes - userId: 1, username: 1, authToken: present
+2025-05-27 14:07:16.756 [http-nio-0.0.0.0-8082-exec-6] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Successfully restored user principal from session for userId: 1
+2025-05-27 14:07:16.756 [http-nio-0.0.0.0-8082-exec-6] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Message processing completed successfully
+2025-05-27 14:07:16.758 [http-nio-0.0.0.0-8082-exec-6] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP command: SEND on thread: http-nio-0.0.0.0-8082-exec-6
+2025-05-27 14:07:16.758 [http-nio-0.0.0.0-8082-exec-6] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Destination: /app/chat.init.2
+2025-05-27 14:07:16.758 [http-nio-0.0.0.0-8082-exec-6] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Session ID: vbqo2gm1
+2025-05-27 14:07:16.758 [http-nio-0.0.0.0-8082-exec-6] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Current user principal: null
+2025-05-27 14:07:16.758 [http-nio-0.0.0.0-8082-exec-6] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - User principal is null, attempting to get from session attributes
+2025-05-27 14:07:16.758 [http-nio-0.0.0.0-8082-exec-6] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Session attributes - userId: 1, username: 1, authToken: present
+2025-05-27 14:07:16.758 [http-nio-0.0.0.0-8082-exec-6] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Successfully restored user principal from session for userId: 1
+2025-05-27 14:07:16.758 [http-nio-0.0.0.0-8082-exec-6] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP SEND to destination: /app/chat.init.2
+2025-05-27 14:07:16.758 [http-nio-0.0.0.0-8082-exec-6] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing chat init request
+2025-05-27 14:07:16.758 [http-nio-0.0.0.0-8082-exec-6] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Target User ID: 2
+2025-05-27 14:07:16.758 [http-nio-0.0.0.0-8082-exec-6] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Current User ID: 1
+2025-05-27 14:07:16.758 [http-nio-0.0.0.0-8082-exec-6] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Chat init request authorized for user 1 with target user 2
+2025-05-27 14:07:16.758 [http-nio-0.0.0.0-8082-exec-6] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Message processing completed successfully
+2025-05-27 14:07:16.764 [clientInboundChannel-7] INFO  i.a.u.c.a.c.c.ChatWebSocketController - initRoom called - targetUserId=2
+2025-05-27 14:07:16.765 [clientInboundChannel-7] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Session attributes on init: {USER_ID=1, USERNAME=1, AUTH_TOKEN=Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzQ4MjgyMDg4LCJleHAiOjE3NDgzNjg0ODh9.H9coEIGVlq3wueXKJg4CoXZFV1Mh3_bM03ribgKDHzg}
+2025-05-27 14:07:16.765 [clientInboundChannel-7] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 1
+2025-05-27 14:07:16.765 [clientInboundChannel-7] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved auth token from session attributes: present
+2025-05-27 14:07:16.765 [clientInboundChannel-7] INFO  i.a.u.c.a.c.c.ChatWebSocketController - Current User ID for initRoom: 1
+2025-05-27 14:07:16.765 [clientInboundChannel-7] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Auth token present: true
+2025-05-27 14:07:16.782 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-27 14:07:16.789 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-27 14:07:16.790 [clientInboundChannel-7] INFO  i.a.u.c.a.c.service.ChatRoomService - Creating chat room between users 1 and 2
+2025-05-27 14:07:16.792 [http-nio-0.0.0.0-8082-exec-7] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP command: CONNECT on thread: http-nio-0.0.0.0-8082-exec-7
+2025-05-27 14:07:16.792 [http-nio-0.0.0.0-8082-exec-7] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Destination: null
+2025-05-27 14:07:16.792 [http-nio-0.0.0.0-8082-exec-7] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Session ID: l5t4clle
+2025-05-27 14:07:16.792 [http-nio-0.0.0.0-8082-exec-7] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP CONNECT
+2025-05-27 14:07:16.792 [http-nio-0.0.0.0-8082-exec-7] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Authorization headers: [Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNzQ4MjY3MTg1LCJleHAiOjE3NDgzNTM1ODV9.NMwhpgovOOG1x52WX1lTlPyVGUzeFB30i987bkhdRos]
+2025-05-27 14:07:16.792 [http-nio-0.0.0.0-8082-exec-7] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Extracted token: eyJhbGciOiJIUzI1NiJ9...
+2025-05-27 14:07:16.794 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-27 14:07:16.794 [http-nio-0.0.0.0-8082-exec-7] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - JWT token is valid
+2025-05-27 14:07:16.797 [http-nio-0.0.0.0-8082-exec-7] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Extracted userId: 2, username: 2
+2025-05-27 14:07:16.797 [http-nio-0.0.0.0-8082-exec-7] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Successfully set user principal and session attributes for userId: 2
+2025-05-27 14:07:16.799 [http-nio-0.0.0.0-8082-exec-7] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP command: DISCONNECT on thread: http-nio-0.0.0.0-8082-exec-7
+2025-05-27 14:07:16.799 [http-nio-0.0.0.0-8082-exec-7] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Destination: null
+2025-05-27 14:07:16.799 [http-nio-0.0.0.0-8082-exec-7] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Session ID: l5t4clle
+2025-05-27 14:07:16.799 [http-nio-0.0.0.0-8082-exec-7] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Current user principal: null
+2025-05-27 14:07:16.799 [http-nio-0.0.0.0-8082-exec-7] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - User principal is null, attempting to get from session attributes
+2025-05-27 14:07:16.800 [http-nio-0.0.0.0-8082-exec-7] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Session attributes - userId: 2, username: 2, authToken: present
+2025-05-27 14:07:16.800 [http-nio-0.0.0.0-8082-exec-7] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Successfully restored user principal from session for userId: 2
+2025-05-27 14:07:16.800 [http-nio-0.0.0.0-8082-exec-7] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Message processing completed successfully
+2025-05-27 14:07:16.802 [clientInboundChannel-7] DEBUG o.s.web.client.RestTemplate - HTTP GET http://localhost:8081/api/caregiver/1
+2025-05-27 14:07:16.802 [SpringApplicationShutdownHook] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP command: DISCONNECT on thread: SpringApplicationShutdownHook
+2025-05-27 14:07:16.802 [SpringApplicationShutdownHook] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Destination: null
+2025-05-27 14:07:16.802 [SpringApplicationShutdownHook] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Session ID: vbqo2gm1
+2025-05-27 14:07:16.802 [SpringApplicationShutdownHook] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Current user principal: null
+2025-05-27 14:07:16.802 [SpringApplicationShutdownHook] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - User principal is null, attempting to get from session attributes
+2025-05-27 14:07:16.802 [SpringApplicationShutdownHook] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Session attributes - userId: 1, username: 1, authToken: present
+2025-05-27 14:07:16.802 [SpringApplicationShutdownHook] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Successfully restored user principal from session for userId: 1
+2025-05-27 14:07:16.803 [SpringApplicationShutdownHook] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Message processing completed successfully
+2025-05-27 14:07:16.803 [SpringApplicationShutdownHook] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Stopping...
+2025-05-27 14:07:16.803 [SpringApplicationShutdownHook] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@1fde9b25]]
+2025-05-27 14:07:16.803 [SpringApplicationShutdownHook] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Stopped.
+2025-05-27 14:07:16.804 [clientInboundChannel-7] DEBUG o.s.web.client.RestTemplate - Accept=[application/json, application/*+json]
+2025-05-27 14:07:17.134 [clientInboundChannel-7] DEBUG o.s.web.client.RestTemplate - Response 404 NOT_FOUND
+2025-05-27 14:07:17.138 [clientInboundChannel-7] DEBUG i.a.u.c.a.c.service.ChatRoomService - User 1 is not a caregiver: 404  on GET request for "http://localhost:8081/api/caregiver/1": "{"message":"Caregiver not found with id: 1","success":false}"
+2025-05-27 14:07:17.139 [clientInboundChannel-7] DEBUG o.s.web.client.RestTemplate - HTTP GET http://localhost:8081/api/caregiver/2
+2025-05-27 14:07:17.139 [clientInboundChannel-7] DEBUG o.s.web.client.RestTemplate - Accept=[application/json, application/*+json]
+2025-05-27 14:07:17.149 [clientInboundChannel-7] DEBUG o.s.web.client.RestTemplate - Response 200 OK
+2025-05-27 14:07:17.150 [clientInboundChannel-7] DEBUG o.s.web.client.RestTemplate - Reading to [java.util.Map<?, ?>]
+2025-05-27 14:07:17.152 [clientInboundChannel-7] DEBUG i.a.u.c.a.c.service.ChatRoomService - User 2 is a caregiver
+2025-05-27 14:07:17.152 [clientInboundChannel-7] INFO  i.a.u.c.a.c.service.ChatRoomService - Room assignment - Patient: 1, Caregiver: 2
+2025-05-27 14:07:17.215 [clientInboundChannel-7] INFO  i.a.u.c.a.c.service.ChatRoomService - Created new room with ID: 1
+2025-05-27 14:07:17.241 [clientInboundChannel-7] INFO  i.a.u.c.a.c.c.ChatWebSocketController - Room created/found with ID: 1
+2025-05-27 14:07:17.242 [clientInboundChannel-7] INFO  i.a.u.c.a.c.c.ChatWebSocketController - initRoom completed successfully for roomId=1
+2025-05-27 14:07:17.243 [clientInboundChannel-7] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Cleared thread-local auth token
+2025-05-27 14:07:17.245 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-27 14:07:17.245 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown initiated...
+2025-05-27 14:07:17.485 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown completed.
+2025-05-27 14:07:17.491 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'

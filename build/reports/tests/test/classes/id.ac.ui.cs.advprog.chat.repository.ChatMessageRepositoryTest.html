@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.255s</div>
+<div class="counter">0.253s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,12 +79,12 @@
 </thead>
 <tr>
 <td class="success">testExistsBySenderIdAndReceiverId()</td>
-<td class="success">0.236s</td>
+<td class="success">0.230s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testFindByRoomIdOrderByTimestampAsc()</td>
-<td class="success">0.019s</td>
+<td class="success">0.023s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -92,13 +92,9 @@
 <div class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>2025-05-27 11:38:36.047 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [id.ac.ui.cs.advprog.chat.repository.ChatMessageRepositoryTest]: ChatMessageRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2025-05-27 11:38:36.053 [http-nio-0.0.0.0-8082-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-05-27 11:38:36.053 [http-nio-0.0.0.0-8082-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2025-05-27 11:38:36.056 [http-nio-0.0.0.0-8082-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
-2025-05-27 11:38:36.068 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration id.ac.ui.cs.advprog.chat.ChatApplication for test class id.ac.ui.cs.advprog.chat.repository.ChatMessageRepositoryTest
-2025-05-27 11:38:36.073 [Test worker] INFO  m.p.s.DotenvPropertySource - Initialized Dotenv with DotenvConfig{directory=null, filename=null, ignoreIfMalformed=false, ignoreIfMissing=true, systemProperties=false, prefix=null}
-2025-05-27 11:38:36.075 [http-nio-0.0.0.0-8082-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /ws-chat/info?t=1748320715890
+<pre>2025-05-27 14:07:15.039 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [id.ac.ui.cs.advprog.chat.repository.ChatMessageRepositoryTest]: ChatMessageRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-05-27 14:07:15.064 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration id.ac.ui.cs.advprog.chat.ChatApplication for test class id.ac.ui.cs.advprog.chat.repository.ChatMessageRepositoryTest
+2025-05-27 14:07:15.069 [Test worker] INFO  m.p.s.DotenvPropertySource - Initialized Dotenv with DotenvConfig{directory=null, filename=null, ignoreIfMalformed=false, ignoreIfMissing=true, systemProperties=false, prefix=null}
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -109,71 +105,27 @@
 
  :: Spring Boot ::                (v3.4.4)
 
-2025-05-27 11:38:36.106 [Test worker] INFO  i.a.u.c.a.c.r.ChatMessageRepositoryTest - Starting ChatMessageRepositoryTest using Java 21.0.2 with PID 46038 (started by karolinajocelyn in /Users/karolinajocelyn/IdeaProjects/chat)
-2025-05-27 11:38:36.106 [Test worker] DEBUG i.a.u.c.a.c.r.ChatMessageRepositoryTest - Running with Spring Boot v3.4.4, Spring v6.2.5
-2025-05-27 11:38:36.106 [Test worker] INFO  i.a.u.c.a.c.r.ChatMessageRepositoryTest - The following 1 profile is active: &quot;dev&quot;
-2025-05-27 11:38:36.121 [http-nio-0.0.0.0-8082-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /ws-chat/info?t=1748320715890
-2025-05-27 11:38:36.141 [http-nio-0.0.0.0-8082-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2025-05-27 11:38:36.207 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-05-27 11:38:36.217 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 9 ms. Found 2 JPA repository interfaces.
-2025-05-27 11:38:36.230 [Test worker] INFO  o.s.b.t.a.j.TestDatabaseAutoConfiguration$EmbeddedDataSourceBeanFactoryPostProcessor - Replacing 'dataSource' DataSource bean with embedded version
-2025-05-27 11:38:36.251 [Test worker] INFO  o.s.j.d.e.EmbeddedDatabaseFactory - Starting embedded database: url='jdbc:h2:mem:e4fadf80-e7f9-48d3-a0fa-9d790d5f1c3e;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
-2025-05-27 11:38:36.346 [http-nio-0.0.0.0-8082-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /ws-chat/320/h23slbqj/websocket
-2025-05-27 11:38:36.348 [http-nio-0.0.0.0-8082-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /ws-chat/320/h23slbqj/websocket
-2025-05-27 11:38:36.366 [http-nio-0.0.0.0-8082-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2025-05-27 11:38:36.456 [http-nio-0.0.0.0-8082-exec-3] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP command: CONNECT on thread: http-nio-0.0.0.0-8082-exec-3
-2025-05-27 11:38:36.456 [http-nio-0.0.0.0-8082-exec-3] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Destination: null
-2025-05-27 11:38:36.456 [http-nio-0.0.0.0-8082-exec-3] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Session ID: h23slbqj
-2025-05-27 11:38:36.456 [http-nio-0.0.0.0-8082-exec-3] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP CONNECT
-2025-05-27 11:38:36.457 [http-nio-0.0.0.0-8082-exec-3] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Authorization headers: [Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNzQ4MjY3MTg1LCJleHAiOjE3NDgzNTM1ODV9.NMwhpgovOOG1x52WX1lTlPyVGUzeFB30i987bkhdRos]
-2025-05-27 11:38:36.457 [http-nio-0.0.0.0-8082-exec-3] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Extracted token: eyJhbGciOiJIUzI1NiJ9...
-2025-05-27 11:38:36.501 [http-nio-0.0.0.0-8082-exec-3] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - JWT token is valid
-2025-05-27 11:38:36.504 [http-nio-0.0.0.0-8082-exec-3] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Extracted userId: 2, username: 2
-2025-05-27 11:38:36.505 [http-nio-0.0.0.0-8082-exec-3] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Successfully set user principal and session attributes for userId: 2
-2025-05-27 11:38:36.575 [http-nio-0.0.0.0-8082-exec-4] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP command: SUBSCRIBE on thread: http-nio-0.0.0.0-8082-exec-4
-2025-05-27 11:38:36.575 [http-nio-0.0.0.0-8082-exec-4] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Destination: /topic/chat.init.1
-2025-05-27 11:38:36.575 [http-nio-0.0.0.0-8082-exec-4] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Session ID: h23slbqj
-2025-05-27 11:38:36.575 [http-nio-0.0.0.0-8082-exec-4] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Current user principal: null
-2025-05-27 11:38:36.575 [http-nio-0.0.0.0-8082-exec-4] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - User principal is null, attempting to get from session attributes
-2025-05-27 11:38:36.575 [http-nio-0.0.0.0-8082-exec-4] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Session attributes - userId: 2, username: 2, authToken: present
-2025-05-27 11:38:36.576 [http-nio-0.0.0.0-8082-exec-4] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Successfully restored user principal from session for userId: 2
-2025-05-27 11:38:36.576 [http-nio-0.0.0.0-8082-exec-4] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Message processing completed successfully
-2025-05-27 11:38:36.579 [http-nio-0.0.0.0-8082-exec-4] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP command: SEND on thread: http-nio-0.0.0.0-8082-exec-4
-2025-05-27 11:38:36.580 [http-nio-0.0.0.0-8082-exec-4] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Destination: /app/chat.init.1
-2025-05-27 11:38:36.580 [http-nio-0.0.0.0-8082-exec-4] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Session ID: h23slbqj
-2025-05-27 11:38:36.580 [http-nio-0.0.0.0-8082-exec-4] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Current user principal: null
-2025-05-27 11:38:36.580 [http-nio-0.0.0.0-8082-exec-4] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - User principal is null, attempting to get from session attributes
-2025-05-27 11:38:36.580 [http-nio-0.0.0.0-8082-exec-4] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Session attributes - userId: 2, username: 2, authToken: present
-2025-05-27 11:38:36.580 [http-nio-0.0.0.0-8082-exec-4] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Successfully restored user principal from session for userId: 2
-2025-05-27 11:38:36.580 [http-nio-0.0.0.0-8082-exec-4] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP SEND to destination: /app/chat.init.1
-2025-05-27 11:38:36.580 [http-nio-0.0.0.0-8082-exec-4] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing chat init request
-2025-05-27 11:38:36.580 [http-nio-0.0.0.0-8082-exec-4] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Target User ID: 1
-2025-05-27 11:38:36.580 [http-nio-0.0.0.0-8082-exec-4] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Current User ID: 2
-2025-05-27 11:38:36.580 [http-nio-0.0.0.0-8082-exec-4] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Chat init request authorized for user 2 with target user 1
-2025-05-27 11:38:36.580 [http-nio-0.0.0.0-8082-exec-4] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Message processing completed successfully
-2025-05-27 11:38:36.586 [clientInboundChannel-7] INFO  i.a.u.c.a.c.c.ChatWebSocketController - initRoom called - targetUserId=1
-2025-05-27 11:38:36.586 [clientInboundChannel-7] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Session attributes on init: {USER_ID=2, USERNAME=2, AUTH_TOKEN=Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNzQ4MjY3MTg1LCJleHAiOjE3NDgzNTM1ODV9.NMwhpgovOOG1x52WX1lTlPyVGUzeFB30i987bkhdRos}
-2025-05-27 11:38:36.586 [clientInboundChannel-7] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 2
-2025-05-27 11:38:36.586 [clientInboundChannel-7] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved auth token from session attributes: present
-2025-05-27 11:38:36.586 [clientInboundChannel-7] INFO  i.a.u.c.a.c.c.ChatWebSocketController - Current User ID for initRoom: 2
-2025-05-27 11:38:36.586 [clientInboundChannel-7] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Auth token present: true
-2025-05-27 11:38:36.595 [clientInboundChannel-7] INFO  i.a.u.c.a.c.service.ChatRoomService - Creating chat room between users 2 and 1
-2025-05-27 11:38:36.606 [clientInboundChannel-7] DEBUG o.s.web.client.RestTemplate - HTTP GET http://localhost:8081/api/caregiver/2
-2025-05-27 11:38:36.608 [clientInboundChannel-7] DEBUG o.s.web.client.RestTemplate - Accept=[application/json, application/*+json]
-2025-05-27 11:38:36.639 [Test worker] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-05-27 11:38:36.641 [Test worker] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-05-27 11:38:36.648 [Test worker] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-27 11:38:36.654 [Test worker] WARN  org.hibernate.dialect.Dialect - HHH000511: The 2.3.232 version for [org.hibernate.dialect.PostgreSQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 12.0.0. Check the community dialects project for available legacy versions.
-2025-05-27 11:38:36.655 [Test worker] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-05-27 11:38:36.663 [Test worker] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactory$EmbeddedDataSourceProxy@14b50fa0']
+2025-05-27 14:07:15.097 [Test worker] INFO  i.a.u.c.a.c.r.ChatMessageRepositoryTest - Starting ChatMessageRepositoryTest using Java 21.0.2 with PID 47523 (started by karolinajocelyn in /Users/karolinajocelyn/IdeaProjects/chat)
+2025-05-27 14:07:15.097 [Test worker] DEBUG i.a.u.c.a.c.r.ChatMessageRepositoryTest - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-05-27 14:07:15.097 [Test worker] INFO  i.a.u.c.a.c.r.ChatMessageRepositoryTest - The following 1 profile is active: &quot;dev&quot;
+2025-05-27 14:07:15.195 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-27 14:07:15.206 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 9 ms. Found 2 JPA repository interfaces.
+2025-05-27 14:07:15.220 [Test worker] INFO  o.s.b.t.a.j.TestDatabaseAutoConfiguration$EmbeddedDataSourceBeanFactoryPostProcessor - Replacing 'dataSource' DataSource bean with embedded version
+2025-05-27 14:07:15.239 [Test worker] INFO  o.s.j.d.e.EmbeddedDatabaseFactory - Starting embedded database: url='jdbc:h2:mem:214c14cd-7a42-444a-8bce-347c44e03219;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2025-05-27 14:07:15.575 [Test worker] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-27 14:07:15.578 [Test worker] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-05-27 14:07:15.585 [Test worker] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-27 14:07:15.592 [Test worker] WARN  org.hibernate.dialect.Dialect - HHH000511: The 2.3.232 version for [org.hibernate.dialect.PostgreSQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 12.0.0. Check the community dialects project for available legacy versions.
+2025-05-27 14:07:15.592 [Test worker] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-05-27 14:07:15.601 [Test worker] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactory$EmbeddedDataSourceProxy@6fc4f23c']
 	Database driver: undefined/unknown
 	Database version: 2.3.232
 	Autocommit mode: undefined/unknown
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2025-05-27 11:38:36.715 [Test worker] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-27 14:07:15.650 [Test worker] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
 Hibernate: 
     create table chat_message (
         id bigint generated by default as identity,
@@ -192,8 +144,8 @@ Hibernate:
         pacilian_id bigint,
         primary key (id)
     )
-2025-05-27 11:38:36.758 [Test worker] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-05-27 11:38:36.813 [Test worker] INFO  i.a.u.c.a.c.r.ChatMessageRepositoryTest - Started ChatMessageRepositoryTest in 0.743 seconds (process running for 10.352)
+2025-05-27 14:07:15.688 [Test worker] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-27 14:07:15.737 [Test worker] INFO  i.a.u.c.a.c.r.ChatMessageRepositoryTest - Started ChatMessageRepositoryTest in 0.67 seconds (process running for 10.243)
 Hibernate: 
     insert 
     into
@@ -225,8 +177,6 @@ Hibernate:
         (content, receiver_id, room_id, sender_id, status, timestamp) 
     values
         (?, ?, ?, ?, ?, ?)
-2025-05-27 11:38:37.057 [clientInboundChannel-7] DEBUG o.s.web.client.RestTemplate - Response 200 OK
-2025-05-27 11:38:37.057 [clientInboundChannel-7] DEBUG o.s.web.client.RestTemplate - Reading to [java.util.Map&lt;?, ?&gt;]
 Hibernate: 
     select
         cm1_0.id,
@@ -242,18 +192,6 @@ Hibernate:
         cm1_0.room_id=? 
     order by
         cm1_0.timestamp
-2025-05-27 11:38:37.060 [clientInboundChannel-7] DEBUG i.a.u.c.a.c.service.ChatRoomService - User 2 is a caregiver
-2025-05-27 11:38:37.061 [clientInboundChannel-7] INFO  i.a.u.c.a.c.service.ChatRoomService - Room assignment - Patient: 1, Caregiver: 2
-Hibernate: 
-    select
-        cr1_0.id,
-        cr1_0.doctor_id,
-        cr1_0.pacilian_id 
-    from
-        chat_room cr1_0 
-    where
-        cr1_0.pacilian_id=? 
-        and cr1_0.doctor_id=?
 </pre>
 </span>
 </div>
@@ -265,7 +203,7 @@ Hibernate:
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="https://www.gradle.org">Gradle 8.13</a> at 27 May 2025, 11.38.37</p>
+<a href="https://www.gradle.org">Gradle 8.13</a> at 27 May 2025, 14.07.17</p>
 </div>
 </div>
 </body>

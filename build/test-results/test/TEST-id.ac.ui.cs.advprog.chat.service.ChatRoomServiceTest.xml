@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="id.ac.ui.cs.advprog.chat.service.ChatRoomServiceTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-05-27T04:38:37.379Z" hostname="Karolinas-MacBook-Pro.local" time="0.136">
+<testsuite name="id.ac.ui.cs.advprog.chat.service.ChatRoomServiceTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-05-27T07:07:16.343Z" hostname="Karolinas-MacBook-Pro.local" time="0.146">
   <properties/>
-  <testcase name="find_returnsRoomIfExists()" classname="id.ac.ui.cs.advprog.chat.service.ChatRoomServiceTest" time="0.127"/>
+  <testcase name="find_returnsRoomIfExists()" classname="id.ac.ui.cs.advprog.chat.service.ChatRoomServiceTest" time="0.137"/>
   <testcase name="findRoomsByUserId_returnsAllRoomsWhereUserIsParticipant()" classname="id.ac.ui.cs.advprog.chat.service.ChatRoomServiceTest" time="0.002"/>
   <testcase name="createIfNotExists_returnsExistingRoom()" classname="id.ac.ui.cs.advprog.chat.service.ChatRoomServiceTest" time="0.002"/>
   <testcase name="createIfNotExists_savesNewRoomWhenAbsent()" classname="id.ac.ui.cs.advprog.chat.service.ChatRoomServiceTest" time="0.004"/>
   <testcase name="find_returnsEmptyIfNotFound()" classname="id.ac.ui.cs.advprog.chat.service.ChatRoomServiceTest" time="0.001"/>
-  <system-out><![CDATA[2025-05-27 11:38:37.510 [Test worker] INFO  i.a.u.c.a.c.service.ChatRoomService - Creating chat room between users 10 and 20
-2025-05-27 11:38:37.510 [Test worker] WARN  i.a.u.c.a.c.service.ChatRoomService - No auth token available for user type check of user 10
-2025-05-27 11:38:37.510 [Test worker] WARN  i.a.u.c.a.c.service.ChatRoomService - No auth token available for user type check of user 20
-2025-05-27 11:38:37.510 [Test worker] WARN  i.a.u.c.a.c.service.ChatRoomService - Neither user 10 nor 20 appears to be a caregiver. Using default assignment.
-2025-05-27 11:38:37.510 [Test worker] INFO  i.a.u.c.a.c.service.ChatRoomService - Room assignment - Patient: 10, Caregiver: 20
-2025-05-27 11:38:37.510 [Test worker] INFO  i.a.u.c.a.c.service.ChatRoomService - Found existing room with ID: 1
-2025-05-27 11:38:37.512 [Test worker] INFO  i.a.u.c.a.c.service.ChatRoomService - Creating chat room between users 11 and 22
-2025-05-27 11:38:37.512 [Test worker] WARN  i.a.u.c.a.c.service.ChatRoomService - No auth token available for user type check of user 11
-2025-05-27 11:38:37.512 [Test worker] WARN  i.a.u.c.a.c.service.ChatRoomService - No auth token available for user type check of user 22
-2025-05-27 11:38:37.512 [Test worker] WARN  i.a.u.c.a.c.service.ChatRoomService - Neither user 11 nor 22 appears to be a caregiver. Using default assignment.
-2025-05-27 11:38:37.512 [Test worker] INFO  i.a.u.c.a.c.service.ChatRoomService - Room assignment - Patient: 11, Caregiver: 22
-2025-05-27 11:38:37.513 [Test worker] INFO  i.a.u.c.a.c.service.ChatRoomService - Created new room with ID: 2
+  <system-out><![CDATA[2025-05-27 14:07:16.434 [http-nio-0.0.0.0-8082-exec-1] INFO  o.a.tomcat.util.http.parser.Cookie - A cookie header was received [last_login="2024-10-27 03:30:12.196746";] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+2025-05-27 14:07:16.437 [http-nio-0.0.0.0-8082-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-27 14:07:16.437 [http-nio-0.0.0.0-8082-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-27 14:07:16.438 [http-nio-0.0.0.0-8082-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-05-27 14:07:16.473 [http-nio-0.0.0.0-8082-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /ws-chat/info?t=1748329636362
+2025-05-27 14:07:16.473 [http-nio-0.0.0.0-8082-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /ws-chat/info?t=1748329636356
+2025-05-27 14:07:16.483 [Test worker] INFO  i.a.u.c.a.c.service.ChatRoomService - Creating chat room between users 10 and 20
+2025-05-27 14:07:16.483 [Test worker] WARN  i.a.u.c.a.c.service.ChatRoomService - No auth token available for user type check of user 10
+2025-05-27 14:07:16.483 [Test worker] WARN  i.a.u.c.a.c.service.ChatRoomService - No auth token available for user type check of user 20
+2025-05-27 14:07:16.483 [Test worker] WARN  i.a.u.c.a.c.service.ChatRoomService - Neither user 10 nor 20 appears to be a caregiver. Using default assignment.
+2025-05-27 14:07:16.483 [Test worker] INFO  i.a.u.c.a.c.service.ChatRoomService - Room assignment - Patient: 10, Caregiver: 20
+2025-05-27 14:07:16.484 [Test worker] INFO  i.a.u.c.a.c.service.ChatRoomService - Found existing room with ID: 1
+2025-05-27 14:07:16.486 [Test worker] INFO  i.a.u.c.a.c.service.ChatRoomService - Creating chat room between users 11 and 22
+2025-05-27 14:07:16.486 [Test worker] WARN  i.a.u.c.a.c.service.ChatRoomService - No auth token available for user type check of user 11
+2025-05-27 14:07:16.486 [Test worker] WARN  i.a.u.c.a.c.service.ChatRoomService - No auth token available for user type check of user 22
+2025-05-27 14:07:16.486 [Test worker] WARN  i.a.u.c.a.c.service.ChatRoomService - Neither user 11 nor 22 appears to be a caregiver. Using default assignment.
+2025-05-27 14:07:16.486 [Test worker] INFO  i.a.u.c.a.c.service.ChatRoomService - Room assignment - Patient: 11, Caregiver: 22
+2025-05-27 14:07:16.486 [Test worker] INFO  i.a.u.c.a.c.service.ChatRoomService - Created new room with ID: 2
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.207s</div>
+<div class="counter">0.221s</div>
 <p>duration</p>
 </div>
 </td>
@@ -89,7 +89,7 @@
 </tr>
 <tr>
 <td class="success">testEdit_error()</td>
-<td class="success">0.006s</td>
+<td class="success">0.005s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -99,12 +99,12 @@
 </tr>
 <tr>
 <td class="success">testHistory_error()</td>
-<td class="success">0.004s</td>
+<td class="success">0.007s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testHistory_success()</td>
-<td class="success">0.003s</td>
+<td class="success">0.002s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -114,12 +114,12 @@
 </tr>
 <tr>
 <td class="success">testInitRoom_success()</td>
-<td class="success">0.169s</td>
+<td class="success">0.181s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testSend_error()</td>
-<td class="success">0.007s</td>
+<td class="success">0.008s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -132,29 +132,29 @@
 <div class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>2025-05-27 11:38:35.975 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
-2025-05-27 11:38:35.979 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - initRoom called - targetUserId=2
-2025-05-27 11:38:35.980 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Session attributes on init: {AUTH_TOKEN=token, USER_ID=1}
-2025-05-27 11:38:35.980 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 1
-2025-05-27 11:38:35.980 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved auth token from session attributes: present
-2025-05-27 11:38:35.980 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - Current User ID for initRoom: 1
-2025-05-27 11:38:35.980 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Auth token present: true
-2025-05-27 11:38:35.981 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - Room created/found with ID: 10
-2025-05-27 11:38:35.985 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - initRoom completed successfully for roomId=10
-2025-05-27 11:38:35.985 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Cleared thread-local auth token
-2025-05-27 11:38:35.987 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
-2025-05-27 11:38:35.988 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - edit called - roomId=3, messageId=100
-2025-05-27 11:38:35.988 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - edit request payload: id.ac.ui.cs.advprog.chat.dto.ChatEditRequest@3d172278
-2025-05-27 11:38:35.988 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 4
-2025-05-27 11:38:35.988 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - User 4 editing message 100
-2025-05-27 11:38:35.989 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - Message edited successfully - messageId=100
-2025-05-27 11:38:35.989 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - edit completed for messageId=100
-2025-05-27 11:38:35.990 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
-2025-05-27 11:38:35.991 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - send called - roomId=9
-2025-05-27 11:38:35.991 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Payload before send: id.ac.ui.cs.advprog.chat.model.ChatMessage@4f1e592
-2025-05-27 11:38:35.991 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 5
-2025-05-27 11:38:35.991 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Message details - sender=5, receiver=null, content=null
-2025-05-27 11:38:35.992 [Test worker] ERROR i.a.u.c.a.c.c.ChatWebSocketController - Error in send for roomId=9: boom
+<pre>2025-05-27 14:07:14.961 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
+2025-05-27 14:07:14.964 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - initRoom called - targetUserId=2
+2025-05-27 14:07:14.965 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Session attributes on init: {AUTH_TOKEN=token, USER_ID=1}
+2025-05-27 14:07:14.965 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 1
+2025-05-27 14:07:14.965 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved auth token from session attributes: present
+2025-05-27 14:07:14.965 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - Current User ID for initRoom: 1
+2025-05-27 14:07:14.965 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Auth token present: true
+2025-05-27 14:07:14.965 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - Room created/found with ID: 10
+2025-05-27 14:07:14.970 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - initRoom completed successfully for roomId=10
+2025-05-27 14:07:14.970 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Cleared thread-local auth token
+2025-05-27 14:07:14.973 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
+2025-05-27 14:07:14.973 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - edit called - roomId=3, messageId=100
+2025-05-27 14:07:14.973 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - edit request payload: id.ac.ui.cs.advprog.chat.dto.ChatEditRequest@f4192f7
+2025-05-27 14:07:14.974 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 4
+2025-05-27 14:07:14.974 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - User 4 editing message 100
+2025-05-27 14:07:14.974 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - Message edited successfully - messageId=100
+2025-05-27 14:07:14.974 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - edit completed for messageId=100
+2025-05-27 14:07:14.976 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
+2025-05-27 14:07:14.977 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - send called - roomId=9
+2025-05-27 14:07:14.977 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Payload before send: id.ac.ui.cs.advprog.chat.model.ChatMessage@64d057ab
+2025-05-27 14:07:14.977 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 5
+2025-05-27 14:07:14.977 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Message details - sender=5, receiver=null, content=null
+2025-05-27 14:07:14.978 [Test worker] ERROR i.a.u.c.a.c.c.ChatWebSocketController - Error in send for roomId=9: boom
 java.lang.RuntimeException: boom
 	at id.ac.ui.cs.advprog.chat.controller.ChatWebSocketController.send(ChatWebSocketController.java:101)
 	at id.ac.ui.cs.advprog.chat.controller.ChatWebSocketControllerTest.testSend_error(ChatWebSocketControllerTest.java:114)
@@ -239,12 +239,12 @@ java.lang.RuntimeException: boom
 	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
-2025-05-27 11:38:35.997 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
-2025-05-27 11:38:35.997 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - delete called - roomId=8, messageId=300
-2025-05-27 11:38:35.997 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - delete request payload: id.ac.ui.cs.advprog.chat.dto.ChatDeleteRequest@1ffb19ab
-2025-05-27 11:38:35.998 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 9
-2025-05-27 11:38:35.998 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - User 9 deleting message 300
-2025-05-27 11:38:35.998 [Test worker] ERROR i.a.u.c.a.c.c.ChatWebSocketController - Error in delete for roomId=8, messageId=300: boom
+2025-05-27 14:07:14.984 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
+2025-05-27 14:07:14.984 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - delete called - roomId=8, messageId=300
+2025-05-27 14:07:14.984 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - delete request payload: id.ac.ui.cs.advprog.chat.dto.ChatDeleteRequest@5c12cd66
+2025-05-27 14:07:14.985 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 9
+2025-05-27 14:07:14.985 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - User 9 deleting message 300
+2025-05-27 14:07:14.985 [Test worker] ERROR i.a.u.c.a.c.c.ChatWebSocketController - Error in delete for roomId=8, messageId=300: boom
 java.lang.RuntimeException: boom
 	at id.ac.ui.cs.advprog.chat.controller.ChatWebSocketController.delete(ChatWebSocketController.java:149)
 	at id.ac.ui.cs.advprog.chat.controller.ChatWebSocketControllerTest.testDelete_error(ChatWebSocketControllerTest.java:182)
@@ -329,15 +329,15 @@ java.lang.RuntimeException: boom
 	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
-2025-05-27 11:38:36.003 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
-2025-05-27 11:38:36.004 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - initRoom called - targetUserId=2
-2025-05-27 11:38:36.004 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Session attributes on init: {AUTH_TOKEN=token, USER_ID=1}
-2025-05-27 11:38:36.004 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 1
-2025-05-27 11:38:36.004 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved auth token from session attributes: present
-2025-05-27 11:38:36.004 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - Current User ID for initRoom: 1
-2025-05-27 11:38:36.004 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Auth token present: true
-2025-05-27 11:38:36.004 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Cleared thread-local auth token
-2025-05-27 11:38:36.004 [Test worker] ERROR i.a.u.c.a.c.c.ChatWebSocketController - Error in initRoom for targetUserId=2: something went wrong
+2025-05-27 14:07:14.990 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
+2025-05-27 14:07:14.991 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - initRoom called - targetUserId=2
+2025-05-27 14:07:14.991 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Session attributes on init: {AUTH_TOKEN=token, USER_ID=1}
+2025-05-27 14:07:14.991 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 1
+2025-05-27 14:07:14.991 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved auth token from session attributes: present
+2025-05-27 14:07:14.992 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - Current User ID for initRoom: 1
+2025-05-27 14:07:14.992 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Auth token present: true
+2025-05-27 14:07:14.992 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Cleared thread-local auth token
+2025-05-27 14:07:14.992 [Test worker] ERROR i.a.u.c.a.c.c.ChatWebSocketController - Error in initRoom for targetUserId=2: something went wrong
 java.lang.RuntimeException: something went wrong
 	at id.ac.ui.cs.advprog.chat.service.ChatRoomService.createIfNotExists(ChatRoomService.java:68)
 	at id.ac.ui.cs.advprog.chat.controller.ChatWebSocketController.initRoom(ChatWebSocketController.java:60)
@@ -423,17 +423,17 @@ java.lang.RuntimeException: something went wrong
 	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
-2025-05-27 11:38:36.009 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
-2025-05-27 11:38:36.010 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - history called - roomId=7
-2025-05-27 11:38:36.010 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 1
-2025-05-27 11:38:36.010 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - User 1 requesting history for room 7
-2025-05-27 11:38:36.010 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - Retrieved 2 messages for room 7
-2025-05-27 11:38:36.011 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - history completed - sent 2 messages for roomId=7
-2025-05-27 11:38:36.012 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
-2025-05-27 11:38:36.013 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - history called - roomId=7
-2025-05-27 11:38:36.013 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 1
-2025-05-27 11:38:36.013 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - User 1 requesting history for room 7
-2025-05-27 11:38:36.013 [Test worker] ERROR i.a.u.c.a.c.c.ChatWebSocketController - Error in history for roomId=7: boom
+2025-05-27 14:07:14.998 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
+2025-05-27 14:07:14.998 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - history called - roomId=7
+2025-05-27 14:07:14.998 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 1
+2025-05-27 14:07:14.998 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - User 1 requesting history for room 7
+2025-05-27 14:07:14.998 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - Retrieved 2 messages for room 7
+2025-05-27 14:07:14.999 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - history completed - sent 2 messages for roomId=7
+2025-05-27 14:07:15.001 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
+2025-05-27 14:07:15.001 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - history called - roomId=7
+2025-05-27 14:07:15.001 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 1
+2025-05-27 14:07:15.001 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - User 1 requesting history for room 7
+2025-05-27 14:07:15.001 [Test worker] ERROR i.a.u.c.a.c.c.ChatWebSocketController - Error in history for roomId=7: boom
 java.lang.RuntimeException: boom
 	at id.ac.ui.cs.advprog.chat.controller.ChatWebSocketController.history(ChatWebSocketController.java:171)
 	at id.ac.ui.cs.advprog.chat.controller.ChatWebSocketControllerTest.testHistory_error(ChatWebSocketControllerTest.java:214)
@@ -518,19 +518,19 @@ java.lang.RuntimeException: boom
 	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
-2025-05-27 11:38:36.016 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
-2025-05-27 11:38:36.017 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - delete called - roomId=8, messageId=300
-2025-05-27 11:38:36.017 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - delete request payload: id.ac.ui.cs.advprog.chat.dto.ChatDeleteRequest@3ea1c553
-2025-05-27 11:38:36.017 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 9
-2025-05-27 11:38:36.017 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - User 9 deleting message 300
-2025-05-27 11:38:36.017 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - Message deleted successfully - messageId=300
-2025-05-27 11:38:36.017 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - delete completed for messageId=300
-2025-05-27 11:38:36.019 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
-2025-05-27 11:38:36.019 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - edit called - roomId=3, messageId=100
-2025-05-27 11:38:36.019 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - edit request payload: id.ac.ui.cs.advprog.chat.dto.ChatEditRequest@7734fc41
-2025-05-27 11:38:36.019 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 4
-2025-05-27 11:38:36.019 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - User 4 editing message 100
-2025-05-27 11:38:36.019 [Test worker] ERROR i.a.u.c.a.c.c.ChatWebSocketController - Error in edit for roomId=3, messageId=100: boom
+2025-05-27 14:07:15.008 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
+2025-05-27 14:07:15.009 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - delete called - roomId=8, messageId=300
+2025-05-27 14:07:15.009 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - delete request payload: id.ac.ui.cs.advprog.chat.dto.ChatDeleteRequest@1e8633c7
+2025-05-27 14:07:15.009 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 9
+2025-05-27 14:07:15.009 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - User 9 deleting message 300
+2025-05-27 14:07:15.009 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - Message deleted successfully - messageId=300
+2025-05-27 14:07:15.009 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - delete completed for messageId=300
+2025-05-27 14:07:15.011 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
+2025-05-27 14:07:15.011 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - edit called - roomId=3, messageId=100
+2025-05-27 14:07:15.011 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - edit request payload: id.ac.ui.cs.advprog.chat.dto.ChatEditRequest@292a68e
+2025-05-27 14:07:15.011 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 4
+2025-05-27 14:07:15.011 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - User 4 editing message 100
+2025-05-27 14:07:15.012 [Test worker] ERROR i.a.u.c.a.c.c.ChatWebSocketController - Error in edit for roomId=3, messageId=100: boom
 java.lang.RuntimeException: boom
 	at id.ac.ui.cs.advprog.chat.controller.ChatWebSocketController.edit(ChatWebSocketController.java:124)
 	at id.ac.ui.cs.advprog.chat.controller.ChatWebSocketControllerTest.testEdit_error(ChatWebSocketControllerTest.java:149)
@@ -615,13 +615,13 @@ java.lang.RuntimeException: boom
 	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
-2025-05-27 11:38:36.025 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
-2025-05-27 11:38:36.025 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - send called - roomId=9
-2025-05-27 11:38:36.025 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Payload before send: id.ac.ui.cs.advprog.chat.model.ChatMessage@71fdb621
-2025-05-27 11:38:36.025 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 5
-2025-05-27 11:38:36.025 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Message details - sender=5, receiver=6, content=Hello
-2025-05-27 11:38:36.025 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - Message sent successfully - messageId=999
-2025-05-27 11:38:36.025 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - send completed for messageId=999
+2025-05-27 14:07:15.016 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - ChatWebSocketController initialized
+2025-05-27 14:07:15.017 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - send called - roomId=9
+2025-05-27 14:07:15.017 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Payload before send: id.ac.ui.cs.advprog.chat.model.ChatMessage@1da4c9be
+2025-05-27 14:07:15.017 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Retrieved userId from session attributes: 5
+2025-05-27 14:07:15.017 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - Message details - sender=5, receiver=6, content=Hello
+2025-05-27 14:07:15.017 [Test worker] INFO  i.a.u.c.a.c.c.ChatWebSocketController - Message sent successfully - messageId=999
+2025-05-27 14:07:15.017 [Test worker] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - send completed for messageId=999
 </pre>
 </span>
 </div>
@@ -633,7 +633,7 @@ java.lang.RuntimeException: boom
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="https://www.gradle.org">Gradle 8.13</a> at 27 May 2025, 11.38.37</p>
+<a href="https://www.gradle.org">Gradle 8.13</a> at 27 May 2025, 14.07.17</p>
 </div>
 </div>
 </body>

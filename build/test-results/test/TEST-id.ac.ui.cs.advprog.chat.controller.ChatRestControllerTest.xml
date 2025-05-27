@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="id.ac.ui.cs.advprog.chat.controller.ChatRestControllerTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2025-05-27T04:38:35.659Z" hostname="Karolinas-MacBook-Pro.local" time="0.156">
+<testsuite name="id.ac.ui.cs.advprog.chat.controller.ChatRestControllerTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2025-05-27T07:07:14.658Z" hostname="Karolinas-MacBook-Pro.local" time="0.13">
   <properties/>
-  <testcase name="testGetContacts_returnsSortedContacts()" classname="id.ac.ui.cs.advprog.chat.controller.ChatRestControllerTest" time="0.134"/>
-  <testcase name="testGetContacts_returnsEmptyListOnException()" classname="id.ac.ui.cs.advprog.chat.controller.ChatRestControllerTest" time="0.013"/>
-  <testcase name="testGetContacts_handlesDeletedMessage()" classname="id.ac.ui.cs.advprog.chat.controller.ChatRestControllerTest" time="0.004"/>
+  <testcase name="testGetContacts_returnsSortedContacts()" classname="id.ac.ui.cs.advprog.chat.controller.ChatRestControllerTest" time="0.113"/>
+  <testcase name="testGetContacts_returnsEmptyListOnException()" classname="id.ac.ui.cs.advprog.chat.controller.ChatRestControllerTest" time="0.009"/>
+  <testcase name="testGetContacts_handlesDeletedMessage()" classname="id.ac.ui.cs.advprog.chat.controller.ChatRestControllerTest" time="0.003"/>
   <testcase name="testGetContacts_handlesEmptyMessages()" classname="id.ac.ui.cs.advprog.chat.controller.ChatRestControllerTest" time="0.003"/>
-  <system-out><![CDATA[2025-05-27 11:38:35.782 [Test worker] INFO  i.a.u.c.a.c.c.ChatRestController - START getContacts for userId=1
-2025-05-27 11:38:35.783 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Found 1 rooms for user 1
-2025-05-27 11:38:35.783 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Room 10: contactId=2
-2025-05-27 11:38:35.783 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Contact name for 2 => ContactName
-2025-05-27 11:38:35.783 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Room 10: 1 messages loaded
-2025-05-27 11:38:35.783 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Added ContactResponse: ContactResponse{contactId=2, contactName='ContactName', roomId=10, lastMessage='Hello', lastMessageTime=2025-05-27T11:38:35.780492}
-2025-05-27 11:38:35.784 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Contacts sorted by lastMessageTime
-2025-05-27 11:38:35.784 [Test worker] INFO  i.a.u.c.a.c.c.ChatRestController - END getContacts for user 1 — returning 1 contacts
-2025-05-27 11:38:35.801 [Test worker] INFO  i.a.u.c.a.c.c.ChatRestController - START getContacts for userId=99
-2025-05-27 11:38:35.801 [Test worker] ERROR i.a.u.c.a.c.c.ChatRestController - ERROR in getContacts for user 99: DB error
+  <system-out><![CDATA[2025-05-27 14:07:14.764 [Test worker] INFO  i.a.u.c.a.c.c.ChatRestController - START getContacts for userId=1
+2025-05-27 14:07:14.764 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Found 1 rooms for user 1
+2025-05-27 14:07:14.764 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Room 10: contactId=2
+2025-05-27 14:07:14.764 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Contact name for 2 => ContactName
+2025-05-27 14:07:14.765 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Room 10: 1 messages loaded
+2025-05-27 14:07:14.765 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Added ContactResponse: ContactResponse{contactId=2, contactName='ContactName', roomId=10, lastMessage='Hello', lastMessageTime=2025-05-27T14:07:14.761920}
+2025-05-27 14:07:14.765 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Contacts sorted by lastMessageTime
+2025-05-27 14:07:14.765 [Test worker] INFO  i.a.u.c.a.c.c.ChatRestController - END getContacts for user 1 — returning 1 contacts
+2025-05-27 14:07:14.774 [Test worker] INFO  i.a.u.c.a.c.c.ChatRestController - START getContacts for userId=99
+2025-05-27 14:07:14.775 [Test worker] ERROR i.a.u.c.a.c.c.ChatRestController - ERROR in getContacts for user 99: DB error
 java.lang.RuntimeException: DB error
 	at id.ac.ui.cs.advprog.chat.service.ChatRoomService.findRoomsByUserId(ChatRoomService.java:152)
 	at id.ac.ui.cs.advprog.chat.controller.ChatRestController.getContacts(ChatRestController.java:46)
@@ -100,22 +100,22 @@ java.lang.RuntimeException: DB error
 	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
-2025-05-27 11:38:35.811 [Test worker] INFO  i.a.u.c.a.c.c.ChatRestController - START getContacts for userId=1
-2025-05-27 11:38:35.811 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Found 1 rooms for user 1
-2025-05-27 11:38:35.811 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Room 11: contactId=2
-2025-05-27 11:38:35.811 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Contact name for 2 => DocName
-2025-05-27 11:38:35.811 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Room 11: 1 messages loaded
-2025-05-27 11:38:35.811 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Added ContactResponse: ContactResponse{contactId=2, contactName='DocName', roomId=11, lastMessage='Message deleted', lastMessageTime=2025-05-27T11:38:35.810208}
-2025-05-27 11:38:35.812 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Contacts sorted by lastMessageTime
-2025-05-27 11:38:35.812 [Test worker] INFO  i.a.u.c.a.c.c.ChatRestController - END getContacts for user 1 — returning 1 contacts
-2025-05-27 11:38:35.814 [Test worker] INFO  i.a.u.c.a.c.c.ChatRestController - START getContacts for userId=1
-2025-05-27 11:38:35.814 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Found 1 rooms for user 1
-2025-05-27 11:38:35.814 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Room 12: contactId=2
-2025-05-27 11:38:35.814 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Contact name for 2 => NoMsgUser
-2025-05-27 11:38:35.814 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Room 12: 0 messages loaded
-2025-05-27 11:38:35.814 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Added ContactResponse: ContactResponse{contactId=2, contactName='NoMsgUser', roomId=12, lastMessage='', lastMessageTime=null}
-2025-05-27 11:38:35.815 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Contacts sorted by lastMessageTime
-2025-05-27 11:38:35.815 [Test worker] INFO  i.a.u.c.a.c.c.ChatRestController - END getContacts for user 1 — returning 1 contacts
+2025-05-27 14:07:14.783 [Test worker] INFO  i.a.u.c.a.c.c.ChatRestController - START getContacts for userId=1
+2025-05-27 14:07:14.784 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Found 1 rooms for user 1
+2025-05-27 14:07:14.784 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Room 11: contactId=2
+2025-05-27 14:07:14.784 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Contact name for 2 => DocName
+2025-05-27 14:07:14.784 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Room 11: 1 messages loaded
+2025-05-27 14:07:14.784 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Added ContactResponse: ContactResponse{contactId=2, contactName='DocName', roomId=11, lastMessage='Message deleted', lastMessageTime=2025-05-27T14:07:14.783493}
+2025-05-27 14:07:14.785 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Contacts sorted by lastMessageTime
+2025-05-27 14:07:14.785 [Test worker] INFO  i.a.u.c.a.c.c.ChatRestController - END getContacts for user 1 — returning 1 contacts
+2025-05-27 14:07:14.787 [Test worker] INFO  i.a.u.c.a.c.c.ChatRestController - START getContacts for userId=1
+2025-05-27 14:07:14.787 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Found 1 rooms for user 1
+2025-05-27 14:07:14.787 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Room 12: contactId=2
+2025-05-27 14:07:14.787 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Contact name for 2 => NoMsgUser
+2025-05-27 14:07:14.787 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Room 12: 0 messages loaded
+2025-05-27 14:07:14.788 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Added ContactResponse: ContactResponse{contactId=2, contactName='NoMsgUser', roomId=12, lastMessage='', lastMessageTime=null}
+2025-05-27 14:07:14.788 [Test worker] DEBUG i.a.u.c.a.c.c.ChatRestController - Contacts sorted by lastMessageTime
+2025-05-27 14:07:14.788 [Test worker] INFO  i.a.u.c.a.c.c.ChatRestController - END getContacts for user 1 — returning 1 contacts
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

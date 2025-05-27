@@ -73,9 +73,9 @@ public class ChatRoomService {
 <span class="fc" id="L73">            Long doctorId = null;</span>
 
             // Check if userId1 is a caregiver
-<span class="fc bfc" id="L76" title="All 2 branches covered.">            if (isCaregiver(userId1)) {</span>
-<span class="fc" id="L77">                doctorId = userId1;</span>
-<span class="fc" id="L78">                pacilianId = userId2;</span>
+<span class="pc bpc" id="L76" title="1 of 2 branches missed.">            if (isCaregiver(userId1)) {</span>
+<span class="nc" id="L77">                doctorId = userId1;</span>
+<span class="nc" id="L78">                pacilianId = userId2;</span>
 <span class="pc bpc" id="L79" title="1 of 2 branches missed.">            } else if (isCaregiver(userId2)) {</span>
 <span class="nc" id="L80">                doctorId = userId2;</span>
 <span class="nc" id="L81">                pacilianId = userId1;</span>
@@ -115,23 +115,23 @@ public class ChatRoomService {
     private boolean isCaregiver(Long userId) {
 <span class="fc" id="L116">        String authToken = currentAuthToken.get();</span>
 
-<span class="fc bfc" id="L118" title="All 2 branches covered.">        if (authToken == null) {</span>
+<span class="pc bpc" id="L118" title="1 of 2 branches missed.">        if (authToken == null) {</span>
 <span class="fc" id="L119">            logger.warn(&quot;No auth token available for user type check of user {}&quot;, userId);</span>
 <span class="fc" id="L120">            return false;</span>
         }
 
         try {
-<span class="fc" id="L124">            HttpHeaders headers = new HttpHeaders();</span>
-<span class="fc" id="L125">            headers.set(&quot;Authorization&quot;, authToken);</span>
-<span class="fc" id="L126">            HttpEntity&lt;String&gt; entity = new HttpEntity&lt;&gt;(headers);</span>
+<span class="nc" id="L124">            HttpHeaders headers = new HttpHeaders();</span>
+<span class="nc" id="L125">            headers.set(&quot;Authorization&quot;, authToken);</span>
+<span class="nc" id="L126">            HttpEntity&lt;String&gt; entity = new HttpEntity&lt;&gt;(headers);</span>
 
-<span class="fc" id="L128">            String url = authProfileUrl + &quot;/caregiver/&quot; + userId;</span>
-<span class="fc" id="L129">            ResponseEntity&lt;Map&gt; response = restTemplate.exchange(</span>
+<span class="nc" id="L128">            String url = authProfileUrl + &quot;/caregiver/&quot; + userId;</span>
+<span class="nc" id="L129">            ResponseEntity&lt;Map&gt; response = restTemplate.exchange(</span>
                     url, HttpMethod.GET, entity, Map.class);
 
-<span class="pc bpc" id="L132" title="1 of 2 branches missed.">            if (response.getStatusCode().is2xxSuccessful()) {</span>
-<span class="fc" id="L133">                logger.debug(&quot;User {} is a caregiver&quot;, userId);</span>
-<span class="fc" id="L134">                return true;</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">            if (response.getStatusCode().is2xxSuccessful()) {</span>
+<span class="nc" id="L133">                logger.debug(&quot;User {} is a caregiver&quot;, userId);</span>
+<span class="nc" id="L134">                return true;</span>
             }
 <span class="nc" id="L136">        } catch (Exception e) {</span>
 <span class="nc" id="L137">            logger.debug(&quot;User {} is not a caregiver: {}&quot;, userId, e.getMessage());</span>

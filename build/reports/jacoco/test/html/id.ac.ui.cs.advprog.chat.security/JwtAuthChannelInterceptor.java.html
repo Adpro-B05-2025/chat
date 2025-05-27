@@ -76,43 +76,43 @@ public class JwtAuthChannelInterceptor implements ChannelInterceptor {
 <span class="fc" id="L76">                List&lt;String&gt; authHeaders = sh.getNativeHeader(&quot;Authorization&quot;);</span>
 <span class="fc" id="L77">                logger.debug(&quot;Authorization headers: {}&quot;, authHeaders);</span>
 
-<span class="pc bpc" id="L79" title="2 of 6 branches missed.">                if (authHeaders != null &amp;&amp; !authHeaders.isEmpty() &amp;&amp; authHeaders.get(0).startsWith(&quot;Bearer &quot;)) {</span>
-<span class="fc" id="L80">                    String token = authHeaders.get(0).substring(7);</span>
-<span class="fc" id="L81">                    logger.debug(&quot;Extracted token: {}...&quot;, token.substring(0, Math.min(token.length(), 20)));</span>
+<span class="pc bpc" id="L79" title="5 of 6 branches missed.">                if (authHeaders != null &amp;&amp; !authHeaders.isEmpty() &amp;&amp; authHeaders.get(0).startsWith(&quot;Bearer &quot;)) {</span>
+<span class="nc" id="L80">                    String token = authHeaders.get(0).substring(7);</span>
+<span class="nc" id="L81">                    logger.debug(&quot;Extracted token: {}...&quot;, token.substring(0, Math.min(token.length(), 20)));</span>
 
                     try {
-<span class="pc bpc" id="L84" title="1 of 2 branches missed.">                        if (jwtUtils.validateJwtToken(token)) {</span>
-<span class="fc" id="L85">                            logger.info(&quot;JWT token is valid&quot;);</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">                        if (jwtUtils.validateJwtToken(token)) {</span>
+<span class="nc" id="L85">                            logger.info(&quot;JWT token is valid&quot;);</span>
 
-<span class="fc" id="L87">                            String userId = jwtUtils.getUserIdFromJwtToken(token);</span>
-<span class="fc" id="L88">                            String username = jwtUtils.getUsernameFromToken(token);</span>
+<span class="nc" id="L87">                            String userId = jwtUtils.getUserIdFromJwtToken(token);</span>
+<span class="nc" id="L88">                            String username = jwtUtils.getUsernameFromToken(token);</span>
 
-<span class="fc" id="L90">                            logger.debug(&quot;Extracted userId: {}, username: {}&quot;, userId, username);</span>
+<span class="nc" id="L90">                            logger.debug(&quot;Extracted userId: {}, username: {}&quot;, userId, username);</span>
 
-<span class="pc bpc" id="L92" title="1 of 2 branches missed.">                            if (userId != null) {</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">                            if (userId != null) {</span>
                                 // Store user info in session attributes
-<span class="fc" id="L94">                                sh.getSessionAttributes().put(USER_ID_SESSION_ATTR, Long.parseLong(userId));</span>
-<span class="pc bpc" id="L95" title="1 of 2 branches missed.">                                sh.getSessionAttributes().put(USERNAME_SESSION_ATTR, username != null ? username : userId);</span>
-<span class="fc" id="L96">                                sh.getSessionAttributes().put(AUTH_TOKEN_SESSION_ATTR, authHeaders.get(0)); // Store full Bearer token</span>
+<span class="nc" id="L94">                                sh.getSessionAttributes().put(USER_ID_SESSION_ATTR, Long.parseLong(userId));</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">                                sh.getSessionAttributes().put(USERNAME_SESSION_ATTR, username != null ? username : userId);</span>
+<span class="nc" id="L96">                                sh.getSessionAttributes().put(AUTH_TOKEN_SESSION_ATTR, authHeaders.get(0)); // Store full Bearer token</span>
 
                                 // Also set as principal
-<span class="fc" id="L99">                                SimplePrincipal principal = new SimplePrincipal(</span>
-<span class="pc bpc" id="L100" title="1 of 2 branches missed.">                                        username != null ? username : userId,</span>
-<span class="fc" id="L101">                                        Long.parseLong(userId)</span>
+<span class="nc" id="L99">                                SimplePrincipal principal = new SimplePrincipal(</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">                                        username != null ? username : userId,</span>
+<span class="nc" id="L101">                                        Long.parseLong(userId)</span>
                                 );
-<span class="fc" id="L103">                                sh.setUser(principal);</span>
+<span class="nc" id="L103">                                sh.setUser(principal);</span>
 
-<span class="fc" id="L105">                                logger.info(&quot;Successfully set user principal and session attributes for userId: {}&quot;, userId);</span>
-<span class="fc" id="L106">                            } else {</span>
+<span class="nc" id="L105">                                logger.info(&quot;Successfully set user principal and session attributes for userId: {}&quot;, userId);</span>
+<span class="nc" id="L106">                            } else {</span>
 <span class="nc" id="L107">                                logger.warn(&quot;Missing userId in token&quot;);</span>
                             }
-<span class="fc" id="L109">                        } else {</span>
+<span class="nc" id="L109">                        } else {</span>
 <span class="nc" id="L110">                            logger.warn(&quot;JWT token validation failed&quot;);</span>
                         }
 <span class="nc" id="L112">                    } catch (Exception e) {</span>
 <span class="nc" id="L113">                        logger.error(&quot;Error processing JWT token: &quot;, e);</span>
-<span class="fc" id="L114">                    }</span>
-<span class="fc" id="L115">                } else {</span>
+<span class="nc" id="L114">                    }</span>
+<span class="nc" id="L115">                } else {</span>
 <span class="fc" id="L116">                    logger.warn(&quot;No valid Authorization header found&quot;);</span>
                 }
 
@@ -124,31 +124,31 @@ public class JwtAuthChannelInterceptor implements ChannelInterceptor {
 <span class="fc" id="L124">            logger.debug(&quot;Current user principal: {}&quot;, user);</span>
 
             // If user is null, try to get from session attributes
-<span class="fc bfc" id="L127" title="All 2 branches covered.">            if (user == null) {</span>
-<span class="fc" id="L128">                logger.debug(&quot;User principal is null, attempting to get from session attributes&quot;);</span>
+<span class="pc bpc" id="L127" title="1 of 2 branches missed.">            if (user == null) {</span>
+<span class="nc" id="L128">                logger.debug(&quot;User principal is null, attempting to get from session attributes&quot;);</span>
 
-<span class="fc" id="L130">                Long userId = (Long) sh.getSessionAttributes().get(USER_ID_SESSION_ATTR);</span>
-<span class="fc" id="L131">                String username = (String) sh.getSessionAttributes().get(USERNAME_SESSION_ATTR);</span>
-<span class="fc" id="L132">                String authToken = (String) sh.getSessionAttributes().get(AUTH_TOKEN_SESSION_ATTR);</span>
+<span class="nc" id="L130">                Long userId = (Long) sh.getSessionAttributes().get(USER_ID_SESSION_ATTR);</span>
+<span class="nc" id="L131">                String username = (String) sh.getSessionAttributes().get(USERNAME_SESSION_ATTR);</span>
+<span class="nc" id="L132">                String authToken = (String) sh.getSessionAttributes().get(AUTH_TOKEN_SESSION_ATTR);</span>
 
-<span class="fc" id="L134">                logger.debug(&quot;Session attributes - userId: {}, username: {}, authToken: {}&quot;,</span>
-<span class="pc bpc" id="L135" title="1 of 2 branches missed.">                        userId, username, authToken != null ? &quot;present&quot; : &quot;null&quot;);</span>
+<span class="nc" id="L134">                logger.debug(&quot;Session attributes - userId: {}, username: {}, authToken: {}&quot;,</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">                        userId, username, authToken != null ? &quot;present&quot; : &quot;null&quot;);</span>
 
-<span class="pc bpc" id="L137" title="1 of 2 branches missed.">                if (userId != null) {</span>
-<span class="fc" id="L138">                    SimplePrincipal principal = new SimplePrincipal(username, userId);</span>
-<span class="fc" id="L139">                    sh.setUser(principal);</span>
-<span class="fc" id="L140">                    user = principal;</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">                if (userId != null) {</span>
+<span class="nc" id="L138">                    SimplePrincipal principal = new SimplePrincipal(username, userId);</span>
+<span class="nc" id="L139">                    sh.setUser(principal);</span>
+<span class="nc" id="L140">                    user = principal;</span>
 
                     // Also store in message headers for controller access
-<span class="fc" id="L143">                    sh.setHeader(USER_ID_SESSION_ATTR, userId);</span>
-<span class="fc" id="L144">                    sh.setHeader(USERNAME_SESSION_ATTR, username);</span>
-<span class="fc" id="L145">                    sh.setHeader(AUTH_TOKEN_SESSION_ATTR, authToken);</span>
+<span class="nc" id="L143">                    sh.setHeader(USER_ID_SESSION_ATTR, userId);</span>
+<span class="nc" id="L144">                    sh.setHeader(USERNAME_SESSION_ATTR, username);</span>
+<span class="nc" id="L145">                    sh.setHeader(AUTH_TOKEN_SESSION_ATTR, authToken);</span>
 
-<span class="fc" id="L147">                    logger.info(&quot;Successfully restored user principal from session for userId: {}&quot;, userId);</span>
-<span class="fc" id="L148">                } else {</span>
+<span class="nc" id="L147">                    logger.info(&quot;Successfully restored user principal from session for userId: {}&quot;, userId);</span>
+<span class="nc" id="L148">                } else {</span>
 <span class="nc" id="L149">                    logger.warn(&quot;No user information found in session attributes&quot;);</span>
                 }
-<span class="fc" id="L151">            } else {</span>
+<span class="nc" id="L151">            } else {</span>
                 // If user exists, ensure headers are set for controller
 <span class="pc bpc" id="L153" title="1 of 2 branches missed.">                if (user instanceof SimplePrincipal) {</span>
 <span class="fc" id="L154">                    SimplePrincipal simplePrincipal = (SimplePrincipal) user;</span>
@@ -162,7 +162,7 @@ public class JwtAuthChannelInterceptor implements ChannelInterceptor {
             }
 
             // 3) Handle SEND commands: check permissions
-<span class="fc bfc" id="L165" title="All 2 branches covered.">            if (StompCommand.SEND.equals(sh.getCommand())) {</span>
+<span class="pc bpc" id="L165" title="1 of 2 branches missed.">            if (StompCommand.SEND.equals(sh.getCommand())) {</span>
 <span class="fc" id="L166">                String dest = sh.getDestination();</span>
 <span class="fc" id="L167">                logger.info(&quot;Processing STOMP SEND to destination: {}&quot;, dest);</span>
 
@@ -199,9 +199,9 @@ public class JwtAuthChannelInterceptor implements ChannelInterceptor {
                     }
                     // 3.b) Other room actions - check membership
 <span class="fc bfc" id="L201" title="All 2 branches covered.">                    else if (dest.startsWith(&quot;/app/chat.send.&quot;)</span>
-<span class="fc bfc" id="L202" title="All 2 branches covered.">                            || dest.startsWith(&quot;/app/chat.edit.&quot;)</span>
-<span class="pc bpc" id="L203" title="1 of 2 branches missed.">                            || dest.startsWith(&quot;/app/chat.delete.&quot;)</span>
-<span class="pc bpc" id="L204" title="1 of 2 branches missed.">                            || dest.startsWith(&quot;/app/chat.history.&quot;)) {</span>
+<span class="pc bpc" id="L202" title="1 of 2 branches missed.">                            || dest.startsWith(&quot;/app/chat.edit.&quot;)</span>
+<span class="nc bnc" id="L203" title="All 2 branches missed.">                            || dest.startsWith(&quot;/app/chat.delete.&quot;)</span>
+<span class="nc bnc" id="L204" title="All 2 branches missed.">                            || dest.startsWith(&quot;/app/chat.history.&quot;)) {</span>
 
 <span class="fc" id="L206">                        logger.info(&quot;Processing room action request&quot;);</span>
 
@@ -228,7 +228,7 @@ public class JwtAuthChannelInterceptor implements ChannelInterceptor {
 <span class="fc" id="L228">                            logger.debug(&quot;User {} checking membership in room {} (pacillian: {}, caregiver: {})&quot;,</span>
 <span class="fc" id="L229">                                    uid, roomId, room.getPacilianId(), room.getDoctorId());</span>
 
-<span class="fc bfc" id="L231" title="All 4 branches covered.">                            if (!isPacillian &amp;&amp; !isCaregiver) {</span>
+<span class="pc bpc" id="L231" title="1 of 4 branches missed.">                            if (!isPacillian &amp;&amp; !isCaregiver) {</span>
 <span class="fc" id="L232">                                logger.error(&quot;User {} not authorized for room {}&quot;, uid, roomId);</span>
 <span class="fc" id="L233">                                throw new AccessDeniedException(&quot;You are not a member of this chat room&quot;);</span>
                             }
