@@ -36,7 +36,7 @@ public class JwtAuthChannelInterceptor implements ChannelInterceptor {
     }
 
     // Simple Principal wrapper
-    private static class SimplePrincipal implements Principal {
+    public static class SimplePrincipal implements Principal {
         private final String name;
         private final Long userId;
 

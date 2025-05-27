@@ -1,0 +1,1 @@
+web: java -jar build/libs/chat-0.0.1-SNAPSHOT.jar

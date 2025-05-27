@@ -20,7 +20,7 @@ public class JwtUtils {
     @Value("${pandacare.app.jwtSecret:defaultSecretKeyForDevelopmentOnly}")
     private String jwtSecret;
 
-    private Key key() {
+    Key key() {
         return Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecret));
     }
 
