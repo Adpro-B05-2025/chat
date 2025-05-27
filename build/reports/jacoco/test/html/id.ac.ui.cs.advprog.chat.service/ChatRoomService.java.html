@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ChatRoomService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">chat</a> &gt; <a href="index.source.html" class="el_package">id.ac.ui.cs.advprog.chat.service</a> &gt; <span class="el_source">ChatRoomService.java</span></div><h1>ChatRoomService.java</h1><pre class="source lang-java linenums">package id.ac.ui.cs.advprog.chat.service;
+
+import id.ac.ui.cs.advprog.chat.model.ChatRoom;
+import id.ac.ui.cs.advprog.chat.repository.ChatRoomRepository;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.Timer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.TimeUnit;
+
+@Service
+@Transactional
+public class ChatRoomService {
+
+<span class="fc" id="L28">    private static final Logger logger = LoggerFactory.getLogger(ChatRoomService.class);</span>
+
+    private final ChatRoomRepository repo;
+    private final RestTemplate restTemplate;
+    private final Counter chatRoomCreatedCounter;
+    private final Timer messageProcessingTimer;
+
+    @Value(&quot;${authprofile.service.url:http://localhost:8081/api}&quot;)
+    private String authProfileUrl;
+
+    // Store token in thread-local for WebSocket context
+<span class="fc" id="L39">    private static final ThreadLocal&lt;String&gt; currentAuthToken = new ThreadLocal&lt;&gt;();</span>
+
+    @Autowired
+<span class="fc" id="L42">    public ChatRoomService(ChatRoomRepository repo, Counter chatRoomCreatedCounter, Timer messageProcessingTimer) {</span>
+<span class="fc" id="L43">        this.repo = repo;</span>
+<span class="fc" id="L44">        this.restTemplate = new RestTemplate();</span>
+<span class="fc" id="L45">        this.chatRoomCreatedCounter = chatRoomCreatedCounter;</span>
+<span class="fc" id="L46">        this.messageProcessingTimer = messageProcessingTimer;</span>
+<span class="fc" id="L47">    }</span>
+
+    /**
+     * Set the auth token for the current thread (used in WebSocket context)
+     */
+    public static void setCurrentAuthToken(String token) {
+<span class="fc" id="L53">        currentAuthToken.set(token);</span>
+<span class="fc" id="L54">    }</span>
+
+    /**
+     * Clear the auth token for the current thread
+     */
+    public static void clearCurrentAuthToken() {
+<span class="fc" id="L60">        currentAuthToken.remove();</span>
+<span class="fc" id="L61">    }</span>
+
+    /**
+     * Creates a chat room between two users, ensuring proper role assignment.
+     * Always ensures that pacilianId is the patient and doctorId is the caregiver.
+     */
+    public ChatRoom createIfNotExists(Long userId1, Long userId2) {
+<span class="fc" id="L68">        return messageProcessingTimer.record(() -&gt; {</span>
+<span class="fc" id="L69">            logger.info(&quot;Creating chat room between users {} and {}&quot;, userId1, userId2);</span>
+
+            // Determine which user is the patient and which is the caregiver
+<span class="fc" id="L72">            Long pacilianId = null;</span>
+<span class="fc" id="L73">            Long doctorId = null;</span>
+
+            // Check if userId1 is a caregiver
+<span class="fc bfc" id="L76" title="All 2 branches covered.">            if (isCaregiver(userId1)) {</span>
+<span class="fc" id="L77">                doctorId = userId1;</span>
+<span class="fc" id="L78">                pacilianId = userId2;</span>
+<span class="pc bpc" id="L79" title="1 of 2 branches missed.">            } else if (isCaregiver(userId2)) {</span>
+<span class="nc" id="L80">                doctorId = userId2;</span>
+<span class="nc" id="L81">                pacilianId = userId1;</span>
+            } else {
+                // If neither is a caregiver, treat the first user as patient and second as caregiver
+                // (This is a fallback case that shouldn't normally occur)
+<span class="fc" id="L85">                logger.warn(&quot;Neither user {} nor {} appears to be a caregiver. Using default assignment.&quot;, userId1, userId2);</span>
+<span class="fc" id="L86">                pacilianId = userId1;</span>
+<span class="fc" id="L87">                doctorId = userId2;</span>
+            }
+
+<span class="fc" id="L90">            logger.info(&quot;Room assignment - Patient: {}, Caregiver: {}&quot;, pacilianId, doctorId);</span>
+
+            // Check if room already exists with correct role assignment
+<span class="fc" id="L93">            Optional&lt;ChatRoom&gt; existingRoom = repo.findByPacilianIdAndDoctorId(pacilianId, doctorId);</span>
+
+<span class="fc bfc" id="L95" title="All 2 branches covered.">            if (existingRoom.isPresent()) {</span>
+<span class="fc" id="L96">                logger.info(&quot;Found existing room with ID: {}&quot;, existingRoom.get().getId());</span>
+<span class="fc" id="L97">                return existingRoom.get();</span>
+            }
+
+            // Create new room with proper role assignment
+<span class="fc" id="L101">            ChatRoom newRoom = new ChatRoom(pacilianId, doctorId);</span>
+<span class="fc" id="L102">            ChatRoom savedRoom = repo.save(newRoom);</span>
+<span class="fc" id="L103">            logger.info(&quot;Created new room with ID: {}&quot;, savedRoom.getId());</span>
+            
+            // Increment the counter when creating a new room
+<span class="fc" id="L106">            chatRoomCreatedCounter.increment();</span>
+
+<span class="fc" id="L108">            return savedRoom;</span>
+        });
+    }
+
+    /**
+     * Check if a user is a caregiver by calling the auth-profile service
+     */
+    private boolean isCaregiver(Long userId) {
+<span class="fc" id="L116">        String authToken = currentAuthToken.get();</span>
+
+<span class="fc bfc" id="L118" title="All 2 branches covered.">        if (authToken == null) {</span>
+<span class="fc" id="L119">            logger.warn(&quot;No auth token available for user type check of user {}&quot;, userId);</span>
+<span class="fc" id="L120">            return false;</span>
+        }
+
+        try {
+<span class="fc" id="L124">            HttpHeaders headers = new HttpHeaders();</span>
+<span class="fc" id="L125">            headers.set(&quot;Authorization&quot;, authToken);</span>
+<span class="fc" id="L126">            HttpEntity&lt;String&gt; entity = new HttpEntity&lt;&gt;(headers);</span>
+
+<span class="fc" id="L128">            String url = authProfileUrl + &quot;/caregiver/&quot; + userId;</span>
+<span class="fc" id="L129">            ResponseEntity&lt;Map&gt; response = restTemplate.exchange(</span>
+                    url, HttpMethod.GET, entity, Map.class);
+
+<span class="pc bpc" id="L132" title="1 of 2 branches missed.">            if (response.getStatusCode().is2xxSuccessful()) {</span>
+<span class="fc" id="L133">                logger.debug(&quot;User {} is a caregiver&quot;, userId);</span>
+<span class="fc" id="L134">                return true;</span>
+            }
+<span class="nc" id="L136">        } catch (Exception e) {</span>
+<span class="nc" id="L137">            logger.debug(&quot;User {} is not a caregiver: {}&quot;, userId, e.getMessage());</span>
+<span class="nc" id="L138">        }</span>
+
+<span class="nc" id="L140">        return false;</span>
+    }
+
+    /** Find room by ID */
+    public Optional&lt;ChatRoom&gt; find(Long roomId) {
+<span class="fc" id="L145">        return repo.findById(roomId);</span>
+    }
+
+    /**
+     * Find all rooms where user is a participant (either as patient or doctor)
+     */
+    public List&lt;ChatRoom&gt; findRoomsByUserId(Long userId) {
+<span class="fc" id="L152">        return repo.findByPacilianIdOrDoctorId(userId, userId);</span>
+    }
+
+    /**
+     * Clean up duplicate rooms - utility method to fix existing data
+     * This should be called once to clean up any existing duplicate rooms
+     */
+    @Transactional
+    public void cleanupDuplicateRooms() {
+<span class="nc" id="L161">        logger.info(&quot;Starting cleanup of duplicate chat rooms&quot;);</span>
+
+<span class="nc" id="L163">        List&lt;ChatRoom&gt; allRooms = repo.findAll();</span>
+<span class="nc" id="L164">        logger.info(&quot;Found {} total rooms to check&quot;, allRooms.size());</span>
+
+<span class="nc bnc" id="L166" title="All 2 branches missed.">        for (ChatRoom room : allRooms) {</span>
+            // Check if there's a reverse duplicate (where roles are swapped)
+<span class="nc" id="L168">            Optional&lt;ChatRoom&gt; reverseDuplicate = repo.findByPacilianIdAndDoctorId(</span>
+<span class="nc" id="L169">                    room.getDoctorId(), room.getPacilianId()</span>
+            );
+
+<span class="nc bnc" id="L172" title="All 4 branches missed.">            if (reverseDuplicate.isPresent() &amp;&amp; !reverseDuplicate.get().getId().equals(room.getId())) {</span>
+<span class="nc" id="L173">                ChatRoom duplicate = reverseDuplicate.get();</span>
+<span class="nc" id="L174">                logger.warn(&quot;Found duplicate rooms: {} and {} for users {} and {}&quot;,</span>
+<span class="nc" id="L175">                        room.getId(), duplicate.getId(), room.getPacilianId(), room.getDoctorId());</span>
+
+                // Keep the room with the lower ID for consistency
+                ChatRoom roomToKeep;
+                ChatRoom roomToDelete;
+
+<span class="nc bnc" id="L181" title="All 2 branches missed.">                if (room.getId() &lt; duplicate.getId()) {</span>
+<span class="nc" id="L182">                    roomToKeep = room;</span>
+<span class="nc" id="L183">                    roomToDelete = duplicate;</span>
+                } else {
+<span class="nc" id="L185">                    roomToKeep = duplicate;</span>
+<span class="nc" id="L186">                    roomToDelete = room;</span>
+                }
+
+<span class="nc" id="L189">                logger.info(&quot;Keeping room {} and deleting room {}&quot;, roomToKeep.getId(), roomToDelete.getId());</span>
+
+                // Note: In a production system, you'd want to migrate messages from the deleted room
+                // to the kept room before deleting. For simplicity, this just deletes the duplicate.
+<span class="nc" id="L193">                repo.delete(roomToDelete);</span>
+            }
+<span class="nc" id="L195">        }</span>
+
+<span class="nc" id="L197">        logger.info(&quot;Cleanup completed&quot;);</span>
+<span class="nc" id="L198">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

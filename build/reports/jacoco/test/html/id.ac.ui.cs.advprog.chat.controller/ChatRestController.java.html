@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ChatRestController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">chat</a> &gt; <a href="index.source.html" class="el_package">id.ac.ui.cs.advprog.chat.controller</a> &gt; <span class="el_source">ChatRestController.java</span></div><h1>ChatRestController.java</h1><pre class="source lang-java linenums">package id.ac.ui.cs.advprog.chat.controller;
+
+import id.ac.ui.cs.advprog.chat.model.ChatRoom;
+import id.ac.ui.cs.advprog.chat.model.ChatMessage;
+import id.ac.ui.cs.advprog.chat.service.ChatRoomService;
+import id.ac.ui.cs.advprog.chat.service.IChatMessageService;
+import id.ac.ui.cs.advprog.chat.service.AuthProfileService;
+import id.ac.ui.cs.advprog.chat.dto.ContactResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.*;
+
+@RestController
+@RequestMapping(&quot;/api/chat&quot;)
+@CrossOrigin(origins = &quot;*&quot;)
+public class ChatRestController {
+
+<span class="fc" id="L22">    private static final Logger logger = LoggerFactory.getLogger(ChatRestController.class);</span>
+
+    private final ChatRoomService roomService;
+    private final IChatMessageService messageService;
+    private final AuthProfileService authProfileService;
+
+    @Autowired
+    public ChatRestController(ChatRoomService roomService,
+                              IChatMessageService messageService,
+<span class="fc" id="L31">                              AuthProfileService authProfileService) {</span>
+<span class="fc" id="L32">        this.roomService = roomService;</span>
+<span class="fc" id="L33">        this.messageService = messageService;</span>
+<span class="fc" id="L34">        this.authProfileService = authProfileService;</span>
+<span class="fc" id="L35">    }</span>
+
+    /**
+     * Get list of contacts (people the user has chatted with)
+     */
+    @GetMapping(&quot;/contacts&quot;)
+    public ResponseEntity&lt;List&lt;ContactResponse&gt;&gt; getContacts(@RequestParam Long userId) {
+<span class="fc" id="L42">        logger.info(&quot;START getContacts for userId={}&quot;, userId);</span>
+
+        try {
+            // 1. Ambil semua chat room yang melibatkan user ini
+<span class="fc" id="L46">            List&lt;ChatRoom&gt; userRooms = roomService.findRoomsByUserId(userId);</span>
+<span class="fc" id="L47">            logger.debug(&quot;Found {} rooms for user {}&quot;, userRooms.size(), userId);</span>
+
+<span class="fc" id="L49">            List&lt;ContactResponse&gt; contacts = new ArrayList&lt;&gt;();</span>
+
+            // 2. Proses tiap room
+<span class="fc bfc" id="L52" title="All 2 branches covered.">            for (ChatRoom room : userRooms) {</span>
+<span class="fc bfc" id="L53" title="All 2 branches covered.">                Long contactId = userId.equals(room.getPacilianId())</span>
+<span class="fc" id="L54">                        ? room.getDoctorId()</span>
+<span class="fc" id="L55">                        : room.getPacilianId();</span>
+<span class="fc" id="L56">                logger.debug(&quot;Room {}: contactId={}&quot;, room.getId(), contactId);</span>
+
+                // 2.a. Ambil nama dari AuthProfileService
+<span class="fc" id="L59">                String contactName = authProfileService.getUserName(contactId);</span>
+<span class="fc" id="L60">                logger.debug(&quot;Contact name for {} =&gt; {}&quot;, contactId, contactName);</span>
+
+                // 2.b. Ambil pesan terakhir untuk preview
+<span class="fc" id="L63">                List&lt;ChatMessage&gt; messages = messageService.getMessagesByRoom(room.getId());</span>
+<span class="fc" id="L64">                logger.debug(&quot;Room {}: {} messages loaded&quot;, room.getId(), messages.size());</span>
+
+<span class="fc" id="L66">                String lastMessage = &quot;&quot;;</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">                if (!messages.isEmpty()) {</span>
+<span class="fc" id="L68">                    ChatMessage lastMsg = messages.get(messages.size() - 1);</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">                    lastMessage = &quot;deleted&quot;.equalsIgnoreCase(lastMsg.getStatus())</span>
+<span class="fc" id="L70">                            ? &quot;Message deleted&quot;</span>
+<span class="fc" id="L71">                            : lastMsg.getContent();</span>
+                }
+
+                // 2.c. Bangun response
+<span class="fc" id="L75">                ContactResponse contact = new ContactResponse();</span>
+<span class="fc" id="L76">                contact.setContactId(contactId);</span>
+<span class="fc" id="L77">                contact.setContactName(contactName);</span>
+<span class="fc" id="L78">                contact.setRoomId(room.getId());</span>
+<span class="fc" id="L79">                contact.setLastMessage(lastMessage);</span>
+<span class="fc" id="L80">                contact.setLastMessageTime(</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">                    messages.isEmpty() ? null : messages.get(messages.size() - 1).getTimestamp()</span>
+                );
+
+<span class="fc" id="L84">                contacts.add(contact);</span>
+<span class="fc" id="L85">                logger.debug(&quot;Added ContactResponse: {}&quot;, contact);</span>
+<span class="fc" id="L86">            }</span>
+
+            // 3. Urutkan berdasarkan waktu pesan terakhir (descending)
+<span class="fc" id="L89">            contacts.sort((a, b) -&gt; {</span>
+<span class="nc bnc" id="L90" title="All 4 branches missed.">                if (a.getLastMessageTime() == null &amp;&amp; b.getLastMessageTime() == null) return 0;</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">                if (a.getLastMessageTime() == null) return 1;</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">                if (b.getLastMessageTime() == null) return -1;</span>
+<span class="nc" id="L93">                return b.getLastMessageTime().compareTo(a.getLastMessageTime());</span>
+            });
+<span class="fc" id="L95">            logger.debug(&quot;Contacts sorted by lastMessageTime&quot;);</span>
+
+<span class="fc" id="L97">            logger.info(&quot;END getContacts for user {} — returning {} contacts&quot;,</span>
+<span class="fc" id="L98">                        userId, contacts.size());</span>
+<span class="fc" id="L99">            return ResponseEntity.ok(contacts);</span>
+
+<span class="fc" id="L101">        } catch (Exception e) {</span>
+<span class="fc" id="L102">            logger.error(&quot;ERROR in getContacts for user {}: {}&quot;, userId, e.getMessage(), e);</span>
+            // meski error, kembalikan list kosong agar frontend tidak gagal total
+<span class="fc" id="L104">            return ResponseEntity.ok(Collections.emptyList());</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

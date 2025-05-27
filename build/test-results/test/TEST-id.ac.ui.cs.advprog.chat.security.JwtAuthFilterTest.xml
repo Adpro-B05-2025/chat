@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="id.ac.ui.cs.advprog.chat.security.JwtAuthFilterTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2025-05-27T04:38:37.156Z" hostname="Karolinas-MacBook-Pro.local" time="0.148">
+  <properties/>
+  <testcase name="testInvalidTokenSkipsAuthentication()" classname="id.ac.ui.cs.advprog.chat.security.JwtAuthFilterTest" time="0.143"/>
+  <testcase name="testExceptionDoesNotBreakChain()" classname="id.ac.ui.cs.advprog.chat.security.JwtAuthFilterTest" time="0.002"/>
+  <testcase name="testValidTokenSetsAuthentication()" classname="id.ac.ui.cs.advprog.chat.security.JwtAuthFilterTest" time="0.002"/>
+  <testcase name="testNoHeaderSkipsAuthentication()" classname="id.ac.ui.cs.advprog.chat.security.JwtAuthFilterTest" time="0.001"/>
+  <system-out><![CDATA[2025-05-27 11:38:37.187 [clientInboundChannel-16] INFO  i.a.u.c.a.c.c.ChatWebSocketController - Retrieved 25 messages for room 1
+2025-05-27 11:38:37.225 [clientInboundChannel-16] DEBUG i.a.u.c.a.c.c.ChatWebSocketController - history completed - sent 25 messages for roomId=1
+2025-05-27 11:38:37.301 [Test worker] ERROR i.a.u.c.a.c.security.JwtAuthFilter - Cannot set user authentication: Token error
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

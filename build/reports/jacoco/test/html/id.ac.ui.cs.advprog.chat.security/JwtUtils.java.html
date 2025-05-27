@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JwtUtils.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">chat</a> &gt; <a href="index.source.html" class="el_package">id.ac.ui.cs.advprog.chat.security</a> &gt; <span class="el_source">JwtUtils.java</span></div><h1>JwtUtils.java</h1><pre class="source lang-java linenums">package id.ac.ui.cs.advprog.chat.security;
+
+import io.jsonwebtoken.*;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import java.security.Key;
+import java.util.Arrays;
+import java.util.List;
+
+@Component
+<span class="fc" id="L16">public class JwtUtils {</span>
+<span class="fc" id="L17">    private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);</span>
+
+    // Use the same secret as auth-profile service
+    @Value(&quot;${pandacare.app.jwtSecret:defaultSecretKeyForDevelopmentOnly}&quot;)
+    private String jwtSecret;
+
+    Key key() {
+<span class="fc" id="L24">        return Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecret));</span>
+    }
+
+    public String getUserIdFromJwtToken(String token) {
+<span class="fc" id="L28">        return Jwts.parserBuilder().setSigningKey(key()).build()</span>
+<span class="fc" id="L29">                .parseClaimsJws(token).getBody().getSubject();</span>
+    }
+
+    public boolean validateJwtToken(String authToken) {
+        try {
+<span class="fc" id="L34">            Jwts.parserBuilder().setSigningKey(key()).build().parse(authToken);</span>
+<span class="fc" id="L35">            return true;</span>
+<span class="fc" id="L36">        } catch (MalformedJwtException e) {</span>
+<span class="fc" id="L37">            logger.error(&quot;Invalid JWT token: {}&quot;, e.getMessage());</span>
+<span class="fc" id="L38">        } catch (ExpiredJwtException e) {</span>
+<span class="fc" id="L39">            logger.error(&quot;JWT token is expired: {}&quot;, e.getMessage());</span>
+<span class="nc" id="L40">        } catch (UnsupportedJwtException e) {</span>
+<span class="nc" id="L41">            logger.error(&quot;JWT token is unsupported: {}&quot;, e.getMessage());</span>
+<span class="nc" id="L42">        } catch (IllegalArgumentException e) {</span>
+<span class="nc" id="L43">            logger.error(&quot;JWT claims string is empty: {}&quot;, e.getMessage());</span>
+<span class="nc" id="L44">        } catch (Exception e) {</span>
+<span class="nc" id="L45">            logger.error(&quot;JWT token validation error: {}&quot;, e.getMessage());</span>
+<span class="pc" id="L46">        }</span>
+
+<span class="fc" id="L48">        return false;</span>
+    }
+
+    public Claims getClaimsFromJwtToken(String token) {
+<span class="fc" id="L52">        return Jwts.parserBuilder().setSigningKey(key()).build()</span>
+<span class="fc" id="L53">                .parseClaimsJws(token).getBody();</span>
+    }
+
+    /**
+     * Extract roles from JWT token claims
+     * Since the auth-profile JWT only contains userId, we need to make a call to get roles
+     * For now, return default roles based on user type
+     */
+    public List&lt;String&gt; getRolesFromToken(String token) {
+        try {
+            // Since our JWT from auth-profile doesn't contain roles as separate claims,
+            // we'll return a default role. In a real implementation, you might want to
+            // make a call to auth-profile service to get user details
+<span class="fc" id="L66">            return Arrays.asList(&quot;ROLE_USER&quot;);</span>
+<span class="nc" id="L67">        } catch (Exception e) {</span>
+<span class="nc" id="L68">            logger.error(&quot;Error extracting roles from token: {}&quot;, e.getMessage());</span>
+<span class="nc" id="L69">            return Arrays.asList(&quot;ROLE_USER&quot;);</span>
+        }
+    }
+
+    /**
+     * Extract username from JWT token claims
+     * Since our JWT only contains userId as subject, we'll use that
+     */
+    public String getUsernameFromToken(String token) {
+        try {
+            // Our JWT uses userId as subject, so we'll return that as username
+<span class="fc" id="L80">            return getUserIdFromJwtToken(token);</span>
+<span class="fc" id="L81">        } catch (Exception e) {</span>
+<span class="fc" id="L82">            logger.error(&quot;Error extracting username from token: {}&quot;, e.getMessage());</span>
+<span class="fc" id="L83">            return null;</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

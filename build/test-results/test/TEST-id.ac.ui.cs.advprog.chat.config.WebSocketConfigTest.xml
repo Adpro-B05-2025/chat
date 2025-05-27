@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="id.ac.ui.cs.advprog.chat.config.WebSocketConfigTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-05-27T04:38:35.226Z" hostname="Karolinas-MacBook-Pro.local" time="0.426">
+  <properties/>
+  <testcase name="testConfigureMessageBroker_setsPrefixesAndBroker()" classname="id.ac.ui.cs.advprog.chat.config.WebSocketConfigTest" time="0.185"/>
+  <testcase name="testConfigureClientInboundChannel_addsInterceptor()" classname="id.ac.ui.cs.advprog.chat.config.WebSocketConfigTest" time="0.036"/>
+  <testcase name="testRegisterStompEndpoints_registersSockJsEndpoint()" classname="id.ac.ui.cs.advprog.chat.config.WebSocketConfigTest" time="0.204"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

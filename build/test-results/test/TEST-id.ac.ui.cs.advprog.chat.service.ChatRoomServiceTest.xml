@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="id.ac.ui.cs.advprog.chat.service.ChatRoomServiceTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-05-27T04:38:37.379Z" hostname="Karolinas-MacBook-Pro.local" time="0.136">
+  <properties/>
+  <testcase name="find_returnsRoomIfExists()" classname="id.ac.ui.cs.advprog.chat.service.ChatRoomServiceTest" time="0.127"/>
+  <testcase name="findRoomsByUserId_returnsAllRoomsWhereUserIsParticipant()" classname="id.ac.ui.cs.advprog.chat.service.ChatRoomServiceTest" time="0.002"/>
+  <testcase name="createIfNotExists_returnsExistingRoom()" classname="id.ac.ui.cs.advprog.chat.service.ChatRoomServiceTest" time="0.002"/>
+  <testcase name="createIfNotExists_savesNewRoomWhenAbsent()" classname="id.ac.ui.cs.advprog.chat.service.ChatRoomServiceTest" time="0.004"/>
+  <testcase name="find_returnsEmptyIfNotFound()" classname="id.ac.ui.cs.advprog.chat.service.ChatRoomServiceTest" time="0.001"/>
+  <system-out><![CDATA[2025-05-27 11:38:37.510 [Test worker] INFO  i.a.u.c.a.c.service.ChatRoomService - Creating chat room between users 10 and 20
+2025-05-27 11:38:37.510 [Test worker] WARN  i.a.u.c.a.c.service.ChatRoomService - No auth token available for user type check of user 10
+2025-05-27 11:38:37.510 [Test worker] WARN  i.a.u.c.a.c.service.ChatRoomService - No auth token available for user type check of user 20
+2025-05-27 11:38:37.510 [Test worker] WARN  i.a.u.c.a.c.service.ChatRoomService - Neither user 10 nor 20 appears to be a caregiver. Using default assignment.
+2025-05-27 11:38:37.510 [Test worker] INFO  i.a.u.c.a.c.service.ChatRoomService - Room assignment - Patient: 10, Caregiver: 20
+2025-05-27 11:38:37.510 [Test worker] INFO  i.a.u.c.a.c.service.ChatRoomService - Found existing room with ID: 1
+2025-05-27 11:38:37.512 [Test worker] INFO  i.a.u.c.a.c.service.ChatRoomService - Creating chat room between users 11 and 22
+2025-05-27 11:38:37.512 [Test worker] WARN  i.a.u.c.a.c.service.ChatRoomService - No auth token available for user type check of user 11
+2025-05-27 11:38:37.512 [Test worker] WARN  i.a.u.c.a.c.service.ChatRoomService - No auth token available for user type check of user 22
+2025-05-27 11:38:37.512 [Test worker] WARN  i.a.u.c.a.c.service.ChatRoomService - Neither user 11 nor 22 appears to be a caregiver. Using default assignment.
+2025-05-27 11:38:37.512 [Test worker] INFO  i.a.u.c.a.c.service.ChatRoomService - Room assignment - Patient: 11, Caregiver: 22
+2025-05-27 11:38:37.513 [Test worker] INFO  i.a.u.c.a.c.service.ChatRoomService - Created new room with ID: 2
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
