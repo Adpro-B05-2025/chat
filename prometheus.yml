@@ -1,24 +1,14 @@
 global:
-  scrape_interval: 60s
+  scrape_interval: 15s
+  evaluation_interval: 15s
 
-# Remote write to Grafana Cloud
-remote_write:
-  - url: https://prometheus-prod-52-prod-ap-southeast-2.grafana.net/api/prom/push
-    basic_auth:
-      username: 2460407
-      password: glc_eyJvIjoiMTQzOTM0NiIsIm4iOiJzdGFjay0xMjY4MDg2LWFsbG95LWNoYXQiLCJrIjoidGswUHU5TXk0UnY4MTFFMzI5am5ITTFHIiwibSI6eyJyIjoicHJvZC1hcC1zb3V0aGVhc3QtMiJ9fQ==
-
-# Local scrape configurations
 scrape_configs:
-  # Keep the node job for Prometheus itself
-  - job_name: node
-    static_configs:
-      - targets: ["localhost:9090"]
-  
-  # Add a job for your Spring Boot application
-  - job_name: 'spring-boot'
+  - job_name: 'spring-chat'
     metrics_path: '/actuator/prometheus'
-    scrape_interval: 15s
     static_configs:
-      # Try using your actual IP address for more reliable connection from inside Docker
-      - targets: ['host.docker.internal:8082']
+      - targets: ['localhost:8082']      # Spring Boot Actuator
+
+  - job_name: 'node-exporter'
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: ['localhost:9100']      # Node Exporter
