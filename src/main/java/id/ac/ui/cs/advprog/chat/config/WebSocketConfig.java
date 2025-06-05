@@ -22,15 +22,15 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
-        // in-memory broker untuk topik
+        // Enable a simple in-memory broker with topic prefix
         config.enableSimpleBroker("/topic");
-        // prefix tujuan aplikasi (MessageMapping)
+        // Set application prefix for @MessageMapping destinations
         config.setApplicationDestinationPrefixes("/app");
     }
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        // endpoint handshake WebSocket dengan fallback SockJS
+        // Register the /ws-chat endpoint with SockJS and allow all origins
         registry
                 .addEndpoint("/ws-chat")
                 .setAllowedOriginPatterns("*")
@@ -39,7 +39,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureClientInboundChannel(ChannelRegistration registration) {
-        // pasang interceptor untuk RBAC pada semua inbound STOMP SEND
+        // Attach JWT-based authentication interceptor for STOMP messages
         registration.interceptors(jwtInterceptor);
     }
 }
