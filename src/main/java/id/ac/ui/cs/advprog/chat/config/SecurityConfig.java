@@ -53,6 +53,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/chat/**").permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        .requestMatchers("/api/chat/**").permitAll()
                         .requestMatchers("/actuator/**").permitAll()  // Add this line to permit actuator endpoints
                         .requestMatchers("/ws-chat/**", "/app/**", "/topic/**").permitAll()
                         .requestMatchers("/api/chat/debug", "/api/chat/contacts").permitAll()  // Allow these endpoints
