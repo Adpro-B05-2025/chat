@@ -25,20 +25,13 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        // Allow specific origins
+        // Gunakan AllowedOriginPatterns agar bisa wildcard origin IP/domain
         configuration.setAllowedOriginPatterns(Arrays.asList("*"));
-        configuration.setAllowedOrigins(Arrays.asList("*"));
 
-        // Allow specific methods
+        // Method dan headers yang diizinkan
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-
-        // Allow specific headers
         configuration.setAllowedHeaders(Arrays.asList("*"));
-
-        // Allow credentials
         configuration.setAllowCredentials(true);
-
-        // Expose headers
         configuration.setExposedHeaders(Arrays.asList("Authorization"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -51,15 +44,15 @@ public class SecurityConfig {
         http.cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/chat/**").permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers("/api/chat/**").permitAll()
-                        .requestMatchers("/actuator/**").permitAll()  // Add this line to permit actuator endpoints
+                        .requestMatchers("/api/chat/debug", "/api/chat/contacts").permitAll()
                         .requestMatchers("/ws-chat/**", "/app/**", "/topic/**").permitAll()
-                        .requestMatchers("/api/chat/debug", "/api/chat/contacts").permitAll()  // Allow these endpoints
+                        .requestMatchers("/actuator/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
 }
