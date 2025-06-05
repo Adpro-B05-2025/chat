@@ -1,28 +1,28 @@
 package id.ac.ui.cs.advprog.chat.dto;
 
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class ChatEditRequestTest {
 
     @Test
     void testNoArgsConstructorAndSetters() {
-        ChatEditRequest req = new ChatEditRequest();
-        req.setRoomId(1L);
-        req.setId(2L);
-        req.setNewContent("updated");
+        ChatEditRequest request = new ChatEditRequest();
+        request.setRoomId(1L);
+        request.setId(2L);
+        request.setNewContent("Updated message");
 
-        assertEquals(1L, req.getRoomId());
-        assertEquals(2L, req.getId());
-        assertEquals("updated", req.getNewContent());
+        assertEquals(1L, request.getRoomId());
+        assertEquals(2L, request.getId());
+        assertEquals("Updated message", request.getNewContent());
     }
 
     @Test
     void testAllArgsConstructorAndGetters() {
-        ChatEditRequest req = new ChatEditRequest(10L, 20L, "hello");
-        assertEquals(10L, req.getRoomId());
-        assertEquals(20L, req.getId());
-        assertEquals("hello", req.getNewContent());
+        ChatEditRequest request = new ChatEditRequest(3L, 4L, "Hello world");
+
+        assertEquals(3L, request.getRoomId());
+        assertEquals(4L, request.getId());
+        assertEquals("Hello world", request.getNewContent());
     }
 }

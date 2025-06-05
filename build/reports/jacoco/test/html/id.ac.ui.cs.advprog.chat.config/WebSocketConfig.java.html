@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WebSocketConfig.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">chat</a> &gt; <a href="index.source.html" class="el_package">id.ac.ui.cs.advprog.chat.config</a> &gt; <span class="el_source">WebSocketConfig.java</span></div><h1>WebSocketConfig.java</h1><pre class="source lang-java linenums">package id.ac.ui.cs.advprog.chat.config;
+
+import id.ac.ui.cs.advprog.chat.security.JwtAuthChannelInterceptor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.messaging.simp.config.ChannelRegistration;
+import org.springframework.messaging.simp.config.MessageBrokerRegistry;
+import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
+import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
+import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
+
+@Configuration
+@EnableWebSocketMessageBroker
+public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
+
+    private final JwtAuthChannelInterceptor jwtInterceptor;
+
+    @Autowired
+<span class="fc" id="L19">    public WebSocketConfig(JwtAuthChannelInterceptor jwtInterceptor) {</span>
+<span class="fc" id="L20">        this.jwtInterceptor = jwtInterceptor;</span>
+<span class="fc" id="L21">    }</span>
+
+    @Override
+    public void configureMessageBroker(MessageBrokerRegistry config) {
+        // in-memory broker untuk topik
+<span class="fc" id="L26">        config.enableSimpleBroker(&quot;/topic&quot;);</span>
+        // prefix tujuan aplikasi (MessageMapping)
+<span class="fc" id="L28">        config.setApplicationDestinationPrefixes(&quot;/app&quot;);</span>
+<span class="fc" id="L29">    }</span>
+
+    @Override
+    public void registerStompEndpoints(StompEndpointRegistry registry) {
+        // endpoint handshake WebSocket dengan fallback SockJS
+<span class="fc" id="L34">        registry</span>
+<span class="fc" id="L35">                .addEndpoint(&quot;/ws-chat&quot;)</span>
+<span class="fc" id="L36">                .setAllowedOriginPatterns(&quot;*&quot;)</span>
+<span class="fc" id="L37">                .withSockJS();</span>
+<span class="fc" id="L38">    }</span>
+
+    @Override
+    public void configureClientInboundChannel(ChannelRegistration registration) {
+        // pasang interceptor untuk RBAC pada semua inbound STOMP SEND
+<span class="fc" id="L43">        registration.interceptors(jwtInterceptor);</span>
+<span class="fc" id="L44">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

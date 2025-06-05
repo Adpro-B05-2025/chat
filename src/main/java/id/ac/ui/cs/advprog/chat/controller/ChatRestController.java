@@ -96,4 +96,9 @@ public class ChatRestController {
             return ResponseEntity.ok(Collections.emptyList());
         }
     }
+
+    @GetMapping("test")
+    public ResponseEntity<String> test() {
+        return ResponseEntity.ok("TEST");
+    }
 }

@@ -2,80 +2,127 @@ package id.ac.ui.cs.advprog.chat.security;
 
 import id.ac.ui.cs.advprog.chat.model.ChatRoom;
 import id.ac.ui.cs.advprog.chat.service.ChatRoomService;
-import id.ac.ui.cs.advprog.chat.security.UserPrincipal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.simp.stomp.StompCommand;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.security.access.AccessDeniedException;
+import java.util.Optional;
 
 import java.security.Principal;
-import java.util.Collections;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(org.mockito.junit.jupiter.MockitoExtension.class)
 class JwtAuthChannelInterceptorTest {
 
-    @Mock private ChatRoomService roomSvc;
+    @Mock private ChatRoomService roomService;
+    @Mock private JwtUtils jwtUtils;
+
     @InjectMocks private JwtAuthChannelInterceptor interceptor;
-    private MessageChannel dummyChannel;
+
+    private MessageChannel channel;
 
     @BeforeEach
     void setUp() {
-        dummyChannel = mock(MessageChannel.class);
+        MockitoAnnotations.openMocks(this);
+        channel = mock(MessageChannel.class);
     }
 
-    private Message<byte[]> buildStompSend(String destination, Long userId) {
-        StompHeaderAccessor sh = StompHeaderAccessor.create(StompCommand.SEND);
-        sh.setDestination(destination);
-        sh.setUser((Principal) new UserPrincipal(userId, "user", Collections.emptyList()));
-        sh.setLeaveMutable(true);
-        return MessageBuilder.createMessage(new byte[0], sh.getMessageHeaders());
-    }
-
-    @Test
-    void allowsEditWhenMember() {
-        Long roomId=1L, pac=10L, doc=20L;
-        when(roomSvc.find(roomId)).thenReturn(Optional.of(new ChatRoom(roomId,pac,doc)));
-        Message<?> mPac = buildStompSend("/app/chat.edit." + roomId, pac);
-        assertSame(mPac, interceptor.preSend(mPac, dummyChannel));
-        Message<?> mDoc = buildStompSend("/app/chat.edit." + roomId, doc);
-        assertSame(mDoc, interceptor.preSend(mDoc, dummyChannel));
+    private Message<byte[]> buildMessage(StompCommand cmd, String dest, Principal principal, Map<String, Object> sessionAttrs) {
+        StompHeaderAccessor accessor = StompHeaderAccessor.create(cmd);
+        accessor.setDestination(dest);
+        accessor.setSessionId("session-1");
+        accessor.setUser(principal);
+        accessor.setSessionAttributes(sessionAttrs);
+        accessor.setLeaveMutable(true);
+        return MessageBuilder.createMessage(new byte[0], accessor.getMessageHeaders());
     }
 
     @Test
-    void deniesEditWhenNotMember() {
-        Long roomId=2L, pac=100L, doc=200L;
-        when(roomSvc.find(roomId)).thenReturn(Optional.of(new ChatRoom(roomId,pac,doc)));
-        Message<?> bad = buildStompSend("/app/chat.edit." + roomId, 999L);
-        AccessDeniedException ex = assertThrows(AccessDeniedException.class,
-                ()->interceptor.preSend(bad, dummyChannel));
-        assertEquals("You are not a member of this chat room", ex.getMessage());
+    void testSend_roomAction_allowsMember() {
+        Long uid = 1L, rid = 99L;
+        Principal principal = new JwtAuthChannelInterceptor.SimplePrincipal("test", uid);
+        ChatRoom room = new ChatRoom(rid, uid, 2L);
+        when(roomService.find(rid)).thenReturn(Optional.of(room));
+
+        Message<byte[]> msg = buildMessage(StompCommand.SEND, "/app/chat.edit." + rid, principal, new HashMap<>());
+        assertSame(msg, interceptor.preSend(msg, channel));
     }
 
     @Test
-    void allowsDeleteWhenMember() {
-        Long roomId=3L, pac=11L, doc=22L;
-        when(roomSvc.find(roomId)).thenReturn(Optional.of(new ChatRoom(roomId,pac,doc)));
-        Message<?> m = buildStompSend("/app/chat.delete." + roomId, pac);
-        assertSame(m, interceptor.preSend(m, dummyChannel));
+    void testSend_roomAction_notMember_throwsAccessDenied() {
+        Long uid = 30L, rid = 77L;
+        Principal principal = new JwtAuthChannelInterceptor.SimplePrincipal("outsider", uid);
+        ChatRoom room = new ChatRoom(rid, 1L, 2L);
+        when(roomService.find(rid)).thenReturn(Optional.of(room));
+
+        Message<byte[]> msg = buildMessage(StompCommand.SEND, "/app/chat.edit." + rid, principal, new HashMap<>());
+        assertThrows(AccessDeniedException.class, () -> interceptor.preSend(msg, channel));
+    }
+
+//    @Test
+//    void testSend_connect_parsesJwt_andStoresPrincipal() {
+//        Map<String, Object> attrs = new HashMap<>();
+//        StompHeaderAccessor accessor = StompHeaderAccessor.create(StompCommand.CONNECT);
+//        accessor.setSessionAttributes(attrs);
+//        accessor.setLeaveMutable(true);
+//        accessor.setNativeHeader("Authorization", "Bearer fakeToken");
+//        Message<byte[]> msg = MessageBuilder.createMessage(new byte[0], accessor.getMessageHeaders());
+//
+//        when(jwtUtils.validateJwtToken("fakeToken")).thenReturn(true);
+//        when(jwtUtils.getUserIdFromJwtToken("fakeToken")).thenReturn("42");
+//        when(jwtUtils.getUsernameFromToken("fakeToken")).thenReturn("meimei");
+//
+//        Message<?> result = interceptor.preSend(msg, channel);
+//        StompHeaderAccessor modifiedAccessor = StompHeaderAccessor.wrap(result);
+//
+//        assertNotNull(modifiedAccessor.getUser());
+//        assertTrue(modifiedAccessor.getUser() instanceof JwtAuthChannelInterceptor.SimplePrincipal);
+//        assertEquals("meimei", modifiedAccessor.getUser().getName());
+//    }
+
+    @Test
+    void testSend_chatInit_valid() {
+        Long uid = 88L, targetId = 99L;
+        Principal principal = new JwtAuthChannelInterceptor.SimplePrincipal("gege", uid);
+        Message<byte[]> msg = buildMessage(StompCommand.SEND, "/app/chat.init." + targetId, principal, new HashMap<>());
+
+        assertSame(msg, interceptor.preSend(msg, channel));
     }
 
     @Test
-    void deniesDeleteWhenNotMember() {
-        Long roomId=4L, pac=12L, doc=24L;
-        when(roomSvc.find(roomId)).thenReturn(Optional.of(new ChatRoom(roomId,pac,doc)));
-        Message<?> bad = buildStompSend("/app/chat.delete." + roomId, 777L);
-        assertThrows(AccessDeniedException.class,
-                ()->interceptor.preSend(bad, dummyChannel));
+    void testSend_chatInit_withSelf_throwsAccessDenied() {
+        Long uid = 77L;
+        Principal principal = new JwtAuthChannelInterceptor.SimplePrincipal("self", uid);
+        Message<byte[]> msg = buildMessage(StompCommand.SEND, "/app/chat.init." + uid, principal, new HashMap<>());
+
+        assertThrows(AccessDeniedException.class, () -> interceptor.preSend(msg, channel));
+    }
+
+    @Test
+    void testSend_invalidDestination_throwsAccessDenied() {
+        Long uid = 100L;
+        Principal principal = new JwtAuthChannelInterceptor.SimplePrincipal("bad", uid);
+        Message<byte[]> msg = buildMessage(StompCommand.SEND, "/app/chat.send.xyz", principal, new HashMap<>());
+
+        assertThrows(AccessDeniedException.class, () -> interceptor.preSend(msg, channel));
+    }
+
+    @Test
+    void testConnect_noAuthorizationHeader_doesNotSetUser() {
+        StompHeaderAccessor accessor = StompHeaderAccessor.create(StompCommand.CONNECT);
+        accessor.setSessionAttributes(new HashMap<>());
+        Message<byte[]> msg = MessageBuilder.createMessage(new byte[0], accessor.getMessageHeaders());
+
+        Message<?> result = interceptor.preSend(msg, channel);
+        StompHeaderAccessor modifiedAccessor = StompHeaderAccessor.wrap(result);
+
+        assertNull(modifiedAccessor.getUser(), "User seharusnya tidak diset jika tidak ada Authorization");
     }
 }

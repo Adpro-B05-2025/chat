@@ -1,62 +1,59 @@
-// src/test/java/id/ac/ui/cs/advprog/chat/listener/ChatNotificationListenerTest.java
 package id.ac.ui.cs.advprog.chat.listener;
 
-import id.ac.ui.cs.advprog.chat.event.ChatMessageSentEvent;
-import id.ac.ui.cs.advprog.chat.event.ChatMessageEditedEvent;
 import id.ac.ui.cs.advprog.chat.event.ChatMessageDeletedEvent;
+import id.ac.ui.cs.advprog.chat.event.ChatMessageEditedEvent;
+import id.ac.ui.cs.advprog.chat.event.ChatMessageSentEvent;
 import id.ac.ui.cs.advprog.chat.model.ChatMessage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 
 import static org.mockito.Mockito.*;
 
-@ExtendWith(org.mockito.junit.jupiter.MockitoExtension.class)
 class ChatNotificationListenerTest {
 
     @Mock
     private SimpMessagingTemplate ws;
 
+    @InjectMocks
     private ChatNotificationListener listener;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        listener = new ChatNotificationListener(ws);
     }
 
     @Test
-    void onSentPublishesToRoomMessagesTopic() {
+    void testOnSentPublishesToCorrectTopic() {
         ChatMessage msg = new ChatMessage();
-        msg.setRoomId(123L);
-        ChatMessageSentEvent ev = new ChatMessageSentEvent(msg);
+        msg.setRoomId(1L);
+        ChatMessageSentEvent event = new ChatMessageSentEvent(msg);
 
-        listener.onSent(ev);
+        listener.onSent(event);
 
-        verify(ws).convertAndSend("/topic/chat.123.messages", msg);
+        verify(ws).convertAndSend("/topic/chat.1.messages", msg);
     }
 
     @Test
-    void onEditedPublishesToRoomUpdatesTopic() {
+    void testOnEditedPublishesToCorrectTopic() {
         ChatMessage msg = new ChatMessage();
-        msg.setRoomId(456L);
-        ChatMessageEditedEvent ev = new ChatMessageEditedEvent(msg);
+        msg.setRoomId(2L);
+        ChatMessageEditedEvent event = new ChatMessageEditedEvent(msg);
 
-        listener.onEdited(ev);
+        listener.onEdited(event);
 
-        verify(ws).convertAndSend("/topic/chat.456.updates", msg);
+        verify(ws).convertAndSend("/topic/chat.2.updates", msg);
     }
 
     @Test
-    void onDeletedPublishesToRoomUpdatesTopic() {
+    void testOnDeletedPublishesToCorrectTopic() {
         ChatMessage msg = new ChatMessage();
-        msg.setRoomId(789L);
-        ChatMessageDeletedEvent ev = new ChatMessageDeletedEvent(msg);
+        msg.setRoomId(3L);
+        ChatMessageDeletedEvent event = new ChatMessageDeletedEvent(msg);
 
-        listener.onDeleted(ev);
+        listener.onDeleted(event);
 
-        verify(ws).convertAndSend("/topic/chat.789.updates", msg);
+        verify(ws).convertAndSend("/topic/chat.3.updates", msg);
     }
 }

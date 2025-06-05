@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="id.ac.ui.cs.advprog.chat.listener.ChatNotificationListenerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-05-27T07:07:15.027Z" hostname="Karolinas-MacBook-Pro.local" time="0.003">
+  <properties/>
+  <testcase name="testOnEditedPublishesToCorrectTopic()" classname="id.ac.ui.cs.advprog.chat.listener.ChatNotificationListenerTest" time="0.001"/>
+  <testcase name="testOnDeletedPublishesToCorrectTopic()" classname="id.ac.ui.cs.advprog.chat.listener.ChatNotificationListenerTest" time="0.001"/>
+  <testcase name="testOnSentPublishesToCorrectTopic()" classname="id.ac.ui.cs.advprog.chat.listener.ChatNotificationListenerTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

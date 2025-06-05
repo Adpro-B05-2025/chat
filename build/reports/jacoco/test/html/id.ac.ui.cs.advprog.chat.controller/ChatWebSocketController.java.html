@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ChatWebSocketController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">chat</a> &gt; <a href="index.source.html" class="el_package">id.ac.ui.cs.advprog.chat.controller</a> &gt; <span class="el_source">ChatWebSocketController.java</span></div><h1>ChatWebSocketController.java</h1><pre class="source lang-java linenums">package id.ac.ui.cs.advprog.chat.controller;
+
+import id.ac.ui.cs.advprog.chat.dto.ChatDeleteRequest;
+import id.ac.ui.cs.advprog.chat.dto.ChatEditRequest;
+import id.ac.ui.cs.advprog.chat.model.ChatMessage;
+import id.ac.ui.cs.advprog.chat.model.ChatRoom;
+import id.ac.ui.cs.advprog.chat.service.ChatRoomService;
+import id.ac.ui.cs.advprog.chat.service.IChatMessageService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.stereotype.Controller;
+
+import java.util.List;
+
+@Controller
+public class ChatWebSocketController {
+
+<span class="fc" id="L23">    private static final Logger logger = LoggerFactory.getLogger(ChatWebSocketController.class);</span>
+
+    private final IChatMessageService msgSvc;
+    private final ChatRoomService roomSvc;
+    private final SimpMessagingTemplate ws;
+
+    private static final String USER_ID_SESSION_ATTR = &quot;USER_ID&quot;;
+    private static final String USERNAME_SESSION_ATTR = &quot;USERNAME&quot;;
+    private static final String AUTH_TOKEN_SESSION_ATTR = &quot;AUTH_TOKEN&quot;;
+
+    @Autowired
+    public ChatWebSocketController(IChatMessageService msgSvc,
+                                   ChatRoomService roomSvc,
+<span class="fc" id="L36">                                   SimpMessagingTemplate ws) {</span>
+<span class="fc" id="L37">        this.msgSvc = msgSvc;</span>
+<span class="fc" id="L38">        this.roomSvc = roomSvc;</span>
+<span class="fc" id="L39">        this.ws = ws;</span>
+<span class="fc" id="L40">        logger.info(&quot;ChatWebSocketController initialized&quot;);</span>
+<span class="fc" id="L41">    }</span>
+
+    @MessageMapping(&quot;/chat.init.{targetUserId}&quot;)
+    public void initRoom(@DestinationVariable Long targetUserId,
+                         SimpMessageHeaderAccessor headerAccessor) {
+<span class="fc" id="L46">        logger.info(&quot;initRoom called - targetUserId={}&quot;, targetUserId);</span>
+<span class="fc" id="L47">        logger.debug(&quot;Session attributes on init: {}&quot;, headerAccessor.getSessionAttributes());</span>
+        try {
+<span class="fc" id="L49">            Long currentUserId = getUserId(headerAccessor);</span>
+<span class="fc" id="L50">            String authToken = getAuthToken(headerAccessor);</span>
+
+<span class="fc" id="L52">            logger.info(&quot;Current User ID for initRoom: {}&quot;, currentUserId);</span>
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">            logger.debug(&quot;Auth token present: {}&quot;, authToken != null);</span>
+
+<span class="pc bpc" id="L55" title="1 of 2 branches missed.">            if (authToken != null) {</span>
+<span class="fc" id="L56">                ChatRoomService.setCurrentAuthToken(authToken);</span>
+            }
+
+            try {
+<span class="fc" id="L60">                ChatRoom room = roomSvc.createIfNotExists(currentUserId, targetUserId);</span>
+<span class="fc" id="L61">                logger.info(&quot;Room created/found with ID: {}&quot;, room.getId());</span>
+
+<span class="fc" id="L63">                ws.convertAndSendToUser(</span>
+<span class="fc" id="L64">                        currentUserId.toString(),</span>
+                        &quot;/topic/chat.init&quot;,
+<span class="fc" id="L66">                        room.getId()</span>
+                );
+<span class="fc" id="L68">                ws.convertAndSend(</span>
+                        &quot;/topic/chat.init.&quot; + targetUserId,
+<span class="fc" id="L70">                        room.getId()</span>
+                );
+
+<span class="fc" id="L73">                logger.info(&quot;initRoom completed successfully for roomId={}&quot;, room.getId());</span>
+            } finally {
+<span class="fc" id="L75">                ChatRoomService.clearCurrentAuthToken();</span>
+<span class="fc" id="L76">                logger.debug(&quot;Cleared thread-local auth token&quot;);</span>
+            }
+<span class="fc" id="L78">        } catch (Exception e) {</span>
+<span class="fc" id="L79">            logger.error(&quot;Error in initRoom for targetUserId={}: {}&quot;, targetUserId, e.getMessage(), e);</span>
+<span class="fc" id="L80">            ws.convertAndSend(</span>
+                    &quot;/topic/chat.init.&quot; + targetUserId + &quot;.error&quot;,
+<span class="fc" id="L82">                    &quot;Failed to initialize room: &quot; + e.getMessage()</span>
+            );
+<span class="fc" id="L84">        }</span>
+<span class="fc" id="L85">    }</span>
+
+    @MessageMapping(&quot;/chat.send.{roomId}&quot;)
+    public void send(@DestinationVariable Long roomId,
+                     ChatMessage message,
+                     SimpMessageHeaderAccessor headerAccessor) {
+<span class="fc" id="L91">        logger.info(&quot;send called - roomId={}&quot;, roomId);</span>
+<span class="fc" id="L92">        logger.debug(&quot;Payload before send: {}&quot;, message);</span>
+        try {
+<span class="fc" id="L94">            Long senderId = getUserId(headerAccessor);</span>
+<span class="fc" id="L95">            message.setRoomId(roomId);</span>
+<span class="fc" id="L96">            message.setSenderId(senderId);</span>
+
+<span class="fc" id="L98">            logger.debug(&quot;Message details - sender={}, receiver={}, content={}&quot;,</span>
+<span class="fc" id="L99">                    senderId, message.getReceiverId(), message.getContent());</span>
+
+<span class="fc" id="L101">            ChatMessage saved = msgSvc.sendMessage(message);</span>
+<span class="fc" id="L102">            logger.info(&quot;Message sent successfully - messageId={}&quot;, saved.getId());</span>
+<span class="fc" id="L103">            logger.debug(&quot;send completed for messageId={}&quot;, saved.getId());</span>
+<span class="fc" id="L104">        } catch (Exception e) {</span>
+<span class="fc" id="L105">            logger.error(&quot;Error in send for roomId={}: {}&quot;, roomId, e.getMessage(), e);</span>
+<span class="fc" id="L106">            ws.convertAndSend(</span>
+                    &quot;/topic/chat.&quot; + roomId + &quot;.error&quot;,
+<span class="fc" id="L108">                    &quot;Failed to send message: &quot; + e.getMessage()</span>
+            );
+<span class="fc" id="L110">        }</span>
+<span class="fc" id="L111">    }</span>
+
+    @MessageMapping(&quot;/chat.edit.{roomId}&quot;)
+    public void edit(@DestinationVariable Long roomId,
+                     ChatEditRequest req,
+                     SimpMessageHeaderAccessor headerAccessor) {
+<span class="fc" id="L117">        logger.info(&quot;edit called - roomId={}, messageId={}&quot;, roomId, req.getId());</span>
+<span class="fc" id="L118">        logger.debug(&quot;edit request payload: {}&quot;, req);</span>
+        try {
+<span class="fc" id="L120">            Long userId = getUserId(headerAccessor);</span>
+<span class="fc" id="L121">            logger.debug(&quot;User {} editing message {}&quot;, userId, req.getId());</span>
+
+<span class="fc" id="L123">            req.setRoomId(roomId);</span>
+<span class="fc" id="L124">            ChatMessage updated = msgSvc.editMessage(req.getId(), req.getNewContent())</span>
+<span class="pc" id="L125">                    .orElseThrow(() -&gt; new RuntimeException(&quot;Message not found with id: &quot; + req.getId()));</span>
+
+<span class="fc" id="L127">            logger.info(&quot;Message edited successfully - messageId={}&quot;, updated.getId());</span>
+<span class="fc" id="L128">            logger.debug(&quot;edit completed for messageId={}&quot;, updated.getId());</span>
+<span class="fc" id="L129">        } catch (Exception e) {</span>
+<span class="fc" id="L130">            logger.error(&quot;Error in edit for roomId={}, messageId={}: {}&quot;, roomId, req.getId(), e.getMessage(), e);</span>
+<span class="fc" id="L131">            ws.convertAndSend(</span>
+                    &quot;/topic/chat.&quot; + roomId + &quot;.error&quot;,
+<span class="fc" id="L133">                    &quot;Failed to edit message: &quot; + e.getMessage()</span>
+            );
+<span class="fc" id="L135">        }</span>
+<span class="fc" id="L136">    }</span>
+
+    @MessageMapping(&quot;/chat.delete.{roomId}&quot;)
+    public void delete(@DestinationVariable Long roomId,
+                       ChatDeleteRequest req,
+                       SimpMessageHeaderAccessor headerAccessor) {
+<span class="fc" id="L142">        logger.info(&quot;delete called - roomId={}, messageId={}&quot;, roomId, req.getId());</span>
+<span class="fc" id="L143">        logger.debug(&quot;delete request payload: {}&quot;, req);</span>
+        try {
+<span class="fc" id="L145">            Long userId = getUserId(headerAccessor);</span>
+<span class="fc" id="L146">            logger.debug(&quot;User {} deleting message {}&quot;, userId, req.getId());</span>
+
+<span class="fc" id="L148">            req.setRoomId(roomId);</span>
+<span class="fc" id="L149">            ChatMessage deleted = msgSvc.deleteMessage(req.getId())</span>
+<span class="pc" id="L150">                    .orElseThrow(() -&gt; new RuntimeException(&quot;Message not found with id: &quot; + req.getId()));</span>
+
+<span class="fc" id="L152">            logger.info(&quot;Message deleted successfully - messageId={}&quot;, deleted.getId());</span>
+<span class="fc" id="L153">            logger.debug(&quot;delete completed for messageId={}&quot;, deleted.getId());</span>
+<span class="fc" id="L154">        } catch (Exception e) {</span>
+<span class="fc" id="L155">            logger.error(&quot;Error in delete for roomId={}, messageId={}: {}&quot;, roomId, req.getId(), e.getMessage(), e);</span>
+<span class="fc" id="L156">            ws.convertAndSend(</span>
+                    &quot;/topic/chat.&quot; + roomId + &quot;.error&quot;,
+<span class="fc" id="L158">                    &quot;Failed to delete message: &quot; + e.getMessage()</span>
+            );
+<span class="fc" id="L160">        }</span>
+<span class="fc" id="L161">    }</span>
+
+    @MessageMapping(&quot;/chat.history.{roomId}&quot;)
+    public void history(@DestinationVariable Long roomId,
+                        SimpMessageHeaderAccessor headerAccessor) {
+<span class="fc" id="L166">        logger.info(&quot;history called - roomId={}&quot;, roomId);</span>
+        try {
+<span class="fc" id="L168">            Long userId = getUserId(headerAccessor);</span>
+<span class="fc" id="L169">            logger.debug(&quot;User {} requesting history for room {}&quot;, userId, roomId);</span>
+
+<span class="fc" id="L171">            List&lt;ChatMessage&gt; messages = msgSvc.getMessagesByRoom(roomId);</span>
+<span class="fc" id="L172">            logger.info(&quot;Retrieved {} messages for room {}&quot;, messages.size(), roomId);</span>
+
+<span class="pc bpc" id="L174" title="1 of 2 branches missed.">            if (!messages.isEmpty()) {</span>
+<span class="fc bfc" id="L175" title="All 2 branches covered.">                for (ChatMessage message : messages) {</span>
+<span class="fc" id="L176">                    ws.convertAndSend(&quot;/topic/chat.&quot; + roomId + &quot;.messages&quot;, message);</span>
+<span class="fc" id="L177">                }</span>
+            }
+
+<span class="fc" id="L180">            ws.convertAndSend(&quot;/topic/chat.&quot; + roomId + &quot;.history.complete&quot;,</span>
+<span class="fc" id="L181">                    &quot;History loaded: &quot; + messages.size() + &quot; messages&quot;);</span>
+<span class="fc" id="L182">            logger.debug(&quot;history completed - sent {} messages for roomId={}&quot;, messages.size(), roomId);</span>
+<span class="fc" id="L183">        } catch (Exception e) {</span>
+<span class="fc" id="L184">            logger.error(&quot;Error in history for roomId={}: {}&quot;, roomId, e.getMessage(), e);</span>
+<span class="fc" id="L185">            ws.convertAndSend(</span>
+                    &quot;/topic/chat.&quot; + roomId + &quot;.error&quot;,
+<span class="fc" id="L187">                    &quot;Failed to fetch history: &quot; + e.getMessage()</span>
+            );
+<span class="fc" id="L189">        }</span>
+<span class="fc" id="L190">    }</span>
+
+    // Helper method to extract user ID from session attributes
+    private Long getUserId(SimpMessageHeaderAccessor headerAccessor) {
+<span class="pc bpc" id="L194" title="1 of 2 branches missed.">        if (headerAccessor == null) {</span>
+<span class="nc" id="L195">            logger.error(&quot;Header accessor is null&quot;);</span>
+<span class="nc" id="L196">            throw new RuntimeException(&quot;Cannot access session information&quot;);</span>
+        }
+
+        // First try to get from session attributes
+<span class="fc" id="L200">        Long userId = (Long) headerAccessor.getSessionAttributes().get(USER_ID_SESSION_ATTR);</span>
+<span class="fc" id="L201">        logger.debug(&quot;Retrieved userId from session attributes: {}&quot;, userId);</span>
+
+<span class="pc bpc" id="L203" title="1 of 2 branches missed.">        if (userId != null) {</span>
+<span class="fc" id="L204">            return userId;</span>
+        }
+
+        // If not found in session attributes, try to get from message attributes
+<span class="nc" id="L208">        userId = (Long) headerAccessor.getHeader(USER_ID_SESSION_ATTR);</span>
+<span class="nc" id="L209">        logger.debug(&quot;Retrieved userId from message headers: {}&quot;, userId);</span>
+
+<span class="nc bnc" id="L211" title="All 2 branches missed.">        if (userId != null) {</span>
+<span class="nc" id="L212">            return userId;</span>
+        }
+
+        // Last resort: try to get session ID and log for debugging
+<span class="nc" id="L216">        String sessionId = headerAccessor.getSessionId();</span>
+<span class="nc" id="L217">        logger.error(&quot;User ID not found. Session ID: {}, Session attributes: {}, Message headers: {}&quot;,</span>
+                sessionId,
+<span class="nc" id="L219">                headerAccessor.getSessionAttributes(),</span>
+<span class="nc" id="L220">                headerAccessor.toMap());</span>
+
+<span class="nc" id="L222">        throw new RuntimeException(&quot;User not authenticated - no user ID found in session or headers&quot;);</span>
+    }
+
+    // Helper method to extract auth token from session attributes
+    private String getAuthToken(SimpMessageHeaderAccessor headerAccessor) {
+<span class="pc bpc" id="L227" title="1 of 2 branches missed.">        if (headerAccessor == null) {</span>
+<span class="nc" id="L228">            return null;</span>
+        }
+
+        // Try to get from session attributes
+<span class="fc" id="L232">        String authToken = (String) headerAccessor.getSessionAttributes().get(AUTH_TOKEN_SESSION_ATTR);</span>
+<span class="pc bpc" id="L233" title="1 of 2 branches missed.">        logger.debug(&quot;Retrieved auth token from session attributes: {}&quot;, authToken != null ? &quot;present&quot; : &quot;null&quot;);</span>
+
+<span class="pc bpc" id="L235" title="1 of 2 branches missed.">        if (authToken != null) {</span>
+<span class="fc" id="L236">            return authToken;</span>
+        }
+
+        // Try to get from message headers
+<span class="nc" id="L240">        authToken = (String) headerAccessor.getHeader(AUTH_TOKEN_SESSION_ATTR);</span>
+<span class="nc bnc" id="L241" title="All 2 branches missed.">        logger.debug(&quot;Retrieved auth token from message headers: {}&quot;, authToken != null ? &quot;present&quot; : &quot;null&quot;);</span>
+
+<span class="nc" id="L243">        return authToken;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

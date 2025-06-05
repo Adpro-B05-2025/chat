@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - JwtAuthChannelInterceptorTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>JwtAuthChannelInterceptorTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/id.ac.ui.cs.advprog.chat.security.html">id.ac.ui.cs.advprog.chat.security</a> &gt; JwtAuthChannelInterceptorTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">6</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.057s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a href="#">Tests</a>
+</li>
+<li>
+<a href="#">Standard output</a>
+</li>
+</ul>
+<div class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">testConnect_noAuthorizationHeader_doesNotSetUser()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testSend_chatInit_valid()</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testSend_chatInit_withSelf_throwsAccessDenied()</td>
+<td class="success">0.003s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testSend_invalidDestination_throwsAccessDenied()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testSend_roomAction_allowsMember()</td>
+<td class="success">0.048s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testSend_roomAction_notMember_throwsAccessDenied()</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>2025-05-27 14:07:16.062 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP command: SEND on thread: Test worker
+2025-05-27 14:07:16.062 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Destination: /app/chat.edit.99
+2025-05-27 14:07:16.062 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Session ID: session-1
+2025-05-27 14:07:16.062 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Current user principal: SimplePrincipal{name='test', userId=1}
+2025-05-27 14:07:16.062 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Set headers for existing principal: 1
+2025-05-27 14:07:16.062 [Test worker] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP SEND to destination: /app/chat.edit.99
+2025-05-27 14:07:16.063 [Test worker] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing room action request
+2025-05-27 14:07:16.063 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Room ID: 99
+2025-05-27 14:07:16.063 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - User 1 checking membership in room 99 (pacillian: 1, caregiver: 2)
+2025-05-27 14:07:16.063 [Test worker] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Room action authorized for user 1 in room 99
+2025-05-27 14:07:16.063 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Message processing completed successfully
+2025-05-27 14:07:16.065 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP command: SEND on thread: Test worker
+2025-05-27 14:07:16.065 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Destination: /app/chat.init.77
+2025-05-27 14:07:16.065 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Session ID: session-1
+2025-05-27 14:07:16.065 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Current user principal: SimplePrincipal{name='self', userId=77}
+2025-05-27 14:07:16.065 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Set headers for existing principal: 77
+2025-05-27 14:07:16.065 [Test worker] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP SEND to destination: /app/chat.init.77
+2025-05-27 14:07:16.065 [Test worker] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing chat init request
+2025-05-27 14:07:16.065 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Target User ID: 77
+2025-05-27 14:07:16.065 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Current User ID: 77
+2025-05-27 14:07:16.065 [Test worker] ERROR i.a.u.c.a.c.s.JwtAuthChannelInterceptor - User cannot initiate chat with themselves
+2025-05-27 14:07:16.065 [Test worker] ERROR i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Access denied: Cannot start chat with yourself
+2025-05-27 14:07:16.066 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP command: SEND on thread: Test worker
+2025-05-27 14:07:16.067 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Destination: /app/chat.send.xyz
+2025-05-27 14:07:16.067 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Session ID: session-1
+2025-05-27 14:07:16.067 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Current user principal: SimplePrincipal{name='bad', userId=100}
+2025-05-27 14:07:16.067 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Set headers for existing principal: 100
+2025-05-27 14:07:16.067 [Test worker] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP SEND to destination: /app/chat.send.xyz
+2025-05-27 14:07:16.067 [Test worker] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing room action request
+2025-05-27 14:07:16.067 [Test worker] ERROR i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Invalid room ID in destination: /app/chat.send.xyz
+2025-05-27 14:07:16.067 [Test worker] ERROR i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Access denied: Invalid room ID
+2025-05-27 14:07:16.068 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP command: SEND on thread: Test worker
+2025-05-27 14:07:16.068 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Destination: /app/chat.edit.77
+2025-05-27 14:07:16.068 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Session ID: session-1
+2025-05-27 14:07:16.068 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Current user principal: SimplePrincipal{name='outsider', userId=30}
+2025-05-27 14:07:16.068 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Set headers for existing principal: 30
+2025-05-27 14:07:16.069 [Test worker] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP SEND to destination: /app/chat.edit.77
+2025-05-27 14:07:16.069 [Test worker] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing room action request
+2025-05-27 14:07:16.069 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Room ID: 77
+2025-05-27 14:07:16.069 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - User 30 checking membership in room 77 (pacillian: 1, caregiver: 2)
+2025-05-27 14:07:16.069 [Test worker] ERROR i.a.u.c.a.c.s.JwtAuthChannelInterceptor - User 30 not authorized for room 77
+2025-05-27 14:07:16.069 [Test worker] ERROR i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Access denied: You are not a member of this chat room
+2025-05-27 14:07:16.070 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP command: SEND on thread: Test worker
+2025-05-27 14:07:16.070 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Destination: /app/chat.init.99
+2025-05-27 14:07:16.070 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Session ID: session-1
+2025-05-27 14:07:16.070 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Current user principal: SimplePrincipal{name='gege', userId=88}
+2025-05-27 14:07:16.070 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Set headers for existing principal: 88
+2025-05-27 14:07:16.070 [Test worker] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP SEND to destination: /app/chat.init.99
+2025-05-27 14:07:16.070 [Test worker] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing chat init request
+2025-05-27 14:07:16.070 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Target User ID: 99
+2025-05-27 14:07:16.070 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Current User ID: 88
+2025-05-27 14:07:16.070 [Test worker] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Chat init request authorized for user 88 with target user 99
+2025-05-27 14:07:16.070 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Message processing completed successfully
+2025-05-27 14:07:16.071 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP command: CONNECT on thread: Test worker
+2025-05-27 14:07:16.071 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Destination: null
+2025-05-27 14:07:16.071 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Session ID: null
+2025-05-27 14:07:16.072 [Test worker] INFO  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Processing STOMP CONNECT
+2025-05-27 14:07:16.072 [Test worker] DEBUG i.a.u.c.a.c.s.JwtAuthChannelInterceptor - Authorization headers: null
+2025-05-27 14:07:16.072 [Test worker] WARN  i.a.u.c.a.c.s.JwtAuthChannelInterceptor - No valid Authorization header found
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="https://www.gradle.org">Gradle 8.13</a> at 27 May 2025, 14.07.17</p>
+</div>
+</div>
+</body>
+</html>

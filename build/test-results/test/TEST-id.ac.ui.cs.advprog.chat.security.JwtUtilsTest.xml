@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="id.ac.ui.cs.advprog.chat.security.JwtUtilsTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2025-05-27T07:07:16.205Z" hostname="Karolinas-MacBook-Pro.local" time="0.078">
+  <properties/>
+  <testcase name="testGetUserIdFromJwtToken()" classname="id.ac.ui.cs.advprog.chat.security.JwtUtilsTest" time="0.069"/>
+  <testcase name="testGetClaimsFromJwtToken()" classname="id.ac.ui.cs.advprog.chat.security.JwtUtilsTest" time="0.002"/>
+  <testcase name="testGetUsernameFromToken_invalidToken_returnsNull()" classname="id.ac.ui.cs.advprog.chat.security.JwtUtilsTest" time="0.001"/>
+  <testcase name="testGetRolesFromToken_returnsDefaultRole()" classname="id.ac.ui.cs.advprog.chat.security.JwtUtilsTest" time="0.0"/>
+  <testcase name="testValidateJwtToken_validToken_returnsTrue()" classname="id.ac.ui.cs.advprog.chat.security.JwtUtilsTest" time="0.001"/>
+  <testcase name="testValidateJwtToken_expiredToken_returnsFalse()" classname="id.ac.ui.cs.advprog.chat.security.JwtUtilsTest" time="0.002"/>
+  <testcase name="testValidateJwtToken_malformedToken_returnsFalse()" classname="id.ac.ui.cs.advprog.chat.security.JwtUtilsTest" time="0.001"/>
+  <testcase name="testGetUsernameFromToken_success()" classname="id.ac.ui.cs.advprog.chat.security.JwtUtilsTest" time="0.001"/>
+  <system-out><![CDATA[2025-05-27 14:07:16.277 [Test worker] ERROR i.a.u.c.a.chat.security.JwtUtils - Error extracting username from token: JWT strings must contain exactly 2 period characters. Found: 1
+2025-05-27 14:07:16.280 [Test worker] ERROR i.a.u.c.a.chat.security.JwtUtils - JWT token is expired: JWT expired at 2025-05-27T07:07:15Z. Current time: 2025-05-27T07:07:16Z, a difference of 1280 milliseconds.  Allowed clock skew: 0 milliseconds.
+2025-05-27 14:07:16.282 [Test worker] ERROR i.a.u.c.a.chat.security.JwtUtils - Invalid JWT token: JWT strings must contain exactly 2 period characters. Found: 4
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

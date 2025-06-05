@@ -9,17 +9,18 @@ class ChatDeleteRequestTest {
     @Test
     void testNoArgsConstructorAndSetters() {
         ChatDeleteRequest req = new ChatDeleteRequest();
-        req.setRoomId(3L);
-        req.setId(4L);
+        req.setRoomId(7L);
+        req.setId(42L);
 
-        assertEquals(3L, req.getRoomId());
-        assertEquals(4L, req.getId());
+        assertEquals(7L, req.getRoomId());
+        assertEquals(42L, req.getId());
     }
 
     @Test
     void testAllArgsConstructorAndGetters() {
-        ChatDeleteRequest req = new ChatDeleteRequest(5L, 6L);
-        assertEquals(5L, req.getRoomId());
-        assertEquals(6L, req.getId());
+        ChatDeleteRequest req = new ChatDeleteRequest(8L, 99L);
+
+        assertEquals(8L, req.getRoomId());
+        assertEquals(99L, req.getId());
     }
 }
